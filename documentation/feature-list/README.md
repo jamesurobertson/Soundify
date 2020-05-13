@@ -1,5 +1,5 @@
-# Spotify-Clone MVP List
-Spotify-clone, a clone of Spotify, is a music streaming application that allows users to listen to music, create playlists, follow friends.
+# Soundify MVP List
+Soundify, a clone of Spotify, is a music streaming application that allows users to listen to music, create playlists, follow friends.
 
 ## Steps to take:
 
