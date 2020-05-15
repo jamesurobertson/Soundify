@@ -1,0 +1,56 @@
+*{
+  font-family: spotify-circular,spotify-circular-cyrillic,spotify-circular-arabic,spotify-circular-hebrew,Helvetica Neue,Helvetica,Arial,Hiragino Kaku Gothic Pro,Meiryo,MS Gothic,sans-serif;
+}
+.left-nav-bar {
+  height: 100%;
+  width: 17%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-left: 8px;
+  flex-direction: row;
+}
+
+ #home{
+    color: #b3b3b3;
+    margin: 8px;
+}
+
+#search {
+    color: #b3b3b3;
+    margin: 8px;
+}
+
+#library{
+    color: #b3b3b3;
+    margin: 8px;
+}
+
+#create-playlist{
+    color: #b3b3b3;
+    margin: 8px;
+}
+
+#liked-songs{
+    color: #b3b3b3;
+    margin: 8px;
+}
+
+.left-nav-bar #home:hover,#library:hover,#search:hover,#create-playlist:hover,#liked-songs:hover{
+    text-shadow: none;
+    color:white;
+    /* border: 10px solid grey;
+    border-radius: 6px; */
+    /* background: grey; */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+h5{
+    font-weight: 100px;
+    color: #b3b3b3;
+}

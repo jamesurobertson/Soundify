@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+#footer{
+    display: flex;
+    justify-content: space-between;
+    background-color:black;
+    position: absolute;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+    z-index: 2;
+    color: white;
+    }
+
+.player-controls-container{
+   /* position: absolute; */
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   width: 40%;
+   align-self: center;
+}
+#buttons {
+    align-self: center;
+     /* justify-content: center;
+    align-content: center; */
+}
+
+.currently-playing {
+    width: 30%;
+}
+
+.sound-control {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* footer {
+  height: 100%;
+  width: 17%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-left: 8px;
+  flex-direction: row;
+} */
