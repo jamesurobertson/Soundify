@@ -10,7 +10,7 @@ module.exports = {
       },
       title: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: false
       },
       songLength: {
         type: Sequelize.TIME
@@ -19,8 +19,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Albums' }
       },
-      songURL:{
-        type:Sequelize.TEXT,
+      songURL: {
+        type: Sequelize.STRING(100),
         allowNull: false
       },
       createdAt: {

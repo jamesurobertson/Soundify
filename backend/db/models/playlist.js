@@ -6,22 +6,22 @@ module.exports = (sequelize, DataTypes) => {
     imageURL: DataTypes.STRING,
     createdBy: DataTypes.INTEGER
   }, {});
-  Playlist.associate = function(models) {
+  Playlist.associate = function (models) {
     // associations can be defined here
     Playlist.hasMany(models.Follower, {
       foreignKey: 'followableId',
       constraints: false,
       scope: {
-        folloewableType: 'playlist'
+        followableType: 'playlist'
       }
     })
-    Playlist.belongsTo(models.User,{
+    Playlist.belongsTo(models.User, {
       foreignKey: 'createdBy'
     })
     const columnMapping = {
-        foreignKey: 'playlistId',
-        through: 'PlaylistSongs',
-        otherKey: 'songId'
+      foreignKey: 'playlistId',
+      through: 'PlaylistSongs',
+      otherKey: 'songId'
     }
     Playlist.belongsToMany(models.Song, columnMapping)
   };

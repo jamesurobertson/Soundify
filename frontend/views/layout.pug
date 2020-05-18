@@ -1,34 +1,55 @@
-block content
-head
-  meta(charset='UTF-8')
-  link(rel='stylesheet' type='text/css' href='playbar.css')
-  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  link(rel='stylesheet' type='text/css' href='left-nav.css')
-  link(rel='stylesheet' type='text/css' href='defaults.css')
-  title Soundify
-body
-  main
-    .left-nav-bar
-      #logo
-        img(src= "../images/logo.png" alt='Soundify Logo')
-      #home
-        .fas.fa-home   Home
-      #search
-        .fas.fa-search   Search
-      #library
-        .fas.fa-record-vinyl   Your Library
-      h5 Playlists
-      #create-playlist Create PlayList
-      #liked-songs Liked Song
-    .main-screen-content
-  div#footer
-    div.currently-playing
-      p First Div
-    div.player-controls-container
-      #buttons
-        i.fas.fa-play-circle
-      #playback-bar
-        p this wil be where the song playback bar
-    div.sound-control
-      p Third Div
+html
+  head
+    meta(charset='UTF-8')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    style
+      include ../public/global.css
+      include ../public/header.css
+      include ../public/playbar.css
+      include ../public/left-nav.css
+      include ../public/home.css
+    title Soundify
+  body
+    main
+      .header
+        .header__navigation-container
+          .header__arrows
+            button.header__leftArrow
+              i.fas.fa-angle-left
+            button.header__rightArrow
+              i.fas.fa-angle-right
+          .header_searchAndTypesContainer.header__collectionTypes--hidden
+        .header__user-container
+          .header__user-buttons
+            i.fas.fa-user-astronaut
+
+          //- button#login(type="button") Log In
+      .left-nav
+        #left-nav__logo
+          img(src= "../images/logo.png" alt='Soundify Logo')
+        #left-nav__home
+          a(href="/")
+            i.fas.fa-home  Home
+        #left-nav__search
+          a(href="/search")
+            i.fas.fa-search   Search
+        #left-nav__library
+          a(href="/collection/playlist")
+            i.fas.fa-record-vinyl  Your Library
+        h5 Playlists
+        #left-nav__create-playlist Create PlayList
+        #left-nav__liked-songs Liked Song
+
+      block content
+
+      #footer
+        .footer__currently-playing
+          p First Div
+        .footer__player-controls-container
+          #footer__buttons
+            i.fas.fa-play-circle
+          #footer__playback-bar
+            p this wil be where the song playback bar
+        .footer__sound-control
+          p Third Div

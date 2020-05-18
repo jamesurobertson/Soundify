@@ -53,6 +53,13 @@ module.exports = {
           imageURL: 'path/to/image',
           createdAt: new Date(),
           updatedAt: new Date(),
+        },
+        {
+          name: 'Post Malone',
+          biography: 'Post Malones Bio',
+          imageURL: 'path/to/image',
+          createdAt: new Date(),
+          updatedAt: new Date(),
         }
       ],
       { returning: true }
@@ -63,6 +70,13 @@ module.exports = {
         {
           title: 'Blink 182',
           artistId: artists[0].id,
+          imageURL: 'path/to/image',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: 'Hollywoods Blessing',
+          artistId: 2,
           imageURL: 'path/to/image',
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -80,36 +94,50 @@ module.exports = {
           songURL: 'path/to/song/url',
           createdAt: new Date(),
           updatedAt: new Date(),
+        },
+        {
+          title: 'Circles',
+          songLength: '00:02:56',
+          albumId: 2,
+          songURL: 'path/to/song/url',
+          createdAt: new Date(),
+          updatedAt: new Date(),
         }
       ],
       { returning: true }
     )
 
-    const playlistSongs = await  queryInterface.bulkInsert('PlaylistSongs',
+    const playlistSongs = await queryInterface.bulkInsert('PlaylistSongs',
       [
         {
           playlistId: playlists[0].id,
           songId: songs[0].id,
           createdAt: new Date(),
           updatedAt: new Date(),
-        }
-      ],
-      {returning: true}
-    )
-
-    return queryInterface.bulkInsert('Followers',
-      [
+        },
         {
-          title: artists[0].name,
-          followableType: 'artist',
-          followableId: users[0].id,
-          userId: users[0].id,
+          playlistId: playlists[0].id,
+          songId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         }
       ],
-      {returning: true}
+      { returning: true }
     )
+
+    // return queryInterface.bulkInsert('Followers',
+    //   [
+    //     {
+    //       title: artists[0].name,
+    //       followableType: 'artist',
+    //       followableId: users[0].id,
+    //       userId: users[0].id,
+    //       createdAt: new Date(),
+    //       updatedAt: new Date(),
+    //     }
+    //   ],
+    //   {returning: true}
+    // )
 
   },
 

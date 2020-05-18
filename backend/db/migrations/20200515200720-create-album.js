@@ -9,13 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
         allowNull: false
       },
       imageURL: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(100)
       },
       artistId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'Artists' }
       },

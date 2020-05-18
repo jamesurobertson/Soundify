@@ -17,13 +17,12 @@ module.exports = {
         type: Sequelize.TEXT
       },
       imageURL: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       createdBy: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {model : 'Users'}
+        references: { model: 'Users' }
       },
       createdAt: {
         allowNull: false,
