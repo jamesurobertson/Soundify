@@ -1,14 +1,39 @@
-extends layout.pug
-
-block content
-  div(class="sign-up-container")
-    div(class="errors-container")
-    h2 Sign Up
-    form(class="sign-up-form")
-      .form-group
-        label(for='username') Username
-        input#username.form-control(type='text' name='username' placeholder="Username")
-      include ./includes/auth-form-fields
-      button.btn.btn-primary(type='submit') Sign Up
-    a(href='/log-in') Already have an account? Log in here.
-  script(src="js/sign-up.js")
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    link(rel='stylesheet' type='text/css' href='../login.css')
+    link(rel='stylesheet' type='text/css' href='../global.css')
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Document
+  body
+    .header
+      .head
+        .logo
+          a(class="soundify-logo", href="http://localhost:4001/")
+            img(border="0" alt="soundify" src="../images/logo.png" width="100" height="100")
+    .container-sides
+      span#continue-text To continue, please log into Soundify.
+      .form-content
+        form#form(method="post" action="/new-person")
+        input(type="hidden" name="_csrf" value=token)
+        .username-form
+          label
+          input#email(type="text" name="userName" placeholder="username" required)
+        .first-name-form
+          label
+          input#email(type="text" name="firstName" placeholder="first name" required)
+        .last-name-form
+          label
+          input#email(type="text" name="lastName" placeholder="last name" required)
+        .email-form
+          label
+          input#email(type="text" name="email" placeholder="email" required)
+        .password-form
+          label
+          input#password(type="text" name="password" placeholder="password" required)
+        div
+          a(href="/")
+            button(id="login") Sign Up
+      span#login-text Already Have An Account?
+        button(id="signup") Log In

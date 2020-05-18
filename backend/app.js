@@ -1,16 +1,26 @@
 const express = require("express");
 const morgan = require("morgan");
 const { environment } = require('./config');
-const cors = require('cors');
-const indexRouter = require('./routes/index')
+//const cors = require('cors');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const collectionsRouter = require('./routes/collections');
+const albumsRouter = require('./routes/albums');
+const artistsRouter = require('./routes/artists');
+const playlistsRouter = require('./routes/playlists')
 const db = require('./db/models')
 const app = express();
 
-app.use(cors({ origin: "http://localhost:4000" }));
+//app.use(cors({ origin: "http://localhost:4000" }));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use('/user', usersRouter);
+app.use('/collection', collectionsRouter);
+app.use('/album', albumsRouter);
+app.use('/artist', artistsRouter);
+app.use('/playlist', playlistsRouter);
+
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
