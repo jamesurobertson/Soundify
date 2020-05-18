@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     hashedPassword: DataTypes.STRING,
-    followingId: DataTypes.INTEGER
   }, {});
   User.associate = function(models) {
     // associations can be defined here
@@ -14,11 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'followableId',
       constraints: false,
       scope: {
-        commentableType: 'user'
+        followableType: 'user'
       }
     })
     User.hasMany(models.Playlist, {
       foreignKey: "createdBy"
+    })
+    User.hasMany(models.Follower, {
+      foreignKey: "userId"
     })
   };
   return User;

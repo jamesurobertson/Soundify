@@ -10,19 +10,19 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Define a route.
 app.get("/", (req, res) => {
-  res.render("layout");
+  res.render("home");
 });
 
 app.get('/sign-up', (req, res) => {
   res.render('sign-up');
 })
 
-app.get('/log-in', (req, res) => {
-  res.render('log-in');
+app.get('/login', (req, res) => {
+  res.render('login');
 });
 
-app.get('/create', (req, res) => {
-  res.render("create");
+app.get('/search', (req, res) => {
+  res.render("search");
 })
 
 app.get("/profile", (req, res) => {

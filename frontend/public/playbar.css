@@ -8,10 +8,11 @@
     background-color:black;
     position: absolute;
     bottom: 0;
-    height: 70px;
+    height: 90px;
     width: 100%;
     z-index: 2;
     color: white;
+    background-color: #111;
     }
 
 .player-controls-container{
@@ -26,8 +27,6 @@
 }
 #buttons {
     align-self: center;
-     /* justify-content: center;
-    align-content: center; */
 }
 
 .currently-playing {

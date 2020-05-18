@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const { environment } = require('./config');
 const cors = require('cors');
 const indexRouter = require('./routes/index')
+const db = require('./db/models')
 const app = express();
 
 app.use(cors({ origin: "http://localhost:4000" }));
@@ -10,10 +11,6 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
-
-app.get("/", (req, res) => {
-  res.send("Welcome to Soundify!");
-});
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {

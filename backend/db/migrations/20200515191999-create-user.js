@@ -30,12 +30,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING.BINARY
       },
-      followingId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Followers"
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,4 +1,4 @@
-doctype html
+block content
 head
   meta(charset='UTF-8')
   link(rel='stylesheet' type='text/css' href='playbar.css')
@@ -9,22 +9,19 @@ head
   title Soundify
 body
   main
-    div
-      .left-nav-bar
-        #logo
-          img(src= "../images/logo.png" alt='Soundify Logo')
-        #home
-          i.fas.fa-home
-          | Home
-        #search
-          i.fas.fa-search
-          | Search
-        #library
-          i.fas.fa-record-vinyl
-          | Your Library
-        h5 Playlists
-        #create-playlist Create PlayList
-        #liked-songs Liked Songs
+    .left-nav-bar
+      #logo
+        img(src= "../images/logo.png" alt='Soundify Logo')
+      #home
+        .fas.fa-home   Home
+      #search
+        .fas.fa-search   Search
+      #library
+        .fas.fa-record-vinyl   Your Library
+      h5 Playlists
+      #create-playlist Create PlayList
+      #liked-songs Liked Song
+    .main-screen-content
   div#footer
     div.currently-playing
       p First Div

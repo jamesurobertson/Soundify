@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'followableId',
       constraints: false,
       scope: {
-        commentableType: 'user'
+        followableType: 'user'
       }
     })
     Album.hasMany(models.Song, {

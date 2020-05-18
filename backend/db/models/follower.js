@@ -6,26 +6,30 @@ module.exports = (sequelize, DataTypes) => {
     followableId: DataTypes.INTEGER
   }, {});
   Follower.associate = function (models) {
-    Follower.belongsTo(model.User), {
+    Follower.belongsTo(models.User), {
       foreignKey: 'followableId',
       constraints: false
     }
 
-    Follower.belongsTo(model.Artist), {
+    Follower.belongsTo(models.Artist), {
       foreignKey: 'followableId',
       constraints: false
     }
 
-    Follower.belongsTo(model.Playlist), {
+    Follower.belongsTo(models.Playlist), {
       foreignKey: 'followableId',
       constraints: false
     }
 
-    Follower.belongsTo(model.Album), {
+    Follower.belongsTo(models.Album), {
       foreignKey: 'followableId',
       constraints: false
     }
-    
+
+    Follower.belongsTo(models.User,{
+      foreignKey: 'userId'
+    })
+
     Follower.addHook("afterFind", findResult => {
       if (!Array.isArray(findResult)) findResult = [findResult];
       for (const instance of findResult) {

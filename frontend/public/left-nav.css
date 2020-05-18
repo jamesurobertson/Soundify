@@ -1,11 +1,9 @@
-*{
-  font-family: spotify-circular,spotify-circular-cyrillic,spotify-circular-arabic,spotify-circular-hebrew,Helvetica Neue,Helvetica,Arial,Hiragino Kaku Gothic Pro,Meiryo,MS Gothic,sans-serif;
-}
+
 .left-nav-bar {
   height: 100%;
   width: 17%;
   position: fixed;
-  z-index: 1;
+  z-index: -1;
   top: 0;
   left: 0;
   background-color:#111;
@@ -13,6 +11,22 @@
   transition: 0.5s;
   padding-left: 8px;
   flex-direction: row;
+}
+
+.header{
+   border-bottom: 1px solid #d9dadc;
+    padding: 25px 0 10px;
+    margin-bottom: 30px;
+    text-align:center;
+    display: flex;
+    justify-content: space-around;
+    width: 83%;
+    float: right;
+}
+
+.main-screen-content{
+    width: 83%;
+    float: right;
 }
 
  #home{

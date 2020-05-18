@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'followableId',
       constraints: false,
       scope: {
-        commentableType: 'playlist'
+        folloewableType: 'playlist'
       }
     })
     Playlist.belongsTo(models.User,{
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     const columnMapping = {
         foreignKey: 'playlistId',
         through: 'PlaylistSongs',
-        otherKey: 'songId' 
+        otherKey: 'songId'
     }
     Playlist.belongsToMany(models.Song, columnMapping)
   };

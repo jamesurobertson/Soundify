@@ -22,7 +22,6 @@ module.exports = {
           lastName: 'Morgan',
           email: 'Test@email.com',
           hashedPassword: bcrypt.hashSync(faker.internet.password()),
-          followingId: null,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -86,7 +85,7 @@ module.exports = {
       { returning: true }
     )
 
-    return queryInterface.bulkInsert('PlaylistSongs',
+    const playlistSongs = await  queryInterface.bulkInsert('PlaylistSongs',
       [
         {
           playlistId: playlists[0].id,
@@ -95,6 +94,21 @@ module.exports = {
           updatedAt: new Date(),
         }
       ],
+      {returning: true}
+    )
+
+    return queryInterface.bulkInsert('Followers',
+      [
+        {
+          title: artists[0].name,
+          followableType: 'artist',
+          followableId: users[0].id,
+          userId: users[0].id,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        }
+      ],
+      {returning: true}
     )
 
   },
@@ -117,4 +131,3 @@ module.exports = {
   }
 
 }
-
