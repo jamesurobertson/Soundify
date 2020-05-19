@@ -54,12 +54,28 @@ html
       block content
 
       #footer
-        .footer__currently-playing
-          p First Div
+        .footer__currently-playing-container
+          .footer__album-art
+          .footer__song-details
+            .footer__song-name Helpless
+            .footer__song-artist-album Phillipa Soo, Original Broadway Cast of Hamilton
+          .footer__likeSong
+            button(type='button' title='Save to your Liked Songs').footer__like-button-clicked.footer__like-button
+              i.fas.fa-heart
+
         .footer__player-controls-container
-          #footer__buttons
-            i.fas.fa-play-circle
-          #footer__playback-bar
-            p this wil be where the song playback bar
-        .footer__sound-control
-          p Third Div
+          .footer__music-control-buttons
+            ul
+              li.fas.fa-random
+              li.fas.fas.fa-step-backward
+              //- li.fas.fa-play-circle
+              li.far.fa-pause-circle
+              li.fas.fa-step-forward
+              li.fas.fa-redo
+          .footer__playback-bar
+            .footer__progress-time 0:00
+            .footer__progress-bar
+            .footer__progress-time 5:41
+        .footer__sound-control-container
+          ul
+            li.fas.fa-volume-up

@@ -1,7 +1,7 @@
 
 .main-screen-content {
     grid-area: main-view;
-    background-image: linear-gradient(to right bottom, #27333c, #000),linear-gradient(transparent, #000 70%);
+    background-color: rgb(18,18,18)
 }
 
 table{
