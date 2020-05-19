@@ -1,10 +1,20 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Playlist = sequelize.define('Playlist', {
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    imageURL: DataTypes.STRING,
-    createdBy: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT
+    },
+    imageURL: {
+      type: DataTypes.STRING
+    },
+    createdBy: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {});
   Playlist.associate = function (models) {
     // associations can be defined here
