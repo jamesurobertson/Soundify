@@ -1,13 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const PlaylistSong = sequelize.define('PlaylistSong', {
-    playlistId: DataTypes.INTEGER,
-    songId: DataTypes.INTEGER
+    playlistId:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    songId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {});
   PlaylistSong.associate = function(models) {
-    
+
   };
   return PlaylistSong;
 };
-
-

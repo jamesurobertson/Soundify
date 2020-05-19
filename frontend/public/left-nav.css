@@ -1,47 +1,122 @@
 .left-nav {
     grid-area: nav-bar;
-    /* height: 100%; */
-    width: 230px;
-    position: fixed;
-    z-index: 3;
-    background-color:#111;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    position: fixed;
+    background-color:black;
+    height: 100%;
+    width: 230px;
+    z-index: 3;
     overflow-x: hidden;
-    transition: 0.5s;
-    padding-left: 8px;
+    padding-top: 24px;
     color: #b3b3b3;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-    height: 100%;
 }
-.left-nav a {
+/* .left-nav a {
     text-decoration: none;
+    color: #b3b3b3;
+    width: 100%;
+    transition: .2s linear;
+} */
+
+
+.left-nav__link-container {
+  display: flex;
+  text-decoration: none;
+  width: 95%;
+  height: 40px;
+  padding: 0 20px;
+  color: #b3b3b3;
+  transition: .2s linear;
+  align-items: center;
+}
+
+.left-nav__link-container:hover {
+  color: white;
+}
+
+.left-nav__text {
+  margin-left: 16px;
+  font-size: .9em;
+  font-weight: bold;
+}
+
+.left-nav__logo-container {
+  display: flex;
+  width: 95%;
+  height: 40px;
+  padding: 0 20px;
+  margin-bottom: 25px;
+}
+
+.left-nav__logo-icon {
+  font-size: 2.5em;
+  color: white;
+}
+
+.left-nav__icon {
+  font-size: 1.25em;
+}
+
+.left-nav__logo-text {
+  font-size: 1.5em;
+  align-self: center;
+  margin-left: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.left-nav__link-container--active {
+  color: white;
+  border-radius: 4px;
+  background-color: #282828;
+}
+
+.left-nav__playlist-container {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  padding: 10px 20px 0;
+
+}
+
+.left-nav__playlist-header {
+  align-self: start;
+  padding: 20px 0
+}
+
+.left-nav__playlist-head {
+  display: flex;
+  align-items: center;
+  font-size: 100%;
+  background-color: black;
+  color: #bfbfbf;
+  font-family: inherit;
+  border: 0;
+  padding-bottom: 10;
+  transition: .2s linear;
+}
+
+.left-nav__playlist-head:hover {
     color: white;
 }
-.left-nav a:hover {
-    color: red;
-}
- #left-nav__home{
-    margin: 8px;
+.left-nav__playlist-links i {
+  font-size: 2.25em;
 }
 
-#left-nav__search {
-    margin: 8px;
+.left-nav__playlist-container a {
+  text-decoration: none;
+  border-bottom: 1px solid gray;
 }
 
-#left-nav__library{
-    margin: 8px;
+.left-nav__playlist-container button {
+  padding-left: 0;
+}
+.left-nav__playlist-container button:focus {
+  outline: 0;
 }
 
-#left-nav__create-playlist{
-    margin: 8px;
-}
-
-#left-nav__liked-songs{
-    margin: 8px;
-}
-
-
-h5{
-    font-weight: 100px;
+.left-nav__playlist-text {
+  margin-left: 16px;
 }

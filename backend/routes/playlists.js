@@ -38,9 +38,24 @@ router.use('/:id', asyncHandler(async (req, res, next) => {
     }
 }))
 
-router.post('/', validatePlaylistErrors, asyncHandler(async (req, res, net) => {
-    const { name, description, }
-}))
 
+// UNCOMMENT when form is created
+
+// router.post('/', validatePlaylistErrors, asyncHandler(async (req, res, next) => {
+//     const { name, description} = req.body
+//     const playlist = await Playlist.create({name,description})
+// }))
+
+// router.delete('/:id',validatePlaylistErrors,asyncHandler(async(req,res,next) => {
+//         const playlistId = parseInt(req.params.id)
+//         const playlist = await Playlist.findByPk(playlistId);
+//         if(playlist){
+//             playlist.destroy();
+//             res.status(204).end();
+//         }else{
+//             next(playlistNotFound(playlistId));
+//         }
+
+// }))
 
 module.exports = router;
