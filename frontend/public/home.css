@@ -1,22 +1,146 @@
 
-.main-screen-content {
+.main-content_grid {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow: auto;
+    padding: 0 32px 32px;
+    width: 85%;
+    margin: auto;
+    margin-bottom: 160px;
+}
+
+#mainContent {
     grid-area: main-view;
     background-color: rgb(18,18,18)
 }
 
-table{
-    width: 80%;
-    text-align: center;
-    margin-bottom: 20px;
-    display: inline-table;
-}
-
-td{
-    border: 2px solid black;
+.music-content {
+    border: 16px solid transparent;
+    background-color: #282828;
+    height: 142.39px;
     border-radius: 20px;
-    padding: 10px;
-    background-color: darkgray;
-    width: 167px;
-    height: 220px;
-
+    width: 200px;
+    height: 238px;
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
+
+.music-content__image img {
+     height: 76%;
+     width: 100%;
+}
+
+
+
+/* .main-screen-content__container{
+    display: grid;
+    margin: 100px;
+    grid-gap: 20px;
+    flex-wrap: nowrap;
+    grid-template-rows:
+    "row1a row1b row1c row1d row1e"
+    "row2a row2b row2c row2d row2e"
+    "row3a row3b row3c row3d row3e"
+    "row4a row4b row4c row4d row4e"
+    "row5a row5b row5c row5d row5e"
+}
+
+.main-screen-content__container__row1a{
+    grid-area: "row1a";
+    width: 171px;
+}
+.main-screen-content__container__row1b{
+    grid-area: "row1b";
+}
+.main-screen-content__container__row1c{
+    grid-area: "row1c";
+}
+.main-screen-content__container__row1d{
+    grid-area: "row1d";
+}
+.main-screen-content__container__row1e{
+    grid-area: "row1e";
+}
+
+.main-screen-content__container__row2{
+    grid-area: "row2";
+}
+
+.main-screen-content__container__row3{
+    grid-area: "row3";
+}
+
+.main-screen-content__container__row4{
+    grid-area: "row4";
+}
+
+.main-screen-content__container__row5{
+    grid-area: "row5"
+}
+
+.row1__section{
+    border: 16px solid transparent;
+    background-color: #282828;
+    height: 142.39px;
+    border-radius: 20px;
+    width: 200px;
+    height: 238px;
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row1__top-section {
+    height: 152;
+    width: 171px;
+}
+
+.row1__top-section #row__top-section__adele{
+    height: 76%;
+    width: 100%;
+}
+
+#row1__bottom-section{
+    display: flex;
+    justify-content: right;
+}
+
+.row1__bottom-section__album-name{
+    text-align: left;
+    color: white;
+    bottom: 5px;
+    font-size: 10px;
+}
+
+.row1__bottom-section__artist-name{
+    text-align: left;
+    bottom: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.row1__section:hover{
+    color: green;
+    right: 0px;
+}
+
+.main-screen-content-title{
+    color: white;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-bar-nav{
+    text-align: center;
+}
+
+.container{
+    text-align: center;
+} */ */

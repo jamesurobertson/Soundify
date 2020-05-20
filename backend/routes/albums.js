@@ -4,7 +4,7 @@ const { requireAuth } = require('../auth');
 const { asyncHandler } = require('../utils');
 
 const router = express.Router();
-//router.use(requireAuth);
+router.use(requireAuth);
 //Function to check for empty Album ID
 const albumNotFound = (id) => {
     const err = new Error(`Album was not found`);

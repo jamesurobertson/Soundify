@@ -4,7 +4,7 @@ const { asyncHandler } = require('../utils');
 const { requireAuth } = require('../auth');
 
 const router = express.Router();
-//router.use(requireAuth);
+router.use(requireAuth);
 
 //Checks for empty artist
 const artistNotFound = (id) => {

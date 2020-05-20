@@ -10,23 +10,42 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Define a route.
 app.get("/", (req, res) => {
-  res.render("home");
+    res.render("layout");
 });
 
-app.get('/sign-up', (req, res) => {
-  res.render('sign-up');
-})
 
-app.get('/login', (req, res) => {
-  res.render('login');
+app.get("/browse", (req, res) => {
+    res.render("home");
+});
+
+app.get("/browse/artist/:id(\\d+)", async (req, res) => {
+    const artistId = parseInt(req.params.id, 10)
+    // const data = await fetch(`http://localhost:8080/artist/${artistId}`)
+    // const { name, biography } = await data.json()
+    // console.log(name, biography)
+    console.log(artistId)
+    res.render("home");
 });
 
 app.get('/search', (req, res) => {
-  res.render("search");
+    res.render("search");
 })
 
+app.get('/collection/playlist', (req, res) => {
+    res.render('collection');
+})
+
+app.get('/sign-up', (req, res) => {
+    res.render('sign-up');
+})
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+
 app.get("/profile", (req, res) => {
-  res.render("profile");
+    res.render("profile");
 });
 
 // Define a port and start listening for connections.

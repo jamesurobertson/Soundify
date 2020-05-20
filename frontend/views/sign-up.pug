@@ -5,6 +5,7 @@ html(lang="en")
     link(rel='stylesheet' type='text/css' href='../login.css')
     link(rel='stylesheet' type='text/css' href='../global.css')
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script(src="../js/sign-up.js")
     title Document
   body
     .header
@@ -15,7 +16,7 @@ html(lang="en")
     .container-sides
       span#continue-text To continue, please log into Soundify.
       .form-content
-        form#form(method="post" action="/new-person")
+        form#form.sign-up-form(method="post" action="/user")
         input(type="hidden" name="_csrf" value=token)
         .username-form
           label

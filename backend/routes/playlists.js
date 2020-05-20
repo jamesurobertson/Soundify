@@ -17,14 +17,15 @@ const playlistNotFound = (id) => {
     return err
 }
 
-
-const validatePlaylistErrors = [
+const validatePlaylistName = [
     check("name")
         .exists({ checkFalsey: true })
         .withMessage('Please provide a value for message')
         .isLength({ max: 50 })
         .withMessage('Playlist name can not be more than 50 characters')
 ]
+
+
 
 router.use('/:id', asyncHandler(async (req, res, next) => {
     const playlistId = parseInt(req.params.id, 10);
@@ -41,12 +42,13 @@ router.use('/:id', asyncHandler(async (req, res, next) => {
 
 // UNCOMMENT when form is created
 
-// router.post('/', validatePlaylistErrors, asyncHandler(async (req, res, next) => {
-//     const { name, description} = req.body
-//     const playlist = await Playlist.create({name,description})
-// }))
+router.post('/', validatePlaylistName, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    const { name, description } = req.body
+    const playlist = await Playlist.create({ name: name, description: description, createdBy: 2 })
+    res.status(201).json({ playlist });
+}))
 
-// router.delete('/:id',validatePlaylistErrors,asyncHandler(async(req,res,next) => {
+// router.delete('/:id',asyncHandler(async(req,res,next) => {
 //         const playlistId = parseInt(req.params.id)
 //         const playlist = await Playlist.findByPk(playlistId);
 //         if(playlist){

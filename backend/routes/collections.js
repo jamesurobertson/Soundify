@@ -4,19 +4,28 @@ const { requireAuth } = require('../auth')
 const { asyncHandler } = require('../utils')
 
 const router = express.Router();
-//router.use(requireAuth);
+router.use(requireAuth);
 
-router.get('/playlists', asyncHandler(async (req, res) => {
-    const playlists = await Playlist.findAll();
+router.get('/:id/playlists', asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id, 10);
+    const playlists = await Playlist.findAll({
+        where: createdBy = userId
+    });
     res.json({ playlists });
 }))
 
-router.get('/artists', asyncHandler(async (req, res) => {
-    const artists = await Artist.findAll();
+router.get('/:id/artists', asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id, 10);
+    const artists = await Artist.findAll({
+        where: createdBy = userId
+    });
     res.json({ artists });
 }))
-router.get('/albums', asyncHandler(async (req, res) => {
-    const albums = await Album.findAll();
+router.get('/:id/albums', asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id, 10);
+    const albums = await Album.findAll({
+        where: createdBy = userId
+    });
     res.json({ albums });
 }))
 

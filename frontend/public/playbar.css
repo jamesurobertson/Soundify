@@ -63,7 +63,7 @@
   width: 30%
 }
 
-.fa-pause-circle {
+.fa-pause-circle, .fa-play-circle{
   font-size: 2em;
 }
 
