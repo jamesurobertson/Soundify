@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator');
 const router = express.Router();
 
 //Authorizes user to connect to see user's playlists
-//router.use(requireAuth);
+router.use(requireAuth);
 
 //Check for a non existent playlist
 const playlistNotFound = (id) => {

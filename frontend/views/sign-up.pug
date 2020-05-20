@@ -16,26 +16,25 @@ html(lang="en")
     .container-sides
       span#continue-text To continue, please log into Soundify.
       .form-content
-        form#form.sign-up-form(method="post" action="/user")
-        input(type="hidden" name="_csrf" value=token)
-        .username-form
-          label
-          input#email(type="text" name="userName" placeholder="username" required)
-        .first-name-form
-          label
-          input#email(type="text" name="firstName" placeholder="first name" required)
-        .last-name-form
-          label
-          input#email(type="text" name="lastName" placeholder="last name" required)
-        .email-form
-          label
-          input#email(type="text" name="email" placeholder="email" required)
-        .password-form
-          label
-          input#password(type="text" name="password" placeholder="password" required)
-        div
-          a(href="/")
-            button(id="login") Sign Up
+        form(id='sign-up-form')
+            input(type="hidden" name="_csrf" value=token)
+            .username-form
+                label
+                input#username(type="text" name="userName" placeholder="username" required)
+            .first-name-form
+                label
+                input#firstname(type="text" name="firstName" placeholder="first name" required)
+            .last-name-form
+                label
+                input#lastname(type="text" name="lastName" placeholder="last name" required)
+            .email-form
+                label
+                input#email(type="text" name="email" placeholder="email" required)
+            .password-form
+                label
+                input#password(type="password" name="password" placeholder="password" required )
+            div
+            button(id="signup" type= "submit") Sign Up
       span#login-text Already Have An Account?
-        button(id="signup") Log In
+        button(id="login") Log In
           a(href="/login")

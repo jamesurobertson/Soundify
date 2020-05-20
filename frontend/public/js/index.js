@@ -9,17 +9,17 @@ window.addEventListener('DOMContentLoaded', async () => {
         })
     try {
         const res = await fetch("http://localhost:8080/browse")
-        // {
-        //     headers: {
-        //         Authorization: `Bearer ${localStorage.getItem('SOUNDIFY_ACCESS_TOKEN')}`
-        //     }
-        // }
+        {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('SOUNDIFY_ACCESS_TOKEN')}`
+            }
+        }
         const { albums } = await res.json();
         console.log(albums);
 
-        // if (res.status === 401) {
-        //     // window.location.href = "/login"
-        // }
+        if (res.status === 401) {
+            window.location.href = "/login"
+        }
     } catch (e) {
         console.error(e);
 
