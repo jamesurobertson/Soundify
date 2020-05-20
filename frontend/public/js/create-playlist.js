@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', e => {
 
     const cancelPlaylist = document.querySelector('.createPlaylist-button-cancel')
     const createPlaylist = document.querySelector('.createPlaylist-button-create')
+
     createPlaylist.addEventListener("click", async (e) => {
         e.preventDefault();
         const form = document.querySelector('.create-playlist-form');
         const formData = new FormData(form);
         const name = formData.get("name");
-        const description = formData.get("description");
-        const body = { name, description };
+        const body = { name };
 
         try {
             const res = await fetch("http://localhost:8080/playlist",
@@ -27,20 +27,18 @@ document.addEventListener('DOMContentLoaded', e => {
                 .classList.add('createPlaylistScreen--hidden')
             document.querySelector('.left-nav__createPlaylist-input')
                 .value = ''
-            window.location.href = "/#/browse";
         } catch (err) {
             //Create HTML rendered errors
         }
     })
 
-    cancelPlaylist
-        .addEventListener('click', e => {
-            document.querySelector('.createPlaylistScreen')
-                .classList.add('createPlaylistScreen--hidden')
-            document.querySelector('.left-nav__createPlaylist-input')
-                .value = ''
-            window.location.href = "/#/browse";
-        })
+    cancelPlaylist.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector('.createPlaylistScreen')
+            .classList.add('createPlaylistScreen--hidden')
+        document.querySelector('.left-nav__createPlaylist-input')
+            .value = ''
+    })
 
 
 })

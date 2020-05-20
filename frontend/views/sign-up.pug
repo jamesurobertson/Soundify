@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 html(lang="en")
-  head
-    meta(charset="UTF-8")
-    link(rel='stylesheet' type='text/css' href='../login.css')
-    link(rel='stylesheet' type='text/css' href='../global.css')
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    script(src="../js/sign-up.js")
-    title Document
-  body
-    .header
-      .head
-        .logo
-          a(class="soundify-logo", href="http://localhost:4001/")
-            img(border="0" alt="soundify" src="../images/logo.png" width="100" height="100")
-    .container-sides
-      span#continue-text To continue, please log into Soundify.
-      .form-content
-        form(id='sign-up-form')
-            input(type="hidden" name="_csrf" value=token)
-            .username-form
-                label
-                input#username(type="text" name="userName" placeholder="username" required)
-            .first-name-form
-                label
-                input#firstname(type="text" name="firstName" placeholder="first name" required)
-            .last-name-form
-                label
-                input#lastname(type="text" name="lastName" placeholder="last name" required)
-            .email-form
-                label
-                input#email(type="text" name="email" placeholder="email" required)
-            .password-form
-                label
-                input#password(type="password" name="password" placeholder="password" required )
-            div
-            button(id="signup" type= "submit") Sign Up
-      span#login-text Already Have An Account?
-        button(id="login") Log In
-          a(href="/login")
+    head
+        meta(charset="UTF-8")
+        link(rel='stylesheet' type='text/css' href='../login.css')
+        link(rel='stylesheet' type='text/css' href='../global.css')
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        script(src="../js/sign-up.js")
+        title Document
+    body
+        .header
+            .head
+                .logo
+                    a(class="soundify-logo" href="http://localhost:4001/")
+                        img(border="0" alt="soundify" src="../images/logo.png" width="100" height="100")
+        .container-sides
+            span#continue-text To continue, please log into Soundify.
+            div(class="errors-container")
+            .form-content
+                form(id='sign-up-form')
+                    input(type="hidden" name="_csrf" value=token)
+                    .username-form
+                        input#username(type="text" name="userName" placeholder="username" required)
+                    .first-name-form
+                        input#firstname(type="text" name="firstName" placeholder="first name" required)
+                    .last-name-form
+                        input#lastname(type="text" name="lastName" placeholder="last name" required)
+                    .email-form
+                        input#email(type="text" name="email" placeholder="email" required)
+                    .password-form
+                        input#password(type="password" name="password" placeholder="password" required )
+                    div
+                    button(id="signup" type= "submit") Sign Up
+            span#login-text Already Have An Account?
+                button(id="login" onclick = "window.location.href = '/log-in'") Log In

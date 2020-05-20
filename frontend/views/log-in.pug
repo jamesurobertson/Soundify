@@ -5,6 +5,7 @@ html(lang="en")
         link(rel='stylesheet' type='text/css' href='../login.css')
         link(rel='stylesheet' type='text/css' href='../global.css')
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        script(src="../js/log-in.js")
         title Document
     body
         .header
@@ -15,17 +16,17 @@ html(lang="en")
                         .left-nav__logo-text Soundify
         .container-sides
             span#continue-text To continue, please log into Soundify.
+            div(class="errors-container")
             .form-content
-                form#form(method="post" action="/new-person")
-                input(type="hidden" name="_csrf" value=token)
-                .email-form
-                    label
-                    input#email(type="text" name="email" placeholder="email" required)
-                .password-form
-                    label
-                    input#password(type="text" name="password" placeholder="password" required)
-                div
-                    a(href="/")
-                        button(id="login") Login
+                form#log-in-form
+                    input(type="hidden" name="_csrf" value=token)
+                    .email-form
+                        label
+                        input#email(type="text" name="email" placeholder="email" required)
+                    .password-form
+                        label
+                        input#password(type="password" name="password" placeholder="password" required)
+                    div
+                        button(id="login" type= "submit") Login
             span#login-text Don't Have An Account?
-                button(id="signup") Sign Up
+                button(id="signup" onclick="window.location.href = '/sign-up'") Sign Up

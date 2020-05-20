@@ -39,8 +39,8 @@ app.get('/sign-up', (req, res) => {
     res.render('sign-up');
 })
 
-app.get('/login', (req, res) => {
-    res.render('login');
+app.get('/log-in', (req, res) => {
+    res.render('log-in');
 });
 
 

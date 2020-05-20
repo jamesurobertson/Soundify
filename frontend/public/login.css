@@ -65,7 +65,7 @@
     text-align:left;
 }
 
-#email,#password{
+#email,#password,#username,#firstname,#lastname{
     font-family: monospace;
     font-size: 20px;
     font-weight: bold;

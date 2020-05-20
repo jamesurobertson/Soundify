@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 token,
                 user: { id }
             } = await res.json();
+            // document.querySelector('.header__profile-name')
+            //     .innerHTML = `${userName}`
 
             localStorage.setItem("SOUNDIFY_ACCESS_TOKEN", token);
             localStorage.setItem("SOUNDIFY_CURRENT_USER_ID", id);

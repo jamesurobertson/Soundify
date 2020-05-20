@@ -24,6 +24,16 @@ validateUserFields = [
         .exists({ checkFalsy: true })
         .withMessage("Please provide a valide email")
 ]
+
+const validateEmailPassword = [
+    check("email")
+        .exists({ checkFalsy: true })
+        .withMessage("Please provide a valid email"),
+    check("password")
+        .exists({ checkFalsy: true })
+        .withMessage("Please provide a valide email")
+]
+
 //requireAuth
 router.get('/:id', requireAuth, asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.id);
@@ -48,9 +58,13 @@ router.post('/', validateUserFields, asyncHandler(async (req, res) => {
 }))
 
 //logging in
-router.post('/token', validateUserFields, asyncHandler(async (req, res, next) => {
-    const { userName, firstName, lastName, email, password } = req.body
-    const hashedPassword = await bcrypt.hash(password, 10);
+router.post('/token', validateEmailPassword, asyncHandler(async (req, res, next) => {
+    const { email, password } = req.body
+    const user = await User.findOne({
+        where: {
+            email
+        }
+    })
 
     if (!user || !user.validatePassword(password)) {
         const err = new Error("Login failed");

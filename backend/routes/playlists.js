@@ -43,8 +43,9 @@ router.use('/:id', asyncHandler(async (req, res, next) => {
 // UNCOMMENT when form is created
 
 router.post('/', validatePlaylistName, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    const { name, description } = req.body
-    const playlist = await Playlist.create({ name: name, description: description, createdBy: 2 })
+    const { name } = req.body
+    // TODO: MAKE CREATED BY DYNAMIC
+    const playlist = await Playlist.create({ name: name, createdBy: 1 })
     res.status(201).json({ playlist });
 }))
 

@@ -25,6 +25,7 @@ html
                 .header__user-container
                     .header__user-buttons
                         i#header__user-buttons--dropdown.fas.fa-user-astronaut
+                        .header__profile-name
             .left-nav
                 .left-nav__logo-container
                     i.left-nav__logo-icon.fab.fa-spotify
@@ -36,7 +37,7 @@ html
                 a(href="/search").left-nav__link-container
                     i.left-nav__icon.fas.fa-search
                     .left-nav__text Search
-                a(href="/browse/artist/1").left-nav__link-container
+                a(href="/collection/artist").left-nav__link-container
                     i.left-nav__icon.fas.fa-record-vinyl
                     .left-nav__text Your Library
                 .left-nav__playlist-container
@@ -45,18 +46,18 @@ html
                         button(type='button').left-nav__playlist-head.createPlaylist-button
                             i.far.fa-plus-square
                             .left-nav__playlist-text Create Playlist
-                        .createPlaylistScreen.createPlaylistScreen--hidden
-                            h1.createPlaylist-header Create new playlist
-                            form.create-playlist-form
-                                .createPlaylistInput-label Playlist Name
-                                    input(type='text' name='name' class='left-nav__createPlaylist-input' placeholder='New Playlist')
-                            .createPlaylist-buttons-container
-                                a(href='/browse').createPlaylist-button-cancel CANCEL
-                                a.createPlaylist-button-create CREATE
                         a(href='/playlist/likedSongs').left-nav__playlist-head
                             i.fas.fa-heart
                             .left-nav__playlist-text Liked Songs
                         .left-nav__playlists-container
+            .createPlaylistScreen.createPlaylistScreen--hidden
+                h1.createPlaylist-header Create new playlist
+                form.create-playlist-form
+                    .createPlaylistInput-label Playlist Name
+                        input(type='text' name='name' autocomplete='off' class='left-nav__createPlaylist-input' placeholder='New Playlist')
+                .createPlaylist-buttons-container
+                    button.createPlaylist-button-cancel CANCEL
+                    button.createPlaylist-button-create CREATE
             #mainContent
                 include home.pug
             #footer
