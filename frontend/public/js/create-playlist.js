@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', e => {
 
-    const form = document.getElementById('create-playlist-form');
-    console.log('The form', form)
-    form.addEventListener("submit", async (e) => {
+    const cancelPlaylist = document.querySelector('.createPlaylist-button-cancel')
+    const createPlaylist = document.querySelector('.createPlaylist-button-create')
+    createPlaylist.addEventListener("click", async (e) => {
         e.preventDefault();
+        const form = document.querySelector('.create-playlist-form');
         const formData = new FormData(form);
         const name = formData.get("name");
         const description = formData.get("description");
@@ -24,10 +25,22 @@ document.addEventListener('DOMContentLoaded', e => {
             }
             document.querySelector('.createPlaylistScreen')
                 .classList.add('createPlaylistScreen--hidden')
+            document.querySelector('.left-nav__createPlaylist-input')
+                .value = ''
             window.location.href = "/#/browse";
         } catch (err) {
             //Create HTML rendered errors
         }
-
     })
+
+    cancelPlaylist
+        .addEventListener('click', e => {
+            document.querySelector('.createPlaylistScreen')
+                .classList.add('createPlaylistScreen--hidden')
+            document.querySelector('.left-nav__createPlaylist-input')
+                .value = ''
+            window.location.href = "/#/browse";
+        })
+
+
 })

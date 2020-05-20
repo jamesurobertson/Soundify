@@ -1,97 +1,91 @@
 html
-  head
-    meta(charset='UTF-8')
-    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    script(src="../js/index.js")
-    script(src="../js/create-playlist.js")
-    style
-      include ../public/global.css
-      include ../public/header.css
-      include ../public/playbar.css
-      include ../public/left-nav.css
-      include ../public/home.css
-    title Soundify
-  body
-    main
-      .header
-        .header__navigation-container
-          .header__arrows
-            button.header__leftArrow
-              i.fas.fa-angle-left
-            button.header__rightArrow
-              i.fas.fa-angle-right
-          .header_searchAndTypesContainer.header__collectionTypes--hidden
-        .header__user-container
-          .header__user-buttons
-            i#header__user-buttons--dropdown.fas.fa-user-astronaut
+    head
+        meta(charset='UTF-8')
+        link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        script(src="../js/index.js")
+        script(src="../js/create-playlist.js")
+        style
+            include ../public/global.css
+            include ../public/header.css
+            include ../public/left-nav.css
+            include ../public/playbar.css
+            include ../public/home.css
+        title Soundify
+    body
+        main
+            .header
+                .header__navigation-container
+                    .header__arrows
+                        button.header__leftArrow
+                            i.fas.fa-angle-left
+                        button.header__rightArrow
+                            i.fas.fa-angle-right
+                    .header_searchAndTypesContainer.header__collectionTypes--hidden
+                .header__user-container
+                    .header__user-buttons
+                        i#header__user-buttons--dropdown.fas.fa-user-astronaut
+            .left-nav
+                .left-nav__logo-container
+                    i.left-nav__logo-icon.fab.fa-spotify
+                    .left-nav__logo-text Soundify
+                a(href="/browse").left-nav__link-container.left-nav__link-container--active
+                    .createPlaylist-active
+                    i.left-nav__icon.fas.fa-home
+                    .left-nav__text Home
+                a(href="/search").left-nav__link-container
+                    i.left-nav__icon.fas.fa-search
+                    .left-nav__text Search
+                a(href="/browse/artist/1").left-nav__link-container
+                    i.left-nav__icon.fas.fa-record-vinyl
+                    .left-nav__text Your Library
+                .left-nav__playlist-container
+                    h2.left-nav__playlist-header Playlists
+                    .left-nav__playlist-links
+                        button(type='button').left-nav__playlist-head.createPlaylist-button
+                            i.far.fa-plus-square
+                            .left-nav__playlist-text Create Playlist
+                        .createPlaylistScreen.createPlaylistScreen--hidden
+                            h1.createPlaylist-header Create new playlist
+                            form.create-playlist-form
+                                .createPlaylistInput-label Playlist Name
+                                    input(type='text' name='name' class='left-nav__createPlaylist-input' placeholder='New Playlist')
+                            .createPlaylist-buttons-container
+                                a(href='/browse').createPlaylist-button-cancel CANCEL
+                                a.createPlaylist-button-create CREATE
+                        a(href='/playlist/likedSongs').left-nav__playlist-head
+                            i.fas.fa-heart
+                            .left-nav__playlist-text Liked Songs
+                        .left-nav__playlists-container
+            #mainContent
+                include home.pug
+            #footer
+                .footer__currently-playing-container
+                    .footer__album-art
+                    .footer__song-details
+                        // TODO: dynamic song name and artist/album
+                        .footer__song-name Helpless
+                        .footer__song-artist-album Phillipa Soo, Original Broadway Cast of Hamilton
+                    .footer__likeSong
+                        button(type='button' title='Save to your Liked Songs').footer__like-button-clicked.footer__like-button
+                            i.fas.fa-heart
 
-          //- button#login(type="button") Log In
-      .left-nav
-        .left-nav__logo-container
-          i.left-nav__logo-icon.fab.fa-spotify
-
-
-        a(href="/browse").left-nav__link-container.left-nav__link-container--active
-          .createPlaylist-active
-          i.left-nav__icon.fas.fa-home
-          .left-nav__text Home
-        a(href="/search").left-nav__link-container
-          i.left-nav__icon.fas.fa-search
-          .left-nav__text Search
-        a(href="/browse/artist/1").left-nav__link-container
-          i.left-nav__icon.fas.fa-record-vinyl
-          .left-nav__text Your Library
-
-        .left-nav__playlist-container
-          h2.left-nav__playlist-header Playlists
-          .left-nav__playlist-links
-            button(type='button').left-nav__playlist-head.createPlaylist-button
-              i.far.fa-plus-square
-              .left-nav__playlist-text Create Playlist
-            .createPlaylistScreen.createPlaylistScreen--hidden
-              h1.createPlaylist-header
-                form(id='create-playlist-form')
-                  .createPlaylistInput-label Playlist Name
-                    input(type='text' name='name' class='left-nav__createPlaylist-input' placeholder='New Playlist')
-                    input(type='description' name='description' class='left-nav__createPlaylist-input' placeholder='Description')
-                  .createPlaylist-buttons-container
-                    button.createPlaylist-button-cancel CANCEL
-                    button(type='submit').createPlaylist-button-create CREATE
-            a(href='/playlist/likedSongs').left-nav__playlist-head
-              i.fas.fa-heart
-              .left-nav__playlist-text Liked Songs
-            .left-nav__playlists-container
-
-      #mainContent
-        include home.pug
-      #footer
-        .footer__currently-playing-container
-          .footer__album-art
-          .footer__song-details
-            // TODO: dynamic song name and artist/album
-            .footer__song-name Helpless
-            .footer__song-artist-album Phillipa Soo, Original Broadway Cast of Hamilton
-          .footer__likeSong
-            button(type='button' title='Save to your Liked Songs').footer__like-button-clicked.footer__like-button
-              i.fas.fa-heart
-
-        .footer__player-controls-container
-          .footer__music-control-buttons
-            ul
-              li.fas.fa-random
-              li.fas.fas.fa-step-backward
-              li.fas.fa-play-circle
-              // li.far.fa-pause-circle
-              li.fas.fa-step-forward
-              li.fas.fa-redo
-          .footer__playback-bar
-            // TODO: dynamic time controls
-            .footer__progress-time 0:00
-            .footer__progress-bar
-            .footer__progress-time 5:41
-        .footer__sound-control-container
-          ul
-            li.fas.fa-volume-up
-        script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js')
-        script(src='../js/ajax.js')
+                .footer__player-controls-container
+                    .footer__music-control-buttons
+                        ul
+                            li.fas.fa-random
+                            li.fas.fas.fa-step-backward
+                            li.fas.fa-play-circle
+                            // li.far.fa-pause-circle
+                            li.fas.fa-step-forward
+                            li.fas.fa-redo
+                    .footer__playback-bar
+                        // TODO: dynamic time controls
+                        .footer__progress-time 0:00
+                        .footer__progress-bar
+                        .footer__progress-time 5:41
+                .footer__sound-control-container
+                    ul
+                        li.fas.fa-volume-up
+                script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js')
+                script(src='../js/ajax.js')
