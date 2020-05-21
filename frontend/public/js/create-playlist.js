@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', e => {
             }
 
             try {
-                const res = await fetch(`http://localhost:8080/user/${createdBy}`,
+                const res = await fetch(`http://localhost:8080/user/${createdBy}/playlist`,
                     {
                         headers: {
                             "Content-Type": "application/json",

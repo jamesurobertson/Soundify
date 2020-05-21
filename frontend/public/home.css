@@ -20,15 +20,6 @@
     -webkit-text-stroke: medium;
 }
 
-.music-content__artist{
-    margin: 5px;
-    font-weight: bold;
-}
-
-.music-content__bio{
-    font-size: 10px;
-}
-
 .main-content__grid {
     margin: 0;
     padding: 0;
@@ -44,7 +35,7 @@
     justify-content: center;
 }
 
-.music-content {
+.music-card {
     color: white;
     font-family: "Circular";
     font-size: 16px;
@@ -63,12 +54,12 @@
     position: relative;
 }
 
-.music-content__image{
+.music-card__image{
      height: 200px;
      width: 200px;
 }
 
-.music-content__title{
+.music-card__title{
     position: relative;
     display: flex;
     align-items: center;
@@ -81,7 +72,7 @@
     left: 0;
     -webkit-text-stroke: medium;
     color: white;
-    font-size: 60;
+    font-size: 24px;
 }
 
 img{
@@ -89,65 +80,80 @@ img{
     width: 76%;
 }
 
-#fa-play-circle{
-    color: green;
-    background: none;
-    width: 100%;
+.music-card__play-button{
+    color: #1DB954;
     height: 100%;
     border-radius: 50%;
     align-self: safe;
-    opacity: 1;
-    font-size: 4em;
-    right: 40px;
-}
-
-.music-content:hover #fa-play-circle{
-    color: green;
-    opacity: 1;
-
-}
-
-.music-container #fa-play-circle:hover{
-    width: 100px;
-}
-
-.music-content__play-button{
+    font-size: 3em;
     height: 0px;
     display: flex;
     align-self: flex-end;
-    border: none;
     padding: 0px;
-    border: -13px solid green;
-    border-radius: 122px;
     margin-right: 15px;
-    bottom: 24px;
-    position: relative;
+    bottom: 43px;
+    position: absolute;
+    z-index: -1
 }
 
-.topbar--hover:hover{
+.music-card:hover .music-card__play-button{
+    z-index: 1;
+    display: block
+}
+
+.music-card__play-button:hover{
+}
+
+
+
+.topbar-home-button{
+    margin:10px;
+    border: none;
+    background-color: transparent;
+    color: #bfbfbf;
+    outline: 0;
+    font-size: 18px;
+}
+
+.topbar-home-button:hover{
     color: white;
     border: 0px 0px 1px 0px;
 }
 
-.topbar--hover.home-artists{
-    margin:10px;
+.topbar-home-button--selected {
+    border-bottom: 2px solid #1DB954;
+    color: white;
 }
 
-.topbar--hover.home-albums{
-    margin:10px;
-}
 
-.topbar--hover.home-playlists{
-    margin:10px;
-}
-
-.music-content__play-button--hidden{
-    display: none;
-}
 
 .music-content__title{
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    height: 125px;
+    font-size: 36px;
+    color: white;
+    padding-left: 50px;
+    font-weight: bold;
+}
+
+.music-card-text-container {
+    padding-top: 20px;
+
+}
+.music-card-title {
+    font-weight: bold;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.music-card-type {
+    padding-top: 5px;
+    font-size: 12px;
+    color: #bfbfbf;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
