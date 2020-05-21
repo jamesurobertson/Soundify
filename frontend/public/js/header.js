@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", event => {
         console.log(event)
         const url = "localhost:4001/#/search"
         const searchBar = document.querySelector(".header__search-bar")
-        if (event.newUrl || event.oldUrl !== url) {
+        if (event.newUrl !== url) {
             searchBar.classList.add("search--hidden")
         } else {
             searchBar.classList.remove("search--hidden")
