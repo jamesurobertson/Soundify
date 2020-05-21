@@ -14,10 +14,9 @@
 .main-content__container__topbar{
     height: 110px;
     display: flex;
-    flex-direction: row;
     align-items: flex-end;
     color: #b3b3b3;
-    justify-content: space-evenly;
+    justify-content: center;
     padding: 8px;
     transition: .3s;
     -webkit-text-stroke: medium;
@@ -120,6 +119,21 @@ img{
     height: 24px;
     display: flex;
     align-self: flex-end;
+}
+
+.topbar-home-button {
+    background-color: transparent;
+    border: none;
+    color: #bfbfbf;
+    font-size: 18px;
+    padding: 0 20px;
+    outline: 0;
+}
+
+.topbar-home-button--selected {
+    border-bottom: 1px solid #1db954;
+    padding-bottom: 5px;
+    border-bottom-width: thick;
 }
 
 .topbar--hover:hover{

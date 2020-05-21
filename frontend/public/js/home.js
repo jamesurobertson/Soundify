@@ -20,7 +20,7 @@ async function renderArtists() {
         const mainContentContainer = document.createElement('div')
         mainContentContainer.classList.add('main-content__container')
 
-        const topBar = createTopBar()
+        const topBar = createTopBar('artist')
         mainContentContainer.appendChild(topBar)
 
         const title = document.createElement('div')
@@ -67,7 +67,7 @@ async function renderAlbums() {
         const mainContentContainer = document.createElement('div')
         mainContentContainer.classList.add('main-content__container')
 
-        const topBar = createTopBar()
+        const topBar = createTopBar('album')
         mainContentContainer.appendChild(topBar)
 
         const title = document.createElement('div')
@@ -112,7 +112,7 @@ async function renderPlaylists() {
         const mainContentContainer = document.createElement('div')
         mainContentContainer.classList.add('main-content__container')
 
-        const topBar = createTopBar()
+        const topBar = createTopBar('playlist')
         mainContentContainer.appendChild(topBar)
 
         const title = document.createElement('div')
@@ -128,12 +128,15 @@ async function renderPlaylists() {
 
         const url = `#/browse/playlists`
         window.history.pushState('playlists', 'Title', url)
+
+        const navLink = document.querySelector('topbar__nav-link-playlists')
+        navLink.classList.add('topbar-home-button--selected')
     } catch (e) {
         console.error(e)
     }
 }
 
-function createTopBar() {
+function createTopBar(type) {
     const mainContentContainer = document.createElement('div')
     mainContentContainer.classList.add('main-content__container')
 
@@ -141,22 +144,33 @@ function createTopBar() {
     topBar.classList.add('main-content__container__topbar')
 
     const artistButton = document.createElement('button')
-    artistButton.classList.add('topbar--hover', 'home-artists')
+    artistButton.classList.add('topbar--hover', 'topbar-home-button', 'topbar__nav-link-artists')
+
     artistButton.addEventListener('click', renderArtists, false)
     artistButton.innerHTML = 'Artist'
-    topBar.appendChild(artistButton)
 
     const albumButton = document.createElement('button')
-    albumButton.classList.add('topbar--hover', 'home-albums')
+    albumButton.classList.add('topbar--hover', 'topbar-home-button', 'topbar__nav-link-albums')
     albumButton.addEventListener('click', renderAlbums, false)
     albumButton.innerHTML = 'Albums'
 
-    topBar.appendChild(albumButton)
 
     const playlistButton = document.createElement('button')
-    playlistButton.classList.add('topbar--hover', 'home-playlists')
+    playlistButton.classList.add('topbar--hover', 'topbar-home-button', 'topbar__nav-link-playlists')
     playlistButton.addEventListener('click', renderPlaylists, false)
     playlistButton.innerHTML = 'Playlists'
+
+
+    if (type === 'playlist') {
+        playlistButton.classList.add('topbar-home-button--selected')
+    } else if (type === 'artist') {
+        artistButton.classList.add('topbar-home-button--selected')
+    } else {
+        albumButton.classList.add('topbar-home-button--selected')
+    }
+
+    topBar.appendChild(artistButton)
+    topBar.appendChild(albumButton)
     topBar.appendChild(playlistButton)
 
     mainContentContainer.appendChild(topBar)

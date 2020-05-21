@@ -23,6 +23,9 @@
   color: #b3b3b3;
   transition: .2s linear;
   align-items: center;
+  border: none;
+  background-color: transparent;
+  outline: 0;
 }
 
 .left-nav__link-container:hover {
@@ -230,9 +233,14 @@
 
 .left-nav__playlist-link {
     font-size: 13px;
+    border: none;
+    background-color: transparent;
+    color: #bfbfbf;
+    cursor: pointer;
+    outline: 0;
 }
 
-.left-nav__playlist-link-container:hover {
+.left-nav__playlist-link:hover {
     color: white;
 }
 
