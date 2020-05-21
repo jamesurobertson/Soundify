@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs')
-const { User, Playlist } = require('../db/models');
+const { User, Playlist, Artist, Album, Song, Follower } = require('../db/models');
 const { asyncHandler } = require('../utils');
 const { requireAuth, getUserToken } = require('../auth');
 const { check, validationResult } = require('express-validator')
@@ -34,8 +34,9 @@ const validateEmailPassword = [
         .withMessage("Please provide a valide email")
 ]
 
-//requireAuth
-router.get('/:id', requireAuth, asyncHandler(async (req, res) => {
+//Grabs all playlists created by user
+//CHANGED ROUTE. CHANGE ROUTE ON FRONTEND
+router.get('/:id/playlist', requireAuth, asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.id, 10);
     const playlists = await Playlist.findAll({
         where: {
@@ -45,6 +46,42 @@ router.get('/:id', requireAuth, asyncHandler(async (req, res) => {
     })
     res.json({ playlists })
 }))
+
+
+//Grabs users followed items
+router.get('/:id/follows', requireAuth, asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id, 10);
+    const user = await User.findOne({
+        where: { id: userId },
+        include: ['followedArtists', 'followedPlaylists', 'followedAlbums', 'followedUsers', 'followedSongs']
+    });
+
+    //Format Json response
+    const payload = {
+        id: user.id,
+        username: user.userName,
+        followedArtists: user.followedArtists
+    };
+    //Front end should take in values : const { id, username, followedPlaylists} = await res.json();
+    res.json(payload);
+}))
+
+//Grabs followers of user
+router.get('/:id/followers', asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id, 10)
+    const user = await User.findOne({
+        where: { id: userId },
+        include: ['followers']
+    });
+    const payload = {
+        id: user.id,
+        username: user.username,
+        followers: user.followers
+    };
+    //Front end should take in values : const { id, username, followers} = await res.json();
+    res.json(payload);
+})
+);
 
 //signing up
 router.post('/', validateUserFields, asyncHandler(async (req, res) => {
@@ -81,5 +118,10 @@ router.post('/token', validateEmailPassword, asyncHandler(async (req, res, next)
         user: { id: user.id }
     });
 
-}))
+
+
+}
+))
+
+router.post('/')
 module.exports = router;

@@ -15,13 +15,26 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
     Playlist.associate = function (models) {
         // associations can be defined here
-        Playlist.hasMany(models.Follower, {
+        // Playlist.hasMany(models.Follower, {
+        //     foreignKey: 'followableId',
+        //     constraints: false,
+        //     scope: {
+        //         followableType: 'playlist'
+        //     }
+        // })
+
+        Playlist.belongsToMany(models.User, {
+            as: 'followers',
+            through: {
+                model: 'Follower',
+                scope: {
+                    followableType: 'playlist'
+                }
+            },
             foreignKey: 'followableId',
-            constraints: false,
-            scope: {
-                followableType: 'playlist'
-            }
+            constraints: false
         })
+
         Playlist.belongsTo(models.User, {
             foreignKey: 'createdBy'
         })
