@@ -18,7 +18,6 @@ window.addEventListener("DOMContentLoaded", event => {
     })
 
     let toggleSearchBar = (event) => {
-        console.log(event)
         const url = "localhost:4001/#/search"
         const searchBar = document.querySelector(".header__search-bar")
         if (event.newUrl !== url) {

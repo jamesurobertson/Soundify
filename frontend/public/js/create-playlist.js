@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', e => {
 
     createPlaylist.addEventListener("click", async (e) => {
         e.preventDefault();
-        console.log('button was clicked')
         const form = document.querySelector('.create-playlist-form');
         const formData = new FormData(form);
         const name = formData.get("name");

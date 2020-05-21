@@ -26,7 +26,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     const playButton = document.querySelector('.fa-play-circle')
     playButton.addEventListener('click', e => {
-        console.log(e.currentTarget)
         const audio = new Audio('https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/eddy/2_Damn_Loud/eddy_-_03_-_All_The_Way_Up.mp3')
         audio.play()
     })
@@ -69,33 +68,39 @@ window.addEventListener('DOMContentLoaded', async () => {
     } catch (e) {
         console.error(e)
     }
-    const playlists = document.querySelectorAll('.left-nav__playlist-link');
-    playlists.forEach((playlist) => {
-        playlist.addEventListener('click', async (e) => {
-            e.preventDefault();
-            console.log(playlist.id) // prints out playlist-link-id
-            const playlistId =
-            // try {
-            //     const userId = localStorage.getItem("SOUNDIFY_CURRENT_USER_ID");
-            //     const res = await fetch(`http://localhost:8080/playlist/${playlistId}`,
-            //         {
-            //             headers: {
-            //                 "Content-Type": "application/json",
-            //                 "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
-            //             }
 
-            //         })
-            //     if (!res.ok) {
-            //         throw res
-            //     }
-            //     const { playlist } = await res.json();
-
-
-            // } catch (e) {
-
-            // }
+    const allArtists = document.querySelectorAll('.home-artists')
+    allArtists.forEach(link => {
+        link.addEventListener('click', async (e) => {
+            renderArtists()
         })
     })
-})
+    // const playlists = document.querySelectorAll('.left-nav__playlist-link');
+    // playlists.forEach((playlist) => {
+    //     playlist.addEventListener('click', async (e) => {
+    //         e.preventDefault();
+    //         const playlistId =
+    //         try {
+    //             const userId = localStorage.getItem("SOUNDIFY_CURRENT_USER_ID");
+    //             const res = await fetch(`http://localhost:8080/playlist/${playlistId}`,
+    //                 {
+    //                     headers: {
+    //                         "Content-Type": "application/json",
+    //                         "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
+    //                     }
 
-// href='/playlist/${parseInt(id)}'
+    //                 })
+    //             if (!res.ok) {
+    //                 throw res
+    //             }
+    //             const { playlist } = await res.json();
+
+
+    //         } catch (e) {
+
+    //         }
+    //         })
+    //         href='/playlist/${parseInt(id)}'
+    //     })
+    // })
+})

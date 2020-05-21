@@ -8,7 +8,6 @@ router.use(requireAuth);
 
 router.get('/', asyncHandler(async (req, res) => {
     const albums = await Album.findAll();
-    console.log('testtt')
     res.json({ albums });
 }))
 

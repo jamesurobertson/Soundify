@@ -1,5 +1,5 @@
 const express = require('express');
-const { Playlist, PlaylistSong, Song } = require('../db/models');
+const { Playlist, PlaylistSong, Song, User } = require('../db/models');
 const { asyncHandler, handleValidationErrors } = require('../utils')
 const { requireAuth } = require('../auth');
 const { check, validationResult } = require('express-validator');
@@ -40,7 +40,11 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 }))
 
 router.get('/', asyncHandler(async (req, res, next) => {
-    const playlists = await Playlist.findAll();
+    const playlists = await Playlist.findAll({
+        include: [{
+            model: User, attributes: ["userName"]
+        }]
+    });
     res.json({ playlists })
 }))
 

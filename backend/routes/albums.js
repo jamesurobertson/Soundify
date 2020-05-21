@@ -1,5 +1,5 @@
 const express = require('express');
-const { Album, Song, Artist } = require('../db/models');
+const { Album, Song, Artist, User } = require('../db/models');
 const { requireAuth } = require('../auth');
 const { asyncHandler } = require('../utils');
 
