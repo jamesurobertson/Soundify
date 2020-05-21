@@ -1,4 +1,3 @@
-
 #mainContent {
     grid-area: main-view;
     background-color: rgb(18,18,18);
@@ -7,13 +6,12 @@
 .main-content__container{
     background-color: rgb(18,18,18);
     text-align: left;
-
-    /* align-items: center; */
 }
 
 .main-content__container__topbar{
     height: 110px;
     display: flex;
+    flex-direction: row;
     align-items: flex-end;
     color: #b3b3b3;
     justify-content: center;
@@ -55,16 +53,15 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    padding: 0 8px 35px;
+    padding: 1px 8px 50px;
     border: 16px solid transparent;
     background-color: #282828;
     height: 142.39px;
     border-radius: 20px;
-    height: 238px;
-    margin: 10px;
+    height: 249px;
+    margin: 18px 10px 75px 10px;
     position: relative;
 }
-
 
 .music-content__image{
      height: 200px;
@@ -93,15 +90,15 @@ img{
 }
 
 #fa-play-circle{
-    /* border: 2px solid green; */
-    color: white;
-    /* background: green; */
-    width: 16px;
-    height: 24px;
-    display: flex;
+    color: green;
+    background: none;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    align-self: flex-end;
+    align-self: safe;
     opacity: 1;
+    font-size: 4em;
+    right: 40px;
 }
 
 .music-content:hover #fa-play-circle{
@@ -114,26 +111,17 @@ img{
     width: 100px;
 }
 
-#music-content__play-button{
-    width: 16px;
-    height: 24px;
+.music-content__play-button{
+    height: 0px;
     display: flex;
     align-self: flex-end;
-}
-
-.topbar-home-button {
-    background-color: transparent;
     border: none;
-    color: #bfbfbf;
-    font-size: 18px;
-    padding: 0 20px;
-    outline: 0;
-}
-
-.topbar-home-button--selected {
-    border-bottom: 1px solid #1db954;
-    padding-bottom: 5px;
-    border-bottom-width: thick;
+    padding: 0px;
+    border: -13px solid green;
+    border-radius: 122px;
+    margin-right: 15px;
+    bottom: 24px;
+    position: relative;
 }
 
 .topbar--hover:hover{
@@ -141,113 +129,25 @@ img{
     border: 0px 0px 1px 0px;
 }
 
-
-
-/* .main-screen-content__container{
-    display: grid;
-    margin: 100px;
-    grid-gap: 20px;
-    flex-wrap: nowrap;
-    grid-template-rows:
-    "row1a row1b row1c row1d row1e"
-    "row2a row2b row2c row2d row2e"
-    "row3a row3b row3c row3d row3e"
-    "row4a row4b row4c row4d row4e"
-    "row5a row5b row5c row5d row5e"
+.topbar--hover.home-artists{
+    margin:10px;
 }
 
-.main-screen-content__container__row1a{
-    grid-area: "row1a";
-    width: 171px;
-}
-.main-screen-content__container__row1b{
-    grid-area: "row1b";
-}
-.main-screen-content__container__row1c{
-    grid-area: "row1c";
-}
-.main-screen-content__container__row1d{
-    grid-area: "row1d";
-}
-.main-screen-content__container__row1e{
-    grid-area: "row1e";
+.topbar--hover.home-albums{
+    margin:10px;
 }
 
-.main-screen-content__container__row2{
-    grid-area: "row2";
+.topbar--hover.home-playlists{
+    margin:10px;
 }
 
-.main-screen-content__container__row3{
-    grid-area: "row3";
+.music-content__play-button--hidden{
+    display: none;
 }
 
-.main-screen-content__container__row4{
-    grid-area: "row4";
-}
-
-.main-screen-content__container__row5{
-    grid-area: "row5"
-}
-
-.row1__section{
-    border: 16px solid transparent;
-    background-color: #282828;
-    height: 142.39px;
-    border-radius: 20px;
-    width: 200px;
-    height: 238px;
-    text-align: center;
-    margin: 10px;
+.music-content__title{
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 125px;
 }
-
-.row1__top-section {
-    height: 152;
-    width: 171px;
-}
-
-.row1__top-section #row__top-section__adele{
-    height: 76%;
-    width: 100%;
-}
-
-#row1__bottom-section{
-    display: flex;
-    justify-content: right;
-}
-
-.row1__bottom-section__album-name{
-    text-align: left;
-    color: white;
-    bottom: 5px;
-    font-size: 10px;
-}
-
-.row1__bottom-section__artist-name{
-    text-align: left;
-    bottom: 10px;
-    color: white;
-    font-weight: bold;
-}
-
-.row1__section:hover{
-    color: green;
-    right: 0px;
-}
-
-.main-screen-content-title{
-    color: white;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.top-bar-nav{
-    text-align: center;
-}
-
-.container{
-    text-align: center;
-} */

@@ -4,7 +4,8 @@
             a.topbar--hover.home-artists(href="/browse/artist") Artists
             a.topbar--hover.home-albums(href="/browse/album") Albums
             a.topbar--hover.home-playlists(href="/browse/playlist") Playlists
-        .music-content__title Albums
+        .music-content__title
+            .music-content__page-name Albums
         .main-content__grid
             .music-content
                 .music-content__image
@@ -12,7 +13,7 @@
                 .music-content__artist
                     .music-content__artist-text Adele
                 .music-content__bio Latest Album
-                button#music-content__play-button(type="button")
+                button.music-content__play-button.music-content__play-button--hidden(type="button")
                     i.fas.fa-play-circle#fa-play-circle
             .music-content
                 .music-content__image
