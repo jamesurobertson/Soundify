@@ -238,6 +238,8 @@
     color: #bfbfbf;
     cursor: pointer;
     outline: 0;
+    width: 100%;
+    text-align: left;
 }
 
 .left-nav__playlist-link:hover {
