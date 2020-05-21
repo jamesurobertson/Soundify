@@ -19,7 +19,7 @@ html(lang="en")
             div(class="errors-container")
             .form-content
                 form#log-in-form
-                    input(type="hidden" name="_csrf" value=token)
+                    //- input(type="hidden" name="_csrf" value=token)
                     .email-form
                         label
                         input#email(type="text" name="email" placeholder="email" required)
@@ -27,6 +27,6 @@ html(lang="en")
                         label
                         input#password(type="password" name="password" placeholder="password" required)
                     div
-                        button(id="login" type= "submit") Login
+                        button(id="login" type="submit") Login
             span#login-text Don't Have An Account?
                 button(id="signup" onclick="window.location.href = '/sign-up'") Sign Up

@@ -26,4 +26,14 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
     }
 }))
 
+router.get('/', asyncHandler(async (req, res, next) => {
+    const albums = await Album.findAll({
+        include: [{
+            model: Artist, attributes: ["name"]
+        }]
+    });
+    res.json({ albums })
+}))
+
+
 module.exports = router;

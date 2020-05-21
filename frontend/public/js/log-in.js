@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-
     const logInForm = document.getElementById("log-in-form")
 
     logInForm.addEventListener("submit", async (e) => {
@@ -25,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 user: { id }
             } = await res.json();
 
-            document.querySelector('.header__profile-name')
-                .innerHTML = `${userName}`
+            // document.querySelector('.header__profile-name')
+            //     .innerHTML = `${userName}`
 
-            localStorage.setItem("TWITTER_LITE_ACCESS_TOKEN", token);
-            localStorage.setItem("TWITTER_LITE_CURRENT_USER_ID", id);
-            window.location.href = "/browse";
+            localStorage.setItem("SOUNDIFY_ACCESS_TOKEN", token);
+            localStorage.setItem("SOUNDIFY_CURRENT_USER_ID", id);
+            window.location.href = "/#/browse";
         } catch (err) {
             if (err.status >= 400 && err.status < 600) {
                 const errorJSON = await err.json();

@@ -10,13 +10,14 @@ const artistsRouter = require('./routes/artists');
 const playlistsRouter = require('./routes/playlists');
 const homeRouter = require('./routes/browse');
 const db = require('./db/models')
+
+
 const app = express();
 
-
-app.use(cors({ origin: "http://localhost:4001" }));
-//app.use(requireAuth);
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:4001" }));
+
 app.use('/', indexRouter);
 app.use('/browse', homeRouter);
 app.use('/user', usersRouter);

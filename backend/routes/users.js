@@ -36,9 +36,11 @@ const validateEmailPassword = [
 
 //requireAuth
 router.get('/:id', requireAuth, asyncHandler(async (req, res) => {
-    const userId = parseInt(req.params.id);
+    const userId = parseInt(req.params.id, 10);
     const playlists = await Playlist.findAll({
-        where: createdBy = userId,
+        where: {
+            createdBy: userId,
+        },
         include: [{ model: User, attributes: ["userName"] }]
     })
     res.json({ playlists })
@@ -65,7 +67,6 @@ router.post('/token', validateEmailPassword, asyncHandler(async (req, res, next)
             email
         }
     })
-
     if (!user || !user.validatePassword(password)) {
         const err = new Error("Login failed");
         err.status = 401;
@@ -74,6 +75,7 @@ router.post('/token', validateEmailPassword, asyncHandler(async (req, res, next)
         return next(err);
     }
     const token = getUserToken(user);
+
     res.json({
         token,
         user: { id: user.id }

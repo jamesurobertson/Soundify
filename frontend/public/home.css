@@ -23,10 +23,6 @@
     -webkit-text-stroke: medium;
 }
 
-.music-content__artist-text{
-
-}
-
 .music-content__artist{
     margin: 5px;
     font-weight: bold;
@@ -88,6 +84,8 @@
     bottom:0;
     left: 0;
     -webkit-text-stroke: medium;
+    color: white;
+    font-size: 60;
 }
 
 img{
@@ -115,12 +113,6 @@ img{
 
 .music-container #fa-play-circle:hover{
     width: 100px;
-}
-
-.music-content__title{
-    color: white;
-    font-size: 24;
-
 }
 
 #music-content__play-button{

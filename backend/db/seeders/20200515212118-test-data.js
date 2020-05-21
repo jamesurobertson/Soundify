@@ -35,7 +35,7 @@ module.exports = {
             [
                 {
                     name: 'The best playlist Ever',
-                    imageURL: 'path/to/image',
+                    imageURL: '../frontend/public/images/generic-artist.png',
                     createdBy: users[0].id,
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -49,14 +49,14 @@ module.exports = {
                 {
                     name: 'Blink 182',
                     biography: 'Blinks bio',
-                    imageURL: 'path/to/image',
+                    imageURL: '../frontend/public/images/generic-artist.png',
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
                     name: 'Post Malone',
                     biography: 'Post Malones Bio',
-                    imageURL: 'path/to/image',
+                    imageURL: '../frontend/public/images/generic-artist.png',
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 }
@@ -69,14 +69,14 @@ module.exports = {
                 {
                     title: 'Blink 182',
                     artistId: artists[0].id,
-                    imageURL: 'path/to/image',
+                    imageURL: '../frontend/public/images/generic-artist.png',
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
                     title: 'Hollywoods Blessing',
                     artistId: 2,
-                    imageURL: 'path/to/image',
+                    imageURL: '../frontend/public/images/generic-artist.png',
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 }

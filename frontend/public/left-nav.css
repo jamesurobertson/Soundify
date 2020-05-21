@@ -11,6 +11,7 @@
     padding-top: 24px;
     color: #b3b3b3;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    overflow: hidden;
 }
 
 .left-nav__link-container {
@@ -66,7 +67,7 @@
 }
 
 
-.left-nav__playlist-container {
+.left-nav__playlistBtn-container {
   display: flex;
   flex-direction: column;
   width: 95%;
@@ -101,7 +102,10 @@
 
 .left-nav__playlist-container a {
   text-decoration: none;
-  border-bottom: 1px solid gray;
+}
+
+.left-nav__liked-songs {
+    border-bottom: 1px solid gray;
 }
 
 .left-nav__playlist-container button {
@@ -208,7 +212,31 @@
     background-color: #1db954;
 }
 
+.left-nav__playlists-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding-left: 25px;
+    overflow-y: scroll;
 
-  .overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
-  }
+}
+
+.left-nav__playlist-link-container {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.left-nav__playlist-link {
+    font-size: 13px;
+}
+
+.left-nav__playlist-link-container:hover {
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 16px;
+    background-color: black;
+}

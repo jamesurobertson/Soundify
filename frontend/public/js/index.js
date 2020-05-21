@@ -8,14 +8,13 @@ window.addEventListener('DOMContentLoaded', async () => {
             })
         })
     try {
-        const res = await fetch("http://localhost:8080/browse",
+        const res = await fetch("http://localhost:8080/#/browse",
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('SOUNDIFY_ACCESS_TOKEN')}`
                 }
             })
         const { albums } = await res.json();
-        console.log(albums);
 
         if (res.status === 401) {
             window.location.href = "/log-in"
@@ -24,27 +23,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.error(e);
 
     }
-
-
-
-    // try {
-    //     const res = await fetch("http://localhost:8080/user/1") //Retrieve from localstorage token
-    //     const { playlists } = await res.json()
-    //     console.log(playlists)
-    // const playlistContainer = document.querySelector('.left-nav__playlists-container')
-    // const playlistHTML = playlists.map(
-    //     ({ name, id }) => `
-    //     <div class='left-nav__playlist-link'>
-    //         <a href='playlist/${parseInt(id)}'>
-    //             ${name}
-    //         </a>
-    //     </div >
-    //     `
-    // )
-    // playlistContainer.innerHTML = playlistHTML.join('')
-    //     } catch (e) {
-    //     console.error(e)
-    // }
 
     const playButton = document.querySelector('.fa-play-circle')
     playButton.addEventListener('click', e => {
@@ -62,4 +40,62 @@ window.addEventListener('DOMContentLoaded', async () => {
         })
 
 
+
+    try {
+        const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
+        const res = await fetch(`http://localhost:8080/user/${userId}`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
+                }
+            })
+        if (!res.ok) {
+            throw res
+        }
+
+        const { playlists } = await res.json()
+        const playlistContainer = document.querySelector('.left-nav__playlists-container')
+        const playlistHTML = playlists.map(
+            ({ name, id }) => `
+            <div class='left-nav__playlist-link-container'>
+                <button class='left-nav__playlist-link' id='playlist-link-${id}'>
+                    ${name}
+                </button>
+            </div >
+               `
+        )
+        playlistContainer.innerHTML = playlistHTML.join('')
+    } catch (e) {
+        console.error(e)
+    }
+    const playlists = document.querySelectorAll('.left-nav__playlist-link');
+    playlists.forEach((playlist) => {
+        playlist.addEventListener('click', async (e) => {
+            e.preventDefault();
+            console.log(playlist.id) // prints out playlist-link-id
+            const playlistId =
+            // try {
+            //     const userId = localStorage.getItem("SOUNDIFY_CURRENT_USER_ID");
+            //     const res = await fetch(`http://localhost:8080/playlist/${playlistId}`,
+            //         {
+            //             headers: {
+            //                 "Content-Type": "application/json",
+            //                 "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
+            //             }
+
+            //         })
+            //     if (!res.ok) {
+            //         throw res
+            //     }
+            //     const { playlist } = await res.json();
+
+
+            // } catch (e) {
+
+            // }
+        })
+    })
 })
+
+// href='/playlist/${parseInt(id)}'

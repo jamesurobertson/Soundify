@@ -5,6 +5,14 @@ html
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
         script(src="../js/index.js")
         script(src="../js/create-playlist.js")
+        script(src="../js/header.js")
+        script(src="../js/all/artist.js")
+        script(src="../js/all/album.js")
+        script(src="../js/all/playlist.js")
+        script(src="../js/id/playlist.js")
+        script(src="../js/id/album.js")
+        script(src="../js/id/artist.js")
+        script(src="../js/id/user.js")
         style
             include ../public/global.css
             include ../public/header.css
@@ -17,20 +25,30 @@ html
             .header
                 .header__navigation-container
                     .header__arrows
-                        button.header__leftArrow
+                        button(class="header__leftArrow")
                             i.fas.fa-angle-left
-                        button.header__rightArrow
+                        button(class="header__rightArrow")
                             i.fas.fa-angle-right
                     .header_searchAndTypesContainer.header__collectionTypes--hidden
+                .header__search-bar.search--hidden
+                    input#header__search-input(type="text" placeholder="Search for Artists, Songs or Playlists...")
                 .header__user-container
                     .header__user-buttons
-                        i#header__user-buttons--dropdown.fas.fa-user-astronaut
-                        .header__profile-name
+                        button#drop-button
+                            i.fas.fa-user-astronaut#astronaut-id
+                    .header-logout.pref--hidden
+                        ul.header-ul
+                            li
+                                a#header-logout-button(href="/logout") Logout
+                            li 
+                                p          
+                            li
+                                a#header-profile-button(href="/profile") Profile
             .left-nav
                 .left-nav__logo-container
                     i.left-nav__logo-icon.fab.fa-spotify
                     .left-nav__logo-text Soundify
-                a(href="/browse").left-nav__link-container.left-nav__link-container--active
+                button.left-nav__link-container.home-artists.left-nav__link-container--active
                     .createPlaylist-active
                     i.left-nav__icon.fas.fa-home
                     .left-nav__text Home
@@ -40,16 +58,16 @@ html
                 a(href="/collection/artist").left-nav__link-container
                     i.left-nav__icon.fas.fa-record-vinyl
                     .left-nav__text Your Library
-                .left-nav__playlist-container
+                .left-nav__playlistBtn-container
                     h2.left-nav__playlist-header Playlists
                     .left-nav__playlist-links
                         button(type='button').left-nav__playlist-head.createPlaylist-button
                             i.far.fa-plus-square
                             .left-nav__playlist-text Create Playlist
-                        a(href='/playlist/likedSongs').left-nav__playlist-head
+                        a(href='/playlist/likedSongs').left-nav__playlist-head.left-nav__liked-songs
                             i.fas.fa-heart
                             .left-nav__playlist-text Liked Songs
-                        .left-nav__playlists-container
+                .left-nav__playlists-container
             .createPlaylistScreen.createPlaylistScreen--hidden
                 h1.createPlaylist-header Create new playlist
                 form.create-playlist-form

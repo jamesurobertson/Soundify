@@ -15,7 +15,6 @@ const artistNotFound = (id) => {
 }
 
 router.get('/:id', asyncHandler(async (req, res, next) => {
-    console.log(req)
     const artistId = parseInt(req.params.id, 10);
     const artist = await Artist.findByPk(artistId);
     if (artist) {
@@ -26,5 +25,9 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 
 }))
 
+router.get('/', asyncHandler(async (req, res, next) => {
+    const artists = await Artist.findAll();
+    res.json({ artists })
+}))
 
 module.exports = router;

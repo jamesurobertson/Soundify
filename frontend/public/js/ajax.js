@@ -10,6 +10,5 @@ $('body').delegate('a', 'click', function () {
 // For older browser support: http://benalman.com/projects/jquery-hashchange-plugin/
 $(window).bind('hashchange', function () {
     newHash = window.location.hash.substr(1);
-    console.log(newHash)
     $mainContent.load(newHash + " #mainContent > *");
 });

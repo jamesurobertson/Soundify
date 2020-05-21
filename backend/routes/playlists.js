@@ -27,7 +27,7 @@ const validatePlaylistName = [
 
 
 
-router.use('/:id', asyncHandler(async (req, res, next) => {
+router.get('/:id', asyncHandler(async (req, res, next) => {
     const playlistId = parseInt(req.params.id, 10);
     const playlist = await Playlist.findByPk(playlistId, {
         include: [{ model: Song }]
@@ -39,13 +39,17 @@ router.use('/:id', asyncHandler(async (req, res, next) => {
     }
 }))
 
+router.get('/', asyncHandler(async (req, res, next) => {
+    const playlists = await Playlist.findAll();
+    res.json({ playlists })
+}))
+
 
 // UNCOMMENT when form is created
 
-router.post('/', validatePlaylistName, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    const { name } = req.body
-    // TODO: MAKE CREATED BY DYNAMIC
-    const playlist = await Playlist.create({ name: name, createdBy: 1 })
+router.post('/', validatePlaylistName, asyncHandler(async (req, res, next) => {
+    const { name, createdBy } = req.body
+    const playlist = await Playlist.create({ name, createdBy })
     res.status(201).json({ playlist });
 }))
 
