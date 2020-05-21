@@ -212,3 +212,17 @@ function renderCard(contentType, imageURL, title, name) {
     return mainContentGrid
 
 }
+
+window.addEventListener("DOMContentLoaded", e => {
+    const musicCard = querySelectorAll(".music-content")
+    const playButton = querySelectorAll(".music-content__play-button")
+
+    musicCard.forEach(card => {
+        card.addEventListener("mouseover", e => {
+            playButton.forEach(button => {
+                button.classList.remove("music-content__play-button--hidden")
+            })
+        })
+    })
+
+})
