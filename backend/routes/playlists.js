@@ -53,7 +53,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 router.post('/', validatePlaylistName, asyncHandler(async (req, res, next) => {
     const { name, createdBy } = req.body
-    const playlist = await Playlist.create({ name, createdBy })
+    const playlist = await Playlist.create({ name, createdBy, imageURL: '../images/generic-artist.png' })
     res.status(201).json({ playlist });
 }))
 

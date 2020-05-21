@@ -1,0 +1,22 @@
+#mainContent
+    .playlist-header
+        .album-art
+        .song-info
+            .album(just says album)
+            .album-title
+            .album-artist
+    .playlist-middle
+        .play-button
+        .liked-song-button
+        .context-menu
+            .add-to-playlist
+            .follow-album
+    .playlist-song-container
+        each song in album:
+            .song
+                .play-icon
+                .song-info
+                .song-context-menu
+                    .add-to-playlist
+                    .follow-song
+                .song-duration

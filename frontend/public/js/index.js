@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     try {
         const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
-        const res = await fetch(`http://localhost:8080/user/${userId}`,
+        const res = await fetch(`http://localhost:8080/user/${userId}/playlist`,
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -69,10 +69,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.error(e)
     }
 
-    const allArtists = document.querySelectorAll('.home-artists')
-    allArtists.forEach(link => {
+    const allAlbums = document.querySelectorAll('.home-albums')
+    allAlbums.forEach(link => {
         link.addEventListener('click', async (e) => {
-            renderArtists()
+            renderAlbums()
         })
     })
     // const playlists = document.querySelectorAll('.left-nav__playlist-link');

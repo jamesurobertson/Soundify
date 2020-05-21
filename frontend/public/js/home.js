@@ -1,4 +1,6 @@
+
 async function renderArtists() {
+
     try {
         // const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
         const res = await fetch('http://localhost:8080/artist',
@@ -12,9 +14,8 @@ async function renderArtists() {
 
         const { artists } = await res.json()
         const cardContainers = artists.map(({ id, name, imageURL, artistId }) => {
-            return renderCard('Artist', imageURL, name)
+            return renderCard('artist', imageURL, name, id)
         })
-
         const mainContent = document.getElementById('mainContent')
 
         const mainContentContainer = document.createElement('div')
@@ -29,7 +30,11 @@ async function renderArtists() {
 
         mainContentContainer.appendChild(title)
 
-        cardContainers.forEach(card => mainContentContainer.appendChild(card))
+        const mainContentGrid = document.createElement('div')
+        mainContentGrid.classList.add('main-content__grid')
+
+        cardContainers.forEach(card => mainContentGrid.appendChild(card))
+        mainContentContainer.appendChild(mainContentGrid)
 
         mainContent.innerHTML = ''
         mainContent.appendChild(mainContentContainer)
@@ -45,7 +50,6 @@ async function renderArtists() {
 
 async function renderAlbums() {
     try {
-        console.log('do we get here?')
         // const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
         const res = await fetch('http://localhost:8080/album',
             {
@@ -57,9 +61,8 @@ async function renderAlbums() {
         if (!res.ok) throw res
 
         const { albums } = await res.json()
-        console.log(albums)
         const cardContainers = albums.map(({ id, title, imageURL, artistId, Artist: { name } }) => {
-            return renderCard('Albums', imageURL, title, name)
+            return renderCard('album', imageURL, title, id, name)
         })
 
         const mainContent = document.getElementById('mainContent')
@@ -76,7 +79,11 @@ async function renderAlbums() {
 
         mainContentContainer.appendChild(title)
 
-        cardContainers.forEach(card => mainContentContainer.appendChild(card))
+        const mainContentGrid = document.createElement('div')
+        mainContentGrid.classList.add('main-content__grid')
+
+        cardContainers.forEach(card => mainContentGrid.appendChild(card))
+        mainContentContainer.appendChild(mainContentGrid)
 
         mainContent.innerHTML = ''
         mainContent.appendChild(mainContentContainer)
@@ -103,8 +110,8 @@ async function renderPlaylists() {
         if (!res.ok) throw res
 
         const { playlists } = await res.json()
-        const cardContainers = playlists.map(({ id, name, User: { userName } }) => {
-            return renderCard('Playlists', null, name, userName)
+        const cardContainers = playlists.map(({ id, name, imageURL, User: { userName } }) => {
+            return renderCard('playlist', imageURL, name, id, userName)
         })
 
         const mainContent = document.getElementById('mainContent')
@@ -121,7 +128,11 @@ async function renderPlaylists() {
 
         mainContentContainer.appendChild(title)
 
-        cardContainers.forEach(card => mainContentContainer.appendChild(card))
+        const mainContentGrid = document.createElement('div')
+        mainContentGrid.classList.add('main-content__grid')
+
+        cardContainers.forEach(card => mainContentGrid.appendChild(card))
+        mainContentContainer.appendChild(mainContentGrid)
 
         mainContent.innerHTML = ''
         mainContent.appendChild(mainContentContainer)
@@ -129,22 +140,19 @@ async function renderPlaylists() {
         const url = `#/browse/playlists`
         window.history.pushState('playlists', 'Title', url)
 
-        const navLink = document.querySelector('topbar__nav-link-playlists')
-        navLink.classList.add('topbar-home-button--selected')
+
     } catch (e) {
         console.error(e)
     }
 }
 
 function createTopBar(type) {
-    const mainContentContainer = document.createElement('div')
-    mainContentContainer.classList.add('main-content__container')
 
     const topBar = document.createElement('div')
     topBar.classList.add('main-content__container__topbar')
 
     const artistButton = document.createElement('button')
-    artistButton.classList.add('topbar--hover', 'topbar-home-button', 'topbar__nav-link-artists')
+    artistButton.classList.add('topbar-home-button', 'topbar__nav-link-artists')
 
     artistButton.addEventListener('click', renderArtists, false)
     artistButton.innerHTML = 'Artist'
@@ -169,36 +177,38 @@ function createTopBar(type) {
         albumButton.classList.add('topbar-home-button--selected')
     }
 
-    topBar.appendChild(artistButton)
     topBar.appendChild(albumButton)
+    topBar.appendChild(artistButton)
     topBar.appendChild(playlistButton)
 
-    mainContentContainer.appendChild(topBar)
-    return mainContentContainer
+    return topBar
 }
 
-function renderCard(contentType, imageURL, title, name) {
-    const mainContentGrid = document.createElement('div')
-    mainContentGrid.classList.add('main-content__grid')
+function renderCard(contentType, imageURL, title, id, name) {
 
     const contentCard = document.createElement('div')
-    contentCard.classList.add('music-card', `${contentType}-content-card`)
+    contentCard.classList.add('music-card', `${contentType}-card`)
+    contentCard.setAttribute('id', `${contentType}-${id}`)
+
+    const imageDiv = document.createElement('div')
+    imageDiv.classList.add('music-card__image')
 
     const contentImage = document.createElement('img')
     contentImage.setAttribute('src', imageURL)
-    contentCard.appendChild(contentImage)
+    imageDiv.appendChild(contentImage)
+    contentCard.appendChild(imageDiv)
 
     const contentTypeContainer = document.createElement('div')
-    contentTypeContainer.classList.add('music-content-container')
+    contentTypeContainer.classList.add('music-card-text-container')
 
     const contentTitle = document.createElement('div')
-    contentTitle.classList.add(`music-content__title-text`)
+    contentTitle.classList.add(`music-card-title`)
     contentTitle.innerHTML = title
 
     contentTypeContainer.appendChild(contentTitle)
 
     const type = document.createElement('div')
-    type.classList.add('music-content-type')
+    type.classList.add('music-card-type')
 
     if (name) {
         type.innerHTML = name
@@ -208,21 +218,28 @@ function renderCard(contentType, imageURL, title, name) {
 
     contentTypeContainer.appendChild(type)
     contentCard.appendChild(contentTypeContainer)
-    mainContentGrid.appendChild(contentCard)
-    return mainContentGrid
 
+    const playButton = document.createElement('i')
+    playButton.classList.add('music-card__play-button', 'fas', 'fa-play-circle')
+
+    contentCard.appendChild(playButton)
+
+    contentCard.addEventListener('click', gotoContent, false)
+    return contentCard
 }
 
-window.addEventListener("DOMContentLoaded", e => {
-    const musicCard = querySelectorAll(".music-content")
-    const playButton = querySelectorAll(".music-content__play-button")
+function gotoContent() {
+    const contentType = this.classList[1].slice(0, this.classList[1].length - 5)
+    const contentId = this.id.split('-')[1]
 
-    musicCard.forEach(card => {
-        card.addEventListener("mouseover", e => {
-            playButton.forEach(button => {
-                button.classList.remove("music-content__play-button--hidden")
-            })
-        })
-    })
 
-})
+
+
+
+
+
+
+    const url = `#/${contentType}/${contentId}`
+    window.history.pushState('id', 'Title', url)
+
+}
