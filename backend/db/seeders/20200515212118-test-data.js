@@ -25,6 +25,15 @@ module.exports = {
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
+                {
+                    userName: 'Chris',
+                    firstName: 'Chris',
+                    lastName: 'Tran',
+                    email: 'chris@email.com',
+                    hashedPassword: bcrypt.hashSync('password'),
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                }
 
             ],
             { returning: true }
@@ -36,7 +45,14 @@ module.exports = {
                 {
                     name: 'The best playlist Ever',
                     imageURL: '../images/generic-artist.png',
-                    createdBy: users[0].id,
+                    createdBy: 1,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    name: 'The 2nd best playlist Ever',
+                    imageURL: '../images/generic-artist.png',
+                    createdBy: 2,
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 }
@@ -68,7 +84,7 @@ module.exports = {
             [
                 {
                     title: 'Blink 182',
-                    artistId: artists[0].id,
+                    artistId: 1,
                     imageURL: '../images/generic-artist.png',
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -89,7 +105,7 @@ module.exports = {
                 {
                     title: `What's my age again?`,
                     songLength: '00:02:28',
-                    albumId: albums[0].id,
+                    albumId: 1,
                     songURL: 'path/to/song/url',
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -109,13 +125,19 @@ module.exports = {
         const playlistSongs = await queryInterface.bulkInsert('PlaylistSongs',
             [
                 {
-                    playlistId: playlists[0].id,
-                    songId: songs[0].id,
+                    playlistId: 1,
+                    songId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
-                    playlistId: playlists[0].id,
+                    playlistId: 1,
+                    songId: 2,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    playlistId: 2,
                     songId: 2,
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -124,19 +146,19 @@ module.exports = {
             { returning: true }
         )
 
-        // return queryInterface.bulkInsert('Followers',
-        //   [
-        //     {
-        //       title: artists[0].name,
-        //       followableType: 'artist',
-        //       followableId: users[0].id,
-        //       userId: users[0].id,
-        //       createdAt: new Date(),
-        //       updatedAt: new Date(),
-        //     }
-        //   ],
-        //   {returning: true}
-        // )
+        return queryInterface.bulkInsert('Followers',
+            [
+                {
+                    title: "Hello",
+                    followableType: 'artist',
+                    followableId: 2,
+                    userId: 2,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                }
+            ],
+            { returning: true }
+        )
 
     },
 
