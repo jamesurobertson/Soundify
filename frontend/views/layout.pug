@@ -17,6 +17,7 @@ html
             include ../public/left-nav.css
             include ../public/playbar.css
             include ../public/home.css
+            include ../public/album-playlist.css
         title Soundify
     body
         main
@@ -75,7 +76,6 @@ html
                     button.createPlaylist-button-cancel CANCEL
                     button.createPlaylist-button-create CREATE
             #mainContent
-                include home.pug
             #footer
                 .footer__currently-playing-container
                     .footer__album-art
@@ -100,9 +100,9 @@ html
                         // TODO: dynamic time controls
                         .footer__progress-time 0:00
                         .footer__progress-bar
-                        .footer__progress-time 5:41
+                        .footer__progress-time.footer__song-length 5:41
                 .footer__sound-control-container
-                    ul
-                        li.fas.fa-volume-up
+                    i.fas.fa-volume-up
+                    .footer__volume-control
                 script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js')
                 script(src='../js/ajax.js')

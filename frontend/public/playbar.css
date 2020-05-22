@@ -101,4 +101,14 @@
     width: 30%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+}
+
+.footer__volume-control {
+    margin-left: 15px;
+    width: 20%;
+    height: 5px;
+    background-color: #bfbfbf;
+    cursor: pointer;
+    border-radius: 10px;
 }

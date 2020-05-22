@@ -16,8 +16,8 @@ const albumNotFound = (id) => {
 router.get('/:id', asyncHandler(async (req, res, next) => {
     const albumId = parseInt(req.params.id, 10);
     const album = await Album.findByPk(albumId, {
-        include: [{ model: Artist }, { model: Song, attributes: ["title", "songLength"] }],
-        attributes: ["id", "title"]
+        include: [{ model: Artist }, { model: Song, attributes: ["title", "songLength", "songURL"] }],
+        attributes: ["id", "title", "imageURL"]
     });
     if (album) {
         res.json({ album });

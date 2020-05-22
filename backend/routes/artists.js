@@ -1,5 +1,5 @@
 const express = require('express');
-const { Artist, Album } = require('../db/models');
+const { Artist, Album, Song } = require('../db/models');
 const { asyncHandler } = require('../utils');
 const { requireAuth } = require('../auth');
 
@@ -23,6 +23,15 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
         next(artistNotFound(artistId));
     }
 
+}))
+
+router.get('/:id/album', asyncHandler(async (req, res, next) => {
+    const artistId = parseInt(req.params.id, 10);
+    const albums = await Album.findAll({
+        where: { artistId },
+        include: [{ model: Song }]
+    })
+    res.json({ albums })
 }))
 
 router.get('/', asyncHandler(async (req, res, next) => {

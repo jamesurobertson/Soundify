@@ -60,14 +60,18 @@ router.get('/:id/follows', requireAuth, asyncHandler(async (req, res) => {
     const payload = {
         id: user.id,
         username: user.userName,
-        followedArtists: user.followedArtists
+        followedArtists: user.followedArtists,
+        followedPlaylists: user.followedPlaylists,
+        followedAlbums: user.followedAlbums,
+        followedUsers: user.followedUsers,
+        followedSongs: user.followedSongs
     };
     //Front end should take in values : const { id, username, followedPlaylists} = await res.json();
     res.json(payload);
 }))
 
 //Grabs followers of user
-router.get('/:id/followers', asyncHandler(async (req, res) => {
+router.get('/:id/followers', requireAuth, asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.id, 10)
     const user = await User.findOne({
         where: { id: userId },

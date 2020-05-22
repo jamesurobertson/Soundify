@@ -1,0 +1,148 @@
+.content-header {
+    width: 100%;
+    padding: 110px 32px 32px;
+    display: flex;
+    align-items: flex-end;
+    background-color: deeppink;
+}
+
+.content-art{
+
+
+}
+
+.content-art img {
+    height: 232px;
+    width: 232px;
+}
+
+
+.content-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 180px;
+    padding-left: 20px;
+    color: white;
+}
+
+.content-type {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.content-title {
+    font-size: 96px;
+}
+
+.content-creator {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.content-middle{
+    width: 100%;
+    height: 104px;
+    padding: 24px 32px;
+    font-size: 20px;
+    background: white;
+}
+
+.middle-play-button{
+    height: 56px;
+    width: 56px;
+    font-size: 55px;
+}
+
+.liked-song-button{
+    font-size: 32px;
+    margin-left: 35px;
+    bottom: 6px;
+    text-align: center;
+    position: relative;
+}
+
+.content-song-container{
+    height: 100%;
+    width: 100%;
+    background-color: teal;
+    padding: 0px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.songContainer{
+    width: 100%;
+    display: inline-flex;
+    height: 63px;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.play-song-icon{
+    padding: 0px 14px 0px 0px;
+    margin-bottom: 21px;
+    font-size: 22px;
+}
+
+.song-info{
+    display: inline-grid;
+    margin-bottom: 12px;
+    margin-right: auto;
+    margin-left: 12px;
+}
+
+.song-title{
+    font-weight: bold;
+    color: white;
+}
+.song-aritst{
+    color: #b3b3b3;
+    font-weight: 100;
+}
+
+.song-context-menu{
+    margin-right: 63px;
+}
+
+.add-to-playlist{}
+.follow-song{}
+
+.song-duration{
+    padding: 0px 14px 0px 0px;
+    margin-bottom: 21px;
+}
+
+
+.songContainer:hover{
+    background-color: purple;
+    color: #b3b3b3;
+}
+
+
+
+
+
+
+/*.content-header
+    .content-art
+    .content-info
+        .content-type
+        .content-title
+        .content-creator
+.content-middle
+    .play-button
+    .liked-song-button
+.content-song-container
+    .song-container
+        .play-icon
+        .song-info
+            .song-title
+            .song-aritst
+        .song-context-menu
+            .add-to-playlist
+            .follow-song
+        .song-duration */

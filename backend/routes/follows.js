@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('../utils');
 const { User, Playlist, Song, Album, Artist, Follower } = require('../db/models');
+const { requireAuth } = require('../auth');
 
 
 //Creates followed playlist in Follower Table and associates with User
-router.post('/:userId/:type/:typeId', asyncHandler(async (req, res) => {
+router.post('/:userId/:type/:typeId', requireAuth, asyncHandler(async (req, res) => {
     const userID = parseInt(req.params.userId, 10);
     const typeID = parseInt(req.params.typeId, 10);
     const type = req.params.type
@@ -20,14 +21,7 @@ router.post('/:userId/:type/:typeId', asyncHandler(async (req, res) => {
     })
     res.status(201).json({ user })
 
-    //format json response
-    // const payload = {
-    //     id: user.id,
-    //     username: user.userName,
-    //     followedPlaylists: user.followedPlaylist
-    // };
-    // res.json(payload);
-    //Front end should take in values : const { id, username, followedPlaylist} = await res.json();
+
 }))
 
 
