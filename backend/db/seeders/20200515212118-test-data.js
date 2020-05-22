@@ -75,7 +75,22 @@ module.exports = {
                     imageURL: '../images/generic-artist.png',
                     createdAt: new Date(),
                     updatedAt: new Date(),
-                }
+                },
+                {
+                    name: 'Chance The Rapper',
+                    biography: 'Chance The Rapper Bio',
+                    imageURL: '../images/generic-artist.png',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    name: 'Rage Against The Machine',
+                    biography: 'Rage Against The Machine Bio',
+                    imageURL: '../images/generic-artist.png',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+
             ],
             { returning: true }
         )
@@ -95,7 +110,22 @@ module.exports = {
                     imageURL: '../images/Post_Malone_cover.png',
                     createdAt: new Date(),
                     updatedAt: new Date(),
-                }
+                },
+                {
+                    title: 'Acidrap',
+                    artistId: 3,
+                    imageURL: '../images/Chance_The_Rapper_cover.jpg',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    title: 'Rage Against The Machine',
+                    artistId: 4,
+                    imageURL: '../images/Rage_Against_The_Machine_cover.jpg',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+
             ],
             { returning: true }
         )
@@ -179,6 +209,92 @@ module.exports = {
                     songLength: '00:03:48',
                     albumId: 2,
                     songURL: '../music/post-malone/candy-paint.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    title: 'Good Ass Intro',
+                    songLength: '00:03:59',
+                    albumId: 3,
+                    songURL: '../music/chance-the-rapper/good-ass-intro.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    title: 'Pusha Man',
+                    songLength: '00:02:19',
+                    albumId: 3,
+                    songURL: '../music/chance-the-rapper/pusha-man.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    title: 'Cocoa Butter Kisses',
+                    songLength: '00:05:07',
+                    albumId: 3,
+                    songURL: '../music/chance-the-rapper/cocoa-butter-kisses.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    title: 'Smoke Again',
+                    songLength: '00:04:33',
+                    albumId: 3,
+                    songURL: '../music/chance-the-rapper/smoke-again.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+
+                    title: 'Acid Rain',
+                    songLength: '00:03:36',
+                    albumId: 3,
+                    songURL: '../music/chance-the-rapper/acid-rain.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+
+                    title: 'Bombtrack',
+                    songLength: '00:04:03',
+                    albumId: 4,
+                    songURL: '../music/rage-against-the-machine/bombtrack.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+
+                    title: 'Killing In The Name',
+                    songLength: '00:05:13',
+                    albumId: 4,
+                    songURL: '../music/rage-against-the-machine/killing-in-the-name.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+
+                    title: 'Take The Power Back',
+                    songLength: '00:05:36',
+                    albumId: 4,
+                    songURL: '../music/rage-against-the-machine/take-the-power-back.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+
+                    title: 'Settle For Nothing',
+                    songLength: '00:04:47',
+                    albumId: 4,
+                    songURL: '../music/rage-against-the-machine/settle-for-nothing.mp3',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+
+                    title: 'Bullet In The Head',
+                    songLength: '00:05:07',
+                    albumId: 4,
+                    songURL: '../music/rage-against-the-machine/bullet-in-the-head.mp3',
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
