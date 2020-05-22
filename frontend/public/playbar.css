@@ -63,16 +63,30 @@
   width: 30%
 }
 
-.fa-pause-circle, .fa-play-circle{
+#footer__pause-song, #footer__play-song{
   font-size: 2em;
 }
 
+
+.footer__play-song--hidden {
+    display: none;
+}
+
+.footer__pause-song--hidden {
+    display: none;
+}
+
+
 .footer__music-control-buttons ul {
-  display: flex;
-  justify-content: space-between;
-  color: #bfbfbf;
-  align-items: center;
-  opacity: 65%;
+    display: flex;
+    justify-content: space-between;
+    color: #bfbfbf;
+    align-items: center;
+    opacity: 65%;
+}
+.footer__button--selected {
+    color: white;
+    opacity: 100;
 }
 
 .footer__playback-bar {
@@ -85,9 +99,16 @@
 .footer__progress-bar {
   width: 100%;
   height: 5px;
-  background-color: #bfbfbf;
+  background-color: rgba(255,255,255,.5);
   cursor: pointer;
   border-radius: 10px;
+}
+
+.footer__progress-bar--playing {
+    width: 0;
+    background-color: white;
+    height: 5px;
+    border-radius: 10px;
 }
 
 .footer__progress-time {
@@ -111,4 +132,11 @@
     background-color: #bfbfbf;
     cursor: pointer;
     border-radius: 10px;
+}
+.footer_control-button {
+    transition: .2s linear;
+}
+.footer_control-button:hover {
+    color: white;
+    opacity: 100;
 }

@@ -1,9 +1,12 @@
+#mainContent {
+    color: white;
+}
 .content-header {
     width: 100%;
     padding: 110px 32px 32px;
     display: flex;
     align-items: flex-end;
-    background-color: deeppink;
+    background-color: rgb(18,18,18);;
 }
 
 .content-art{
@@ -45,7 +48,7 @@
     height: 104px;
     padding: 24px 32px;
     font-size: 20px;
-    background: white;
+    background: rgb(18,18,18);
 }
 
 .middle-play-button{
@@ -65,7 +68,7 @@
 .content-song-container{
     height: 100%;
     width: 100%;
-    background-color: teal;
+    background-color: rgb(18,18,18);
     padding: 0px 32px;
     display: flex;
     flex-direction: column;
@@ -74,23 +77,30 @@
 
 .songContainer{
     width: 100%;
-    display: inline-flex;
+    display: flex;
     height: 63px;
     justify-content: space-between;
     align-items: center;
     padding-left: 7px;
     padding-right: 7px;
+    transition: .2s linear;
+}
+
+.songContainer:hover{
+    background-color: rgb(35,35,35);
+}
+
+.songContainer:hover .song-context-menu {
+    display: block;
 }
 
 .play-song-icon{
     padding: 0px 14px 0px 0px;
-    margin-bottom: 21px;
     font-size: 22px;
 }
 
 .song-info{
     display: inline-grid;
-    margin-bottom: 12px;
     margin-right: auto;
     margin-left: 12px;
 }
@@ -100,12 +110,15 @@
     color: white;
 }
 .song-aritst{
-    color: #b3b3b3;
+    color: #bfbfbf;
     font-weight: 100;
+    font-size: 12px;
 }
 
 .song-context-menu{
     margin-right: 63px;
+    display:none;
+    transition: .2s linear;
 }
 
 .add-to-playlist{}
@@ -113,14 +126,9 @@
 
 .song-duration{
     padding: 0px 14px 0px 0px;
-    margin-bottom: 21px;
 }
 
 
-.songContainer:hover{
-    background-color: purple;
-    color: #b3b3b3;
-}
 
 
 
