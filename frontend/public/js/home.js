@@ -245,7 +245,13 @@ function renderCard(contentType, imageURL, title, id, name) {
 
 async function renderContent() {
     console.log('rendering')
-    const contentType = this.classList[1].slice(0, this.classList[1].length - 5) || 'playlist'
+    console.log(this)
+    let contentType
+    if (!this.classList[1]) {
+        contentType = 'playlist'
+    } else {
+        contentType = this.classList[1].slice(0, this.classList[1].length - 5)
+    }
     const contentId = this.id.split('-')[1]
 
     const res = await getRes(contentType, contentId)
@@ -537,12 +543,20 @@ async function addPlaylistContent() {
 }
 
 async function playSong() {
-
-    // stop current song if there is one playing
+    const songUrl = this.id
+    const songName = getSongName(songUrl)
     if (player) {
         player.pause()
     }
-    const songUrl = this.id
+    try {
+
+        const res = await fetch('http//:localhost8080/')
+
+    } catch (e) {
+        console.error(e)
+    }
+
+    // stop current song if there is one playing
 
     // left side footer
     const footerAlbumArt = document.querySelector('.footer__album-art')
@@ -564,6 +578,8 @@ async function playSong() {
     footerPlay.classList.add('footer__play-song--hidden')
     footerPause.classList.remove('footer__pause-song--hidden')
 
+    footerSongName.innerHTML = songName
+
     //  REDO SONG BUTTON
     // footerRedo.addEventListener('click', event => {
     //     footerRedo.classList.toggle('footer__button--selected')
@@ -584,6 +600,7 @@ async function playSong() {
         $("#song_start").text(secondsToMMSS(Math.floor(player.currentTime)));
         const currentTime = player.currentTime;
         const duration = player.duration;
+        $('.footer__progress-bar--playing').stop(true, true).animate({ 'width': (currentTime + .25) / duration * 100 + '%' }, 250, 'linear');
     });
 
     footerPlay.addEventListener('click', e => {
@@ -617,4 +634,11 @@ function secondsToMMSS(time) {
     if (minutes < 10) { minutes = "0" + minutes; }
     if (seconds < 10) { seconds = "0" + seconds; }
     return minutes + ':' + seconds;
+}
+
+
+function getSongName(songUrl) {
+    const parts = songUrl.split('/')
+    const songName = parts[parts.length - 1].split('.')[0]
+    return songName.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
 }

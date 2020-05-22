@@ -33,8 +33,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         })
 
-
-
     try {
         const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
         const res = await fetch(`http://localhost:8080/user/${userId}/playlist`,
@@ -50,16 +48,21 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         const { playlists } = await res.json()
         const playlistContainer = document.querySelector('.left-nav__playlists-container')
-        const playlistHTML = playlists.map(
-            ({ name, id }) => `
-            <div class='left-nav__playlist-link-container'>
-                <button class='left-nav__playlist-link' id='playlist-link-${id}'>
-                    ${name}
-                </button>
-            </div >
-               `
-        )
-        playlistContainer.innerHTML = playlistHTML.join('')
+        playlists.forEach(({ name, id }) => {
+
+            const playlistLinkContainer = document.createElement('div')
+            playlistLinkContainer.classList.add('left-nav__playlist-link-container')
+
+            const playlistButton = document.createElement('button')
+            playlistButton.innerHTML = name
+            playlistButton.classList.add('left-nav__playlist-link')
+
+            playlistButton.setAttribute('id', `playlistId-${id}`)
+            playlistButton.addEventListener('click', renderContent, false)
+            playlistLinkContainer.appendChild(playlistButton)
+
+            playlistContainer.appendChild(playlistLinkContainer)
+        })
     } catch (e) {
         console.error(e)
     }

@@ -55,6 +55,11 @@
     height: 56px;
     width: 56px;
     font-size: 55px;
+    transition: .2s linear;
+}
+
+.middle-play-button:hover {
+    color: #1DB954;
 }
 
 .liked-song-button{
@@ -63,6 +68,11 @@
     bottom: 6px;
     text-align: center;
     position: relative;
+    transition: .2s linear;
+}
+
+.liked-song-button:hover {
+    color: #1DB954;
 }
 
 .content-song-container{
@@ -97,6 +107,11 @@
 .play-song-icon{
     padding: 0px 14px 0px 0px;
     font-size: 22px;
+    transition: .2s linear;
+}
+
+.play-song-icon:hover {
+    color: #1DB954;
 }
 
 .song-info{

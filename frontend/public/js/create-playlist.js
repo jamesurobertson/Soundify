@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', e => {
                 playlistButton.classList.add('left-nav__playlist-link')
 
                 playlistButton.setAttribute('id', `playlistId-${id}`)
+                playlistButton.addEventListener('click', renderContent, false)
                 playlistLinkContainer.appendChild(playlistButton)
-                playlistContainer.addEventListener('click', renderContent, false)
 
                 playlistContainer.appendChild(playlistLinkContainer)
             } catch (e) {
