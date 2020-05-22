@@ -40,14 +40,19 @@ document.addEventListener('DOMContentLoaded', e => {
                 const { playlists } = await res.json()
                 const playlistContainer = document.querySelector('.left-nav__playlists-container')
                 const { name, id } = playlists[playlists.length - 1]
-                const playlistHTML = `
-                <div class='left-nav__playlist-link-container'>
-                    <button class='left-nav__playlist-link' id='playlist-link-${id}'>
-                        ${name}
-                    </button>
-                </div >
-                `
-                playlistContainer.innerHTML += playlistHTML
+
+                const playlistLinkContainer = document.createElement('div')
+                playlistLinkContainer.classList.add('left-nav__playlist-link-container')
+
+                const playlistButton = document.createElement('button')
+                playlistButton.innerHTML = name
+                playlistButton.classList.add('left-nav__playlist-link')
+
+                playlistButton.setAttribute('id', `playlistId-${id}`)
+                playlistLinkContainer.appendChild(playlistButton)
+                playlistContainer.addEventListener('click', renderContent, false)
+
+                playlistContainer.appendChild(playlistLinkContainer)
             } catch (e) {
                 console.error(e)
             }

@@ -7,6 +7,8 @@ window.addEventListener('DOMContentLoaded', () => {
         })
     })
 })
+const player = document.createElement("audio")
+
 
 async function renderArtists() {
 
@@ -239,8 +241,11 @@ function renderCard(contentType, imageURL, title, id, name) {
 
 
 
+
+
 async function renderContent() {
-    const contentType = this.classList[1].slice(0, this.classList[1].length - 5)
+    console.log('rendering')
+    const contentType = this.classList[1].slice(0, this.classList[1].length - 5) || 'playlist'
     const contentId = this.id.split('-')[1]
 
     const res = await getRes(contentType, contentId)
@@ -279,20 +284,6 @@ async function getRes(type, id) {
     }
 
 }
-
-// .artist-content-header
-//         .artist-content-art
-//         .artist-content-info
-//             .artist-content-type
-//             .artist-content-title
-//             .artist-content-listeners
-//     .artist-content-middle
-//         .artist-play-button
-//         .artist-follow-button
-//     .artist-albums-container
-//         each album in albums:
-//             each song in album:
-
 
 
 async function renderArtistId(res) {
@@ -546,16 +537,84 @@ async function addPlaylistContent() {
 }
 
 async function playSong() {
-    console.log('playing song!')
-    console.log(this.parentNode)
+
+    // stop current song if there is one playing
+    if (player) {
+        player.pause()
+    }
     const songUrl = this.id
+
     // left side footer
     const footerAlbumArt = document.querySelector('.footer__album-art')
     const footerSongName = document.querySelector('.footer__song-name')
     const footerAlbumName = document.querySelector('.footer__song-artist-album')
+
     // middle footer
-    const footerSongLength = document.querySelector('.footer__song-length')
-    const play = new Audio(songUrl)
-    play.volume = 0.05
-    play.play()
+    const footerShuffle = document.getElementById('shuffle')
+    const footerBackward = document.getElementById('backward')
+    const footerPlay = document.getElementById('footer__play-song')
+    const footerPause = document.getElementById('footer__pause-song')
+    const footerForward = document.getElementById('forward')
+    const footerRedo = document.getElementById('redo')
+
+    // set src of this song and play it
+    player.setAttribute('src', songUrl)
+    player.play();
+
+    footerPlay.classList.add('footer__play-song--hidden')
+    footerPause.classList.remove('footer__pause-song--hidden')
+
+    //  REDO SONG BUTTON
+    // footerRedo.addEventListener('click', event => {
+    //     footerRedo.classList.toggle('footer__button--selected')
+    //     if (!footerRedo.classList.contains('footer__button--selected')) {
+    //         player.addEventListener('ended', function () {
+    //             this.play();
+    //         }, false);
+    //     }
+    // })
+
+
+    // footer set up and controls
+    player.addEventListener("canplay", function () {
+        $("#footer__song-length").text(secondsToMMSS(Math.floor(player.duration)));
+    });
+
+    player.addEventListener("timeupdate", function () {
+        $("#song_start").text(secondsToMMSS(Math.floor(player.currentTime)));
+        const currentTime = player.currentTime;
+        const duration = player.duration;
+    });
+
+    footerPlay.addEventListener('click', e => {
+        player.play();
+        footerPlay.classList.add('footer__play-song--hidden')
+        footerPause.classList.remove('footer__pause-song--hidden')
+        console.log(`hidden~`)
+    });
+
+    footerPause.addEventListener('click', e => {
+        player.pause();
+        footerPlay.classList.remove('footer__play-song--hidden')
+        footerPause.classList.add('footer__pause-song--hidden')
+        console.log(`hidden~`)
+    });
+
+
+    footerBackward.addEventListener('click', e => {
+        player.currentTime = 0;
+    })
+
+
+
+}
+
+
+function secondsToMMSS(time) {
+    let minutes = Math.floor(time / 60);
+    let seconds = time - (minutes * 60);
+
+    if (minutes < 10) { minutes = "0" + minutes; }
+    if (seconds < 10) { seconds = "0" + seconds; }
+    return minutes + ':' + seconds;
 }
