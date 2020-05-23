@@ -1,5 +1,5 @@
 const express = require('express');
-const { Playlist, PlaylistSong, Song, User } = require('../db/models');
+const { Playlist, PlaylistSong, Song, User, Album, Artist } = require('../db/models');
 const { asyncHandler, handleValidationErrors } = require('../utils')
 const { requireAuth } = require('../auth');
 const { check, validationResult } = require('express-validator');
@@ -30,7 +30,10 @@ const validatePlaylistName = [
 router.get('/:id', asyncHandler(async (req, res, next) => {
     const playlistId = parseInt(req.params.id, 10);
     const playlist = await Playlist.findByPk(playlistId, {
-        include: [{ model: Song }]
+        include: [{ model: Song, include: [{ model: Album, include: [{ model: Artist }] }] }, {
+            model: User, attributes: ["userName"]
+        }]
+
     })
     if (playlist) {
         res.json({ playlist });
@@ -50,7 +53,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 
 // UNCOMMENT when form is created
-
+//Create Playlist
 router.post('/', validatePlaylistName, asyncHandler(async (req, res, next) => {
     const { name, createdBy } = req.body
     const playlist = await Playlist.create({ name, createdBy, imageURL: '../images/generic-artist.png' })
@@ -58,6 +61,21 @@ router.post('/', validatePlaylistName, asyncHandler(async (req, res, next) => {
     res.status(201).json({ playlist });
 }))
 
+router.post('/:playlistId/song/:songId', asyncHandler(async (req, res) => {
+    const playlistId = parseInt(req.params.playlistId, 10);
+    const songId = parseInt(req.params.songId, 10);
+
+    await PlaylistSong.findOrCreate({
+        where: { playlistId: playlistId, songId: songId }
+
+    })
+
+    const playlistSongs = await PlaylistSong.findAll()
+    res.status(201).json({ playlistSongs })
+}))
+
+
+//Delete Playlist
 // router.delete('/:id',asyncHandler(async(req,res,next) => {
 //         const playlistId = parseInt(req.params.id)
 //         const playlist = await Playlist.findByPk(playlistId);
