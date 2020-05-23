@@ -28,7 +28,6 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 
 router.get('/:songURL', asyncHandler(async (req, res) => {
     const songURL = req.params.songURL;
-    console.log(songURL);
     const song = await Song.findOne({
         where: { songURL },
         include: [{ model: Album, include: [{ model: Artist }] }]

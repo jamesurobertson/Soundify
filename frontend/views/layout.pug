@@ -8,7 +8,6 @@ html
         script(src="../js/create-playlist.js")
         script(src="../js/header.js")
         script(src="../js/home.js" type="module")
-        script(src="../js/id/user.js")
         script(src='../js/music-player.js')
         script(src='../js/renderLibrary.js' type= "module")
         style
@@ -101,8 +100,8 @@ html
                     // TODO: dynamic time controls
                     .footer__progress-time#song_start 00:00
                     .footer__progress-bar-container
-                        input(type='range' max='1000' min = '0' step='1' value='0').footer__progress-bar
-                        .footer__progress-bar-playing
+                        .footer__progress-bar
+                            .footer__progress-bar-playhead
                     .footer__progress-time#footer__song-length 00:00
             .footer__sound-control-container
                 i.fas.fa-volume-up.footer__volume-icon
