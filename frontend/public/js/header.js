@@ -22,23 +22,6 @@ window.addEventListener("DOMContentLoaded", event => {
     searchButton.addEventListener('click', e => {
         const url = `/#/search`
         window.history.pushState('search', 'Title', url)
-
-        // window.addEventListener("hashchange", toggleSearchBar, false)
     })
 
 })
-
-// #/browse/artists
-let toggleSearchBar = (event) => {
-    console.log(`hashchange`)
-    const url = "#/search"
-}
-
-function searchBarStatus() {
-    const searchBar = document.querySelector(".header__search-bar")
-    if (window.location.href.endsWith('/search')) {
-        searchBar.classList.remove("search--hidden")
-    } else {
-        searchBar.classList.add('search--hidden')
-    }
-}

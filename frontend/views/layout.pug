@@ -2,15 +2,15 @@ html
     head
         meta(charset='UTF-8')
         link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css')
+        link(rel='shortcut icon' type='image/png' href='https://www.scdn.co/i/_global/favicon.ico')
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
-        script(src="../js/index.js")
+        script(src="../js/index.js" type="module")
         script(src="../js/create-playlist.js")
         script(src="../js/header.js")
-        script(src="../js/home.js")
-        script(src="../js/id/playlist.js")
-        script(src="../js/id/album.js")
-        script(src="../js/id/artist.js")
+        script(src="../js/home.js" type="module")
         script(src="../js/id/user.js")
+        script(src='../js/music-player.js')
+        script(src='../js/renderLibrary.js' type= "module")
         style
             include ../public/global.css
             include ../public/header.css
@@ -30,21 +30,21 @@ html
                             i.fas.fa-angle-left
                         button(class="header__rightArrow")
                             i.fas.fa-angle-right
-                    .header_searchAndTypesContainer.header__collectionTypes--hidden
-                .header__search-bar.search--hidden
-                    input#header__search-input(type="text" placeholder="Search for Artists, Songs or Playlists...")
-                .header__user-container
-                    .header__user-buttons
-                        button#drop-button
-                            i.fas.fa-user-astronaut#astronaut-id
-                    .header-logout.pref--hidden
-                        ul.header-ul
-                            li
-                                a#header-logout-button(href="/logout") Logout
-                            li
-                                p
-                            li
-                                a#header-profile-button(href="/profile") Profile
+                    //- .header_searchAndTypesContainer.header__collectionTypes--hidden
+                    //- .header__search-bar.search--hidden
+                    //-     input#header__search-input(type="text" placeholder="Search for Artists, Songs or Playlists...")
+                    .header__user-container
+                        .header__user-buttons
+                            button#drop-button
+                                i.fas.fa-user-astronaut#astronaut-id
+                        .header-logout.pref--hidden
+                            ul.header-ul
+                                li
+                                    a#header-logout-button(href="/logout") Logout
+                                li
+                                    p
+                                li
+                                    a#header-profile-button(href="/profile") Profile
             .left-nav
                 .left-nav__logo-container
                     i.left-nav__logo-icon.fab.fa-spotify
@@ -56,7 +56,7 @@ html
                 button.left-nav__link-container.left-nav__search-button
                     i.left-nav__icon.fas.fa-search
                     .left-nav__text Search
-                button.left-nav__link-container
+                button.left-nav__link-container.your-library
                     i.left-nav__icon.fas.fa-record-vinyl
                     .left-nav__text Your Library
                 .left-nav__playlistBtn-container
@@ -78,34 +78,35 @@ html
                     button.createPlaylist-button-cancel CANCEL
                     button.createPlaylist-button-create CREATE
             #mainContent
-            #footer
-                .footer__currently-playing-container
-                    .footer__album-art
-                    .footer__song-details
-                        // TODO: dynamic song name and artist/album
-                        .footer__song-name Helpless
-                        .footer__song-artist-album Phillipa Soo, Original Broadway Cast of Hamilton
-                    .footer__likeSong
-                        button(type='button' title='Save to your Liked Songs').footer__like-button-clicked.footer__like-button
-                            i.fas.fa-heart
+        #footer
+            .footer__currently-playing-container
+                .footer__album-art
+                .footer__song-details
+                    .footer__song-name
+                    .footer__song-artist-album
+                .footer__likeSong
+                    button(type='button' title='Save to your Liked Songs').footer__like-button-clicked.footer__like-button
+                        i.fas.fa-heart
 
-                .footer__player-controls-container
-                    .footer__music-control-buttons
-                        ul
-                            li.fas.fa-random.footer_control-button#shuffle
-                            li.fas.fas.fa-step-backward.footer_control-button#backward
-                            li.fas.fa-play-circle.footer_control-button#footer__play-song
-                            li.far.fa-pause-circle.footer_control-button.footer__pause-song--hidden#footer__pause-song
-                            li.fas.fa-step-forward.footer_control-button#forward
-                            li.fas.fa-redo.footer_control-button#redo
-                    .footer__playback-bar
-                        // TODO: dynamic time controls
-                        .footer__progress-time#song_start 0:00
-                        .footer__progress-bar
-                            .footer__progress-bar--playing
-                        .footer__progress-time#footer__song-length 0:00
-                .footer__sound-control-container
-                    i.fas.fa-volume-up
-                    .footer__volume-control
-                script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js')
-                script(src='../js/ajax.js')
+            .footer__player-controls-container
+                .footer__music-control-buttons
+                    ul
+                        li.fas.fa-random.footer_control-button#shuffle
+                        li.fas.fas.fa-step-backward.footer_control-button#backward
+                        li.fas.fa-play-circle.footer_control-button#footer__play-song
+                        li.far.fa-pause-circle.footer_control-button.footer__pause-song--hidden#footer__pause-song
+                        li.fas.fa-step-forward.footer_control-button#forward
+                        li.fas.fa-redo.footer_control-button#redo
+                .footer__playback-bar
+                    // TODO: dynamic time controls
+                    .footer__progress-time#song_start 00:00
+                    .footer__progress-bar-container
+                        input(type='range' max='1000' min = '0' step='1' value='0').footer__progress-bar
+                        .footer__progress-bar-playing
+                    .footer__progress-time#footer__song-length 00:00
+            .footer__sound-control-container
+                i.fas.fa-volume-up.footer__volume-icon
+                .footer_volume-bar-container
+                    input(type='range' max='100' min = '0' step='1' value='5').footer__volume-control
+            script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js')
+            script(src='../js/ajax.js')

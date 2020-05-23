@@ -33,7 +33,26 @@ module.exports = {
                     hashedPassword: bcrypt.hashSync('password'),
                     createdAt: new Date(),
                     updatedAt: new Date(),
-                }
+                },
+                {
+                    userName: 'James',
+                    firstName: 'James',
+                    lastName: 'Robertson',
+                    email: 'jamesurobertson@gmail.com',
+                    hashedPassword: bcrypt.hashSync('password'),
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                {
+                    userName: 'b',
+                    firstName: 'b',
+                    lastName: 'b',
+                    email: 'b@yahoo.com',
+                    hashedPassword: bcrypt.hashSync('password'),
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+
 
             ],
             { returning: true }
@@ -336,6 +355,7 @@ module.exports = {
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 }
+
             ],
             { returning: true }
         )

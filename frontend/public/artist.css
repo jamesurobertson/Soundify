@@ -1,8 +1,18 @@
 
-.artist-content-header{
-    height: 263px;
+/* .artist-content-header{
     width: 100%;
+    padding: 110px 32px 32px;
+    display: flex;
+    align-items: flex-end;
+    background-color: rgb(18,18,18);
+} */
+.artist-content-header{
+    margin-left: 100px;
+    margin-top: 175px;
+    height: 200px;
+    width: 205px;
     background-color: #282828;
+    display: -webkit-inline-box;
 }
 
 .artist-content-art {
@@ -18,17 +28,26 @@
 
 .artist-content-type{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     font-size: larger;
+    padding-left: 20px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #b3b3b3;
 }
 
 .artist-content-title{
-    font-weight: bold;
-    font-size: 56px;
+    margin-left: 20px;
+    min-width: 600px;
+    text-align: left;
+    display: flex;
+    font-size: 96;
 }
 
-.artist-content-listeners{
-    font-size: larger;
+.artist-content-listeners {
+    /* font-size: larger; */
+    text-align: left;
+    padding-left: 20px;
 }
 
 .artist-middle-container{

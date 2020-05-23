@@ -1,4 +1,23 @@
+import { renderAlbums, renderPlaylistId, renderContent } from './home.js';
+import { renderLibraryAlbums, renderLibraryPlaylistId, renderLibraryContent } from './renderLibrary.js';
+
 window.addEventListener('DOMContentLoaded', async () => {
+
+    renderAlbums()
+    const allAlbums = document.querySelectorAll('.home-albums')
+    const yourLibrary = document.querySelector('.your-library')
+    allAlbums.forEach(link => {
+        link.addEventListener('click', async (e) => {
+            renderAlbums()
+        })
+    })
+
+    yourLibrary.addEventListener('click', e => {
+        renderLibraryAlbums()
+        const url = `#/collection/albums`
+        window.history.pushState('albums', 'Title', url)
+    })
+
     document.querySelectorAll('.left-nav__link-container')
         .forEach(link => {
             link.addEventListener('click', e => {
