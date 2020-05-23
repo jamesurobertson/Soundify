@@ -245,7 +245,6 @@ function renderCard(contentType, imageURL, title, id, name) {
 
 async function renderContent() {
     console.log('rendering')
-    console.log(this)
     let contentType
     if (!this.classList[1]) {
         contentType = 'playlist'
