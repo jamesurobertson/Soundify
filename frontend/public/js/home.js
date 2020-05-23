@@ -233,7 +233,6 @@ export function renderCard(contentType, imageURL, title, id, name) {
 
 
 export async function renderContent() {
-    console.log('rendering')
     let contentType
     if (!this.classList[1]) {
         contentType = 'playlist'
@@ -262,7 +261,6 @@ export async function renderContent() {
 
 export async function getRes(type, id) {
     try {
-        // const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
         const res = await fetch(`http://localhost:8080/${type}/${id}`,
             {
                 headers: {
@@ -271,20 +269,16 @@ export async function getRes(type, id) {
                 }
             })
         if (!res.ok) throw res
-
         return await res.json()
-
-
     } catch (e) {
         console.error(e)
     }
-
 }
-//Pulls home/artist information 
+
+//Pulls home/artist information
 export async function renderArtistId(res) {
     const mainContent = document.getElementById('mainContent')
     const { artist: { biography, name, imageURL, id } } = res
-    console.log('ARTIST RES', res)
 
     try {
         const res = await fetch(`http://localhost:8080/artist/${id}/album`,
@@ -297,7 +291,6 @@ export async function renderArtistId(res) {
         if (!res.ok) throw res
 
         const { albums } = await res.json()
-        console.log(`ALBUMS`, albums)
 
 
         const contentHeader = `
@@ -347,7 +340,6 @@ export async function renderArtistId(res) {
 
             songs.forEach(song => {
                 const { songLength, title: songTitle, songURL, id } = song
-                console.log(song)
                 songContainer.appendChild(renderSongContainer(songLength, songTitle, name, songURL, id))
             })
             albumContainer.appendChild(songContainer)
@@ -366,7 +358,6 @@ export async function renderArtistId(res) {
 export function renderPlaylistId(res) {
     const mainContent = document.getElementById('mainContent')
     const { playlist: { User: { userName: name }, Songs, imageURL, name: title } } = res
-    console.log(`NAME`, res)
     const contentHeader = `
     <div class="content-header" id="playlist-page-container">
     <div class="content-art">
@@ -467,7 +458,6 @@ export function renderContentArtistMiddleContainer() {
 }
 
 export function renderSongContainer(length, title, artist, songURL, id) {
-    console.log(id)
     const songContainer = document.createElement('div')
     songContainer.classList.add('songContainer')
 
@@ -524,7 +514,6 @@ export function renderSongContainer(length, title, artist, songURL, id) {
 
 async function followContent(res) {
     const followSong = document.querySelector('follow-song');
-    console.log(this)
     const songId = this.id.split('-')[1]
     const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
     try {

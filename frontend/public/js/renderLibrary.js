@@ -241,8 +241,6 @@ export async function renderLibraryCard(contentType, imageURL, title, id, name) 
 
 
 export async function renderLibraryContent() {
-    console.log('rendering')
-    console.log(this)
     let contentType
     if (!this.classList[1]) {
         contentType = 'playlist'
@@ -522,7 +520,7 @@ export function renderLibrarySongContainer(length, title, artist, songURL, song)
 }
 
 
-//Import from home.js? 
+//Import from home.js?
 async function followContent() {
     console.log('followed the content!')
 }

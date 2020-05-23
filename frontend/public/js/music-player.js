@@ -1,11 +1,11 @@
+
 window.addEventListener('DOMContentLoaded', e => {
 
     const volumeControl = document.querySelector('.footer__volume-control')
-    console.log('hello?')
-    console.log(volumeControl)
     volumeControl.addEventListener('input', e => {
         const value = volumeControl.value
-        player.
+        player.volume = value / 100;
+        volumeControl.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
     })
 })
 
@@ -16,87 +16,119 @@ async function playContent() {
 }
 
 async function addPlaylistContent() {
-    console.log(`added to playlist`)
+    console.log('added content to playlist')
 }
 
 async function playSong() {
+
     // stop current song if there is one playing
     if (player) {
         player.pause()
     }
-    const songUrl = this.id
 
-    const songInfo = await getSongInfo(songUrl)
-    console.log(`SONG INFO`, songInfo)
-    const { song: { title: songName, Album: { imageURL: albumImage,
-        title: albumName }, Album: { Artist: { name: artistName } } } } = songInfo
-
-
-    // renderPlayBar()
-    // left side footer
-    const footerAlbumArt = document.querySelector('.footer__album-art')
-    const albumArt = document.createElement('img')
-    albumArt.classList.add('footer__album-art')
-    albumArt.setAttribute('src', albumImage)
-    footerAlbumArt.innerHTML = ''
-    footerAlbumArt.appendChild(albumArt)
-
-    const footerSongName = document.querySelector('.footer__song-name').innerHTML = songName
-    const footerAlbumName = document.querySelector('.footer__song-artist-album').innerHTML = albumName
-
-    // middle footer
+    // the player and playhead
     const footerPlayBar = document.querySelector('.footer__progress-bar')
-    const nowPlayingBar = document.querySelector('.footer__progress-bar-playing')
-    const footerShuffle = document.getElementById('shuffle')
-    const footerBackward = document.getElementById('backward')
+    const footerPlayBarPlayhead = document.querySelector('.footer__progress-bar-playhead')
+
+    // player buttons TODO: move out of playSong?
     const footerPlay = document.getElementById('footer__play-song')
     const footerPause = document.getElementById('footer__pause-song')
+    const footerBackward = document.getElementById('backward')
     const footerForward = document.getElementById('forward')
+    const footerShuffle = document.getElementById('shuffle')
     const footerRedo = document.getElementById('redo')
 
-    //end footer
     const volumeControl = document.querySelector('.footer__volume-control')
 
-    // set src of this song and play it
+    const songUrl = this.id
+    renderFooterInfo(songUrl)
+
+    // set src of 'this' song and play it
     player.setAttribute('src', songUrl)
     player.play();
 
+    // audio only updates after playhead has been released.
+    //variable to keep track of playhead status
+    let onPlayHead = false;
+
+
+    // variables for player
+    const footerPlayBarWidth = footerPlayBar.offsetWidth - footerPlayBarPlayhead.offsetWidth;
+
+    // set play button to 'pause' upon starting a song play
     footerPlay.classList.add('footer__play-song--hidden')
     footerPause.classList.remove('footer__pause-song--hidden')
 
-    footerSongName.innerHTML = songName
+    // songs are played at value of volume control bar
+    volumeControl.value = player.volume * 100
 
+    // makes playbar clickable
+    footerPlayBar.addEventListener('click', e => {
+        const duration = player.duration
+        movePlayHead(e)
+        player.currentTime = duration * clickPercent(e)
+    }, false);
+
+    function clickPercent(event) {
+        return (event.clientX - getPosition(footerPlayBar)) / footerPlayBarWidth;
+    }
+
+    function movePlayHead(event) {
+        var newMargLeft = event.clientX - getPosition(footerPlayBar);
+
+        if (newMargLeft >= 0 && newMargLeft <= footerPlayBarWidth) {
+            footerPlayBarPlayhead.style.marginLeft = newMargLeft + "px";
+        }
+        if (newMargLeft < 0) {
+            footerPlayBarPlayhead.style.marginLeft = "0px";
+        }
+        if (newMargLeft > footerPlayBarWidth) {
+            footerPlayBarPlayhead.style.marginLeft = footerPlayBarWidth
+                + "px";
+        }
+    }
+
+    function getPosition(el) {
+        return el.getBoundingClientRect().left;
+    }
+    // makes playhead draggable
+    footerPlayBarPlayhead.addEventListener('mousedown', mouseDown, false);
+    window.addEventListener('mouseup', mouseUp, false);
+
+    function mouseDown() {
+        onPlayHead = true;
+        window.addEventListener('mousemove', movePlayHead, true)
+        player.removeEventListener('timeupdate', timeUpdate, false)
+    }
+
+    function mouseUp(event) {
+        if (onPlayHead == true) {
+            movePlayHead(event);
+            window.removeEventListener('mousemove', movePlayHead, true);
+            // change current time
+            player.currentTime = player.duration * clickPercent(event);
+            player.addEventListener('timeupdate', timeUpdate, false);
+        }
+        onPlayHead = false;
+    }
+
+    function timeUpdate() {
+        $("#song_start").text(secondsToMMSS(Math.floor(player.currentTime)));
+        const playPercent = footerPlayBarWidth * (player.currentTime / player.duration);
+        footerPlayBarPlayhead.style.marginLeft = playPercent + "px";
+        if (player.currentTime === player.duration) {
+            footerPlay.classList.add('footer__play-song--hidden')
+            footerPause.classList.remove('footer__pause-song--hidden')
+        }
+    }
+
+    player.addEventListener('timeupdate', timeUpdate, false)
+
+    // once song can be played set the time control
     player.addEventListener("canplay", function () {
         $("#footer__song-length").text(secondsToMMSS(Math.floor(player.duration)));
-        renderPlayBar(Math.ceil(player.duration))
     });
-    //  REDO SONG BUTTON
-    // time length is set once audio can play.
-    // footerRedo.addEventListener('click', event => {
-    //     footerRedo.classList.toggle('footer__button--selected')
-    //     if (!footerRedo.classList.contains('footer__button--selected')) {
-    //         player.addEventListener('ended', function () {
-    //             this.play();
-    //         }, false);
-    //     }
-    // })
 
-
-
-    // Time left updating
-    player.addEventListener("timeupdate", function () {
-        const footerPlayBar = document.querySelector('.footer__progress-bar')
-        const nowPlayingBar = document.querySelector('.footer__progress-bar-playing')
-
-        $("#song_start").text(secondsToMMSS(Math.floor(player.currentTime)));
-        const currentTime = player.currentTime;
-        const duration = player.duration;
-        const timePlayed = (currentTime) / duration
-        footerPlayBar.value = currentTime
-        // 'width': (currentTime / duration) * 100 / 635 + '%' 
-        const currentPosition = (currentTime * (window.innerWidth * .38) * .875) / duration
-        nowPlayingBar.style.width = `${currentPosition}px`
-    });
 
     //play
     footerPlay.addEventListener('click', e => {
@@ -120,6 +152,7 @@ async function playSong() {
 }
 
 
+
 function secondsToMMSS(time) {
     let minutes = Math.floor(time / 60);
     let seconds = time - (minutes * 60);
@@ -129,28 +162,8 @@ function secondsToMMSS(time) {
     return minutes + ':' + seconds;
 }
 
+async function renderFooterInfo(songUrl) {
 
-function renderPlayBar(songLength) {
-    const playBarContainer = document.querySelector('.footer__progress-bar-container')
-    const progressBar = document.createElement('input')
-    progressBar.setAttribute('type', 'range')
-    progressBar.setAttribute('max', songLength)
-    progressBar.setAttribute('min', '0')
-    progressBar.setAttribute('step', '1')
-    progressBar.setAttribute('value', '0')
-    progressBar.classList.add('footer__progress-bar')
-
-    const playedPortion = document.createElement('div')
-    playedPortion.classList.add('footer__progress-bar-playing')
-
-    playBarContainer.innerHTML = ''
-    playBarContainer.appendChild(progressBar)
-    playBarContainer.appendChild(playedPortion)
-    return true
-}
-
-
-async function getSongInfo(songUrl) {
     try {
         const songPathEncoded = songUrl.split('/').join('%2F')
         const res = await fetch(`http://localhost:8080/album/${songPathEncoded}`,
@@ -162,7 +175,26 @@ async function getSongInfo(songUrl) {
             })
 
         if (!res.ok) throw res
-        return await res.json()
+        const { song } = await res.json()
+
+        console.log(song)
+
+        const { title: songName, Album: { imageURL: albumImage,
+            title: albumName }, Album: { Artist: { name: artistName } } } = song
+
+
+        // renderPlayBar()
+        // left side footer
+        const footerAlbumArt = document.querySelector('.footer__album-art')
+        const albumArt = document.createElement('img')
+        albumArt.classList.add('footer__album-art')
+        albumArt.setAttribute('src', albumImage)
+        footerAlbumArt.innerHTML = ''
+        footerAlbumArt.appendChild(albumArt)
+
+        document.querySelector('.footer__song-name').innerHTML = songName
+        document.querySelector('.footer__song-artist-album').innerHTML = albumName
+
     } catch (e) {
         console.error(e)
     }

@@ -7,6 +7,5 @@ const router = express.Router();
 router.use(requireAuth);
 
 router.get('/search', asyncHandler, (req, res) => {
-    console.log('he');
 
 })
