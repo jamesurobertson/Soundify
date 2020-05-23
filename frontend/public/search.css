@@ -1,0 +1,19 @@
+.search-box.search-box {
+    position: static;
+    background-color: #282828;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 46px;
+    padding: 16px;
+}
+
+#search-input{
+    font-size: 44px;
+    line-height: 44px;
+    color: #b3b3b3;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}

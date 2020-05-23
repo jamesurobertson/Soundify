@@ -21,7 +21,6 @@
 .footer__album-art {
   width: 55px;
   height: 55px;
-  background-color: blue;
 }
 
 .footer__song-details {
@@ -89,28 +88,6 @@
     opacity: 100;
 }
 
-.footer__playback-bar {
-  padding-top: 10px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.footer__progress-bar {
-  width: 100%;
-  height: 5px;
-  background-color: rgba(255,255,255,.5);
-  cursor: pointer;
-  border-radius: 10px;
-}
-
-.footer__progress-bar--playing {
-    width: 0;
-    background-color: white;
-    height: 5px;
-    border-radius: 10px;
-}
-
 .footer__progress-time {
   width: 40px;
   font-size: 12px;
@@ -125,18 +102,107 @@
     align-items: center;
 }
 
-.footer__volume-control {
-    margin-left: 15px;
-    width: 20%;
-    height: 5px;
-    background-color: #bfbfbf;
-    cursor: pointer;
-    border-radius: 10px;
-}
 .footer_control-button {
-    transition: .2s linear;
+    transition: .2s linear;-12px
 }
 .footer_control-button:hover {
     color: white;
     opacity: 100;
 }
+
+.footer__progress-bar-container {
+    width: 100%;
+}
+input[type=range] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+}
+  
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+  
+input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+  
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+  
+    /* Hides the slider so custom styles can be added */
+    background: transparent; 
+    border-color: transparent;
+    color: transparent;
+}
+
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+    margin: -3px;
+    cursor: initial;
+    display:none;
+    z-index: 2;
+  }
+
+  input[type=range]:hover::-webkit-slider-thumb {
+      display: block;
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: rgba(255,255,255,.5);
+    border-radius: 10px;
+  }
+
+.volume-bar-container {
+    width: 20%;
+    margin-right: 16px;
+}
+  .footer__volume-control {
+    height: 5px;
+    padding: 10px 0;
+    background-color: #bfbfbf;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+ .footer__playback-bar {
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+  
+.footer__progress-bar {
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255,255,255,.5);
+    border-radius: 10px;
+    z-index: 1;
+}
+  
+  .footer__progress-bar-playing {
+      width: 0;
+      background-color: white;
+      height: 5px;
+      border-radius: 10px;
+      position: absolute;
+      margin: -7px;
+      padding-left: 7px;
+      max-width: 635px;
+      margin-left: 3px;
+      z-index: -1;
+  }
+
+  .footer__volume-icon {
+      padding-right: 10px;
+  }

@@ -12,18 +12,30 @@ router.post('/:userId/:type/:typeId', requireAuth, asyncHandler(async (req, res)
     const type = req.params.type
 
     //Creates followed playlist in Follower Table
-    await Follower.create({ userId: userID, followableId: typeID, followableType: type })
+    await Follower.findOrCreate({
+        where: {
+            userId: userID,
+            followableId: typeID,
+            followableType: type
+        }
+    })
 
     //Finds the user and all associated followed playlist
     const user = await User.findOne({
         where: { id: userID },
-        include: ['followedArtists', 'followedPlaylists', 'followedAlbums', 'followedUsers', 'followedSongs']
+        include: ['followedArtists', 'followedPlaylists', 'followedAlbums', 'followedUsers', 'followedSongs'],
+        attributes: ["userName"]
     })
     res.status(201).json({ user })
 
 
 }))
 
+
+//Unfollows playlist
+// router.delete('/:userId/:type/:typeId', requireAuth, asyncHandler(async (req, res) => {
+
+// }))
 
 
 

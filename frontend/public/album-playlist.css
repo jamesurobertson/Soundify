@@ -9,11 +9,6 @@
     background-color: rgb(18,18,18);;
 }
 
-.content-art{
-
-
-}
-
 .content-art img {
     height: 232px;
     width: 232px;
@@ -136,12 +131,45 @@
     transition: .2s linear;
 }
 
-.add-to-playlist{}
-.follow-song{}
+.add-to-playlist:hover{
+    color: white;
+}
+.follow-song:hover{
+    color: white;
+}
 
 .song-duration{
     padding: 0px 14px 0px 0px;
 }
+
+.ellipsis--hidden{
+    display: none;
+}
+
+.ellipsis-ul{
+    width: 120px;
+    margin-top: -10px;
+    padding: 5px;
+    margin-left: -123px;
+    background-color: #282828;
+    border: 1px solid rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 4px 4px rgba(0,0,0,.7);
+    box-shadow: 0 4px 4px rgba(0,0,0,.7);
+    pointer-events: auto;
+    position: absolute;
+    margin-right: 300px;
+    font-weight: normal;
+    top: 79%;
+    color: #b3b3b3;
+    line-height: 2;
+    position: absolute;
+}
+
+.song-context-menu{
+    position: relative;
+
+}
+
 
 
 

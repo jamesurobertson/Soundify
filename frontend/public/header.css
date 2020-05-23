@@ -16,10 +16,6 @@
 
 }
 
-.header__user-buttons:hover{
-  transform: scale(1.5);
-}
-
 #header__user-buttons--dropdown{
 
 }
@@ -37,13 +33,13 @@ font-weight: 100;
 
 /* Darker background on mouse-over */
 .header__leftArrow:hover, .header__rightArrow:hover {
-background-color: darkslategrey;
-border-radius: 50%
+border: 1px solid white;
+border-radius: 50%;
+outline: none;
 }
 
 #drop-button{
-    padding-top:10px;
-    border: 2px solid transparent;
+    border: none;
     padding-bottom: 10px;
     background-color: #282828;
     border-radius: 18px;
@@ -53,6 +49,7 @@ border-radius: 50%
     box-shadow: 76px;
     box-shadow: 0px 0px 3px black;
     padding: 0.3em 1em !important;
+    outline: none;
 }
 
 .hidden {
@@ -61,6 +58,8 @@ border-radius: 50%
 
 .header-ul{
     width: 96px;
+    margin-top: 5px;
+    margin-left: -30px;
     background-color: #282828;
     border-radius: 6px;
     border: 1px solid rgba(0,0,0,.1);
@@ -70,6 +69,7 @@ border-radius: 50%
     position: absolute;
     top: 79%;
     color: #b3b3b3;
+    line-height: 2;
 }
 
 .pref--hidden{
@@ -77,41 +77,27 @@ border-radius: 50%
 }
 
 #header-logout-button{
-    border-bottom: #b3b3b3;
+    padding-top: 10px;
     width:96px;
     margin: 10px;
 }
 
 #header-profile-button{
+    padding-top: 10px;
     width:96px;
     margin: 10px;
 }
 
 #header-logout-button:hover{
-    background-color: grey;
+    color: white;
     width:96px;
 }
 
 #header-profile-button:hover{
-    background-color: grey;
+    color: white;
     width:96px;
 }
 
-.header__search-bar{
-    width: 364px;
-    height: 40px;
-    margin-right: 408px;
-    border-radius: 62%;
-}
-
-#header__search-input{
-    width: 364px;
-    font-size: 13px;
-    height: 40px;
-    border-radius: 15px;
-    font-weight: 500;
-}
-
-.search--hidden{
-    display: none;
+.header__user-buttons:hover{
+  transform: scale(1.1);
 }

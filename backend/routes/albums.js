@@ -13,17 +13,27 @@ const albumNotFound = (id) => {
     return err
 }
 
-router.get('/:id', asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const albumId = parseInt(req.params.id, 10);
     const album = await Album.findByPk(albumId, {
-        include: [{ model: Artist }, { model: Song, attributes: ["title", "songLength", "songURL"] }],
-        attributes: ["id", "title", "imageURL"]
+        include: [{ model: Artist }, { model: Song }]
     });
     if (album) {
         res.json({ album });
     } else {
         next(albumNotFound(albumId))
     }
+}))
+// music / artist / album / song
+
+router.get('/:songURL', asyncHandler(async (req, res) => {
+    const songURL = req.params.songURL;
+    console.log(songURL);
+    const song = await Song.findOne({
+        where: { songURL },
+        include: [{ model: Album, include: [{ model: Artist }] }]
+    })
+    res.json({ song });
 }))
 
 router.get('/', asyncHandler(async (req, res, next) => {
@@ -32,7 +42,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
             model: Artist, attributes: ["name"]
         }]
     });
-    res.json({ albums })
+    res.json({ albums });
 }))
 
 
