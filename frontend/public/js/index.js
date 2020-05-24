@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderAlbums()
     const allAlbums = document.querySelectorAll('.home-albums')
     const yourLibrary = document.querySelector('.your-library')
+
     allAlbums.forEach(link => {
         link.addEventListener('click', async (e) => {
             renderAlbums()
@@ -85,4 +86,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     } catch (e) {
         console.error(e)
     }
+
+
+    document.getElementById('header-logout-button')
+        .addEventListener('click', e => {
+            localStorage.removeItem('SOUNDIFY_CURRENT_USER_ID')
+            localStorage.removeItem('SOUNDIFY_ACCESS_TOKEN')
+            location.reload()
+        })
+
 })

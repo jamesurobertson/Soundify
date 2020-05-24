@@ -38,6 +38,10 @@ export async function renderArtists() {
         mainContent.innerHTML = ''
         mainContent.appendChild(mainContentContainer)
 
+        const clearFooter = document.createElement('div')
+        clearFooter.classList.add('clear-footer')
+        mainContent.appendChild(clearFooter)
+
         const url = `#/browse/artists`
         window.history.pushState('artists', 'Title', url)
 
@@ -89,6 +93,10 @@ export async function renderAlbums() {
         mainContent.innerHTML = ''
         mainContent.appendChild(mainContentContainer)
 
+        const clearFooter = document.createElement('div')
+        clearFooter.classList.add('clear-footer')
+        mainContent.appendChild(clearFooter)
+
         const url = `#/browse/albums`
         window.history.pushState('albums', 'Title', url)
 
@@ -137,6 +145,10 @@ export async function renderPlaylists() {
 
         mainContent.innerHTML = ''
         mainContent.appendChild(mainContentContainer)
+
+        const clearFooter = document.createElement('div')
+        clearFooter.classList.add('clear-footer')
+        mainContent.appendChild(clearFooter)
 
         const url = `#/browse/playlists`
         window.history.pushState('playlists', 'Title', url)
@@ -294,14 +306,14 @@ export async function renderArtistId(res) {
 
 
         const contentHeader = `
-        <div class="artist-content-header">
-        <div class="artist-content-art">
+        <div class="content-header">
+        <div class="content-art">
         <img src=${imageURL}>
         </div>
-        <div class="artist-content-info">
-        <div class="artist-content-type">Artist</div>
-        <div class="artist-content-title">${name}</div>
-        <div class="artist-content-listeners">${Math.floor(Math.random() * 1000000)} listeners</div>
+        <div class="content-info">
+        <div class="content-type">Artist</div>
+        <div class="content-title">${name}</div>
+        <div class="content-listeners">${Math.floor(Math.random() * 1000000)} listeners</div>
         </div>
         </div>
         `
@@ -313,7 +325,7 @@ export async function renderArtistId(res) {
         albumsContainer.classList.add('artist-albums-container')
 
         albums.forEach(album => {
-            const { title, Songs: songs } = album
+            const { title, Songs: songs, imageURL } = album
 
             const albumContainer = document.createElement('div')
             albumContainer.classList.add('artist-album-container')
@@ -328,7 +340,9 @@ export async function renderArtistId(res) {
 
             const albumImage = document.createElement('img')
             albumImage.classList.add('album-image')
+            albumImage.setAttribute('src', imageURL)
             albumImageContainer.appendChild(albumImage)
+            albumContainerHeader.appendChild(albumImageContainer)
 
             const albumInfo = document.createElement('div')
             albumInfo.classList.add('album-info')
@@ -349,6 +363,10 @@ export async function renderArtistId(res) {
         mainContent.innerHTML = contentHeader
         mainContent.appendChild(contentMiddle)
         mainContent.appendChild(albumsContainer)
+
+        const clearFooter = document.createElement('div')
+        clearFooter.classList.add('clear-footer')
+        mainContent.appendChild(clearFooter)
 
     } catch (e) {
         console.error(e)
@@ -384,6 +402,10 @@ export function renderPlaylistId(res) {
     mainContent.innerHTML = contentHeader
     mainContent.appendChild(middleContainer)
     mainContent.appendChild(songContainer)
+
+    const clearFooter = document.createElement('div')
+    clearFooter.classList.add('clear-footer')
+    mainContent.appendChild(clearFooter)
 }
 
 export function renderAlbumId(res) {
@@ -418,6 +440,10 @@ export function renderAlbumId(res) {
     mainContent.innerHTML = contentHeader
     mainContent.appendChild(middleContainer)
     mainContent.appendChild(songContainer)
+
+    const clearFooter = document.createElement('div')
+    clearFooter.classList.add('clear-footer')
+    mainContent.appendChild(clearFooter)
 
 }
 

@@ -24,11 +24,6 @@ html
         main
             .header
                 .header__navigation-container
-                    .header__arrows
-                        button(class="header__leftArrow")
-                            i.fas.fa-angle-left
-                        button(class="header__rightArrow")
-                            i.fas.fa-angle-right
                     //- .header_searchAndTypesContainer.header__collectionTypes--hidden
                     //- .header__search-bar.search--hidden
                     //-     input#header__search-input(type="text" placeholder="Search for Artists, Songs or Playlists...")
@@ -61,10 +56,10 @@ html
                 .left-nav__playlistBtn-container
                     h2.left-nav__playlist-header Playlists
                     .left-nav__playlist-links
-                        button(type='button').left-nav__playlist-head.createPlaylist-button
+                        button.left-nav__playlist-head.createPlaylist-button
                             i.far.fa-plus-square
                             .left-nav__playlist-text Create Playlist
-                        a(href='/playlist/likedSongs').left-nav__playlist-head.left-nav__liked-songs
+                        button.left-nav__playlist-head.left-nav__liked-songs
                             i.fas.fa-heart
                             .left-nav__playlist-text Liked Songs
                 .left-nav__playlists-container
@@ -84,7 +79,7 @@ html
                     .footer__song-name
                     .footer__song-artist-album
                 .footer__likeSong
-                    button(type='button' title='Save to your Liked Songs').footer__like-button-clicked.footer__like-button
+                    button(type='button' title='Save to your Liked Songs').footer__like-button
                         i.fas.fa-heart
 
             .footer__player-controls-container

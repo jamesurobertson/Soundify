@@ -66,58 +66,10 @@ async function playSong() {
         player.currentTime = duration * clickPercent(e)
     }, false);
 
-    function clickPercent(event) {
-        return (event.clientX - getPosition(footerPlayBar)) / footerPlayBarWidth;
-    }
 
-    function movePlayHead(event) {
-        var newMargLeft = event.clientX - getPosition(footerPlayBar);
-
-        if (newMargLeft >= 0 && newMargLeft <= footerPlayBarWidth) {
-            footerPlayBarPlayhead.style.marginLeft = newMargLeft + "px";
-        }
-        if (newMargLeft < 0) {
-            footerPlayBarPlayhead.style.marginLeft = "0px";
-        }
-        if (newMargLeft > footerPlayBarWidth) {
-            footerPlayBarPlayhead.style.marginLeft = footerPlayBarWidth
-                + "px";
-        }
-    }
-
-    function getPosition(el) {
-        return el.getBoundingClientRect().left;
-    }
     // makes playhead draggable
     footerPlayBarPlayhead.addEventListener('mousedown', mouseDown, false);
     window.addEventListener('mouseup', mouseUp, false);
-
-    function mouseDown() {
-        onPlayHead = true;
-        window.addEventListener('mousemove', movePlayHead, true)
-        player.removeEventListener('timeupdate', timeUpdate, false)
-    }
-
-    function mouseUp(event) {
-        if (onPlayHead == true) {
-            movePlayHead(event);
-            window.removeEventListener('mousemove', movePlayHead, true);
-            // change current time
-            player.currentTime = player.duration * clickPercent(event);
-            player.addEventListener('timeupdate', timeUpdate, false);
-        }
-        onPlayHead = false;
-    }
-
-    function timeUpdate() {
-        $("#song_start").text(secondsToMMSS(Math.floor(player.currentTime)));
-        const playPercent = footerPlayBarWidth * (player.currentTime / player.duration);
-        footerPlayBarPlayhead.style.marginLeft = playPercent + "px";
-        if (player.currentTime === player.duration) {
-            footerPlay.classList.add('footer__play-song--hidden')
-            footerPause.classList.remove('footer__pause-song--hidden')
-        }
-    }
 
     player.addEventListener('timeupdate', timeUpdate, false)
 
@@ -157,14 +109,66 @@ async function playSong() {
 
     // REDO
     footerRedo.addEventListener('click', e => {
-        if (e.target.classList.contains('footer__button--selected')) {
-            e.target.classList.remove('footer__button--selected')
-            player.loop = false
-        } else {
-            e.target.classList.add('footer__button--selected')
-            player.loop = true;
-        }
+        e.target.classList.toggle('footer__button--selected')
+        player.loop = !player.loop
     })
+
+    // Shuffle - doesnt quite work yet but color changes :)
+
+    footerShuffle.addEventListener('click', e => {
+        e.target.classList.toggle('footer__button--selected')
+    })
+
+    function clickPercent(event) {
+        return (event.clientX - getPosition(footerPlayBar)) / footerPlayBarWidth;
+    }
+
+    function movePlayHead(event) {
+        var newMargLeft = event.clientX - getPosition(footerPlayBar);
+
+        if (newMargLeft >= 0 && newMargLeft <= footerPlayBarWidth) {
+            footerPlayBarPlayhead.style.marginLeft = newMargLeft + "px";
+        }
+        if (newMargLeft < 0) {
+            footerPlayBarPlayhead.style.marginLeft = "0px";
+        }
+        if (newMargLeft > footerPlayBarWidth) {
+            footerPlayBarPlayhead.style.marginLeft = footerPlayBarWidth
+                + "px";
+        }
+    }
+
+    function getPosition(el) {
+        return el.getBoundingClientRect().left;
+    }
+
+    function mouseDown() {
+        onPlayHead = true;
+        window.addEventListener('mousemove', movePlayHead, true)
+        player.removeEventListener('timeupdate', timeUpdate, false)
+    }
+
+    function mouseUp(event) {
+        if (onPlayHead == true) {
+            movePlayHead(event);
+            window.removeEventListener('mousemove', movePlayHead, true);
+            // change current time
+            player.currentTime = player.duration * clickPercent(event);
+            player.addEventListener('timeupdate', timeUpdate, false);
+        }
+        onPlayHead = false;
+    }
+
+    function timeUpdate() {
+        $("#song_start").text(secondsToMMSS(Math.floor(player.currentTime)));
+        const playPercent = footerPlayBarWidth * (player.currentTime / player.duration);
+        footerPlayBarPlayhead.style.marginLeft = playPercent + "px";
+        if (player.currentTime === player.duration) {
+            footerPlay.classList.add('footer__play-song--hidden')
+            footerPause.classList.remove('footer__pause-song--hidden')
+        }
+    }
+
 
 }
 

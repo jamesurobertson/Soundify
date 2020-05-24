@@ -1,5 +1,5 @@
 const express = require('express');
-const { Playlist, PlaylistSong, Song, User, Album, Artist } = require('../db/models');
+const { Playlist, PlaylistSong, Song, User, Album, Artist, Follower } = require('../db/models');
 const { asyncHandler, handleValidationErrors } = require('../utils')
 const { requireAuth } = require('../auth');
 const { check, validationResult } = require('express-validator');

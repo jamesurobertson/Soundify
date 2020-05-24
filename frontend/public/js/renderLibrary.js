@@ -86,8 +86,13 @@ export async function renderLibraryAlbums() {
         const mainContentGrid = document.createElement('div')
         mainContentGrid.classList.add('main-content__grid')
 
-        cardContainers.forEach(card => mainContentGrid.appendChild(card))
+
+        cardContainers.forEach(card => {
+            console.log(card)
+            mainContentGrid.appendChild(card)
+        })
         mainContentContainer.appendChild(mainContentGrid)
+
 
         mainContent.innerHTML = ''
         mainContent.appendChild(mainContentContainer)
@@ -190,7 +195,7 @@ export function createLibraryTopBar(type) {
 }
 
 //Renders profile cards for albums,artists,playlist
-export async function renderLibraryCard(contentType, imageURL, title, id, name) {
+export function renderLibraryCard(contentType, imageURL, title, id, name) {
 
     const contentCard = document.createElement('div')
     contentCard.classList.add('music-card', `${contentType}-card`)

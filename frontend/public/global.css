@@ -72,3 +72,7 @@ main {
  ::-webkit-scrollbar-thumb {
     background: #444;
 }
+
+.clear-footer {
+    height: 90px;
+}

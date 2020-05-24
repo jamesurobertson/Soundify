@@ -16,27 +16,6 @@
 
 }
 
-#header__user-buttons--dropdown{
-
-}
-
-.header__leftArrow, .header__rightArrow{
-background-color:rgb(18,18,18);
-border: 1px red;
-color: white;
-padding: 12px 16px;
-font-size: 16px;
-cursor: pointer;
-border-radius: 50%;
-font-weight: 100;
-}
-
-/* Darker background on mouse-over */
-.header__leftArrow:hover, .header__rightArrow:hover {
-border: 1px solid white;
-border-radius: 50%;
-outline: none;
-}
 
 #drop-button{
     border: none;

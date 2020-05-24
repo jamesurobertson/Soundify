@@ -7,17 +7,6 @@ window.addEventListener("DOMContentLoaded", event => {
         logoutMenu.classList.toggle("pref--hidden");
     })
 
-    const backButton = document.querySelector('.header__leftArrow')
-    backButton.addEventListener('click', e => {
-        window.history.back();
-    })
-
-    const forwardButton = document.querySelector('.header__rightArrow')
-    forwardButton.addEventListener('click', e => {
-        window.history.forward();
-    })
-
-
     const searchButton = document.querySelector('.left-nav__search-button')
     searchButton.addEventListener('click', e => {
         const url = `/#/search`

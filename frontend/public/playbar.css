@@ -66,6 +66,10 @@
   font-size: 2em;
 }
 
+#footer__pause-song:active, #footer__play-song:active{
+    transform: scale(1.25);
+}
+
 
 .footer__play-song--hidden {
     display: none;
@@ -106,7 +110,7 @@
 }
 
 .footer__button--selected {
-    color: white;
+    color: #1DB954
 }
 .footer_control-button:hover {
     color: white;

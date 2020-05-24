@@ -71,7 +71,6 @@
 }
 
 .content-song-container{
-    height: 100%;
     width: 100%;
     background-color: rgb(18,18,18);
     padding: 0px 32px;
@@ -169,31 +168,3 @@
     position: relative;
 
 }
-
-
-
-
-
-
-
-
-
-/*.content-header
-    .content-art
-    .content-info
-        .content-type
-        .content-title
-        .content-creator
-.content-middle
-    .play-button
-    .liked-song-button
-.content-song-container
-    .song-container
-        .play-icon
-        .song-info
-            .song-title
-            .song-aritst
-        .song-context-menu
-            .add-to-playlist
-            .follow-song
-        .song-duration */
