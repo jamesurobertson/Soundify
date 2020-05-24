@@ -39,7 +39,7 @@
 .footer__like-button {
   border: 0;
   background-color: rgb(40,40,40);
-  color: rgb(255,255,255,.5);
+  color: #bfbfbf;
   outline: 0;
 }
 
@@ -81,7 +81,6 @@
     justify-content: space-between;
     color: #bfbfbf;
     align-items: center;
-    opacity: 65%;
 }
 .footer__button--selected {
     color: white;
@@ -103,7 +102,11 @@
 }
 
 .footer_control-button {
-    transition: .2s linear;-12px
+    transition: .2s linear;
+}
+
+.footer__button--selected {
+    color: white;
 }
 .footer_control-button:hover {
     color: white;
