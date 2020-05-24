@@ -15,9 +15,6 @@ async function playContent() {
     console.log('Played Content')
 }
 
-async function addPlaylistContent() {
-    console.log('added content to playlist')
-}
 
 async function playSong() {
 
@@ -147,6 +144,26 @@ async function playSong() {
     //backward
     footerBackward.addEventListener('click', e => {
         player.currentTime = 0;
+    })
+
+    //forward  TODO: needs to change once playing multile songs implemented.
+    // forwards needs to go to next song.
+    footerForward.addEventListener('click', e => {
+        player.currentTime = 0
+        player.pause()
+        footerPlay.classList.remove('footer__play-song--hidden')
+        footerPause.classList.add('footer__pause-song--hidden')
+    })
+
+    // REDO
+    footerRedo.addEventListener('click', e => {
+        if (e.target.classList.contains('footer__button--selected')) {
+            e.target.classList.remove('footer__button--selected')
+            player.loop = false
+        } else {
+            e.target.classList.add('footer__button--selected')
+            player.loop = true;
+        }
     })
 
 }

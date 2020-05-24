@@ -306,7 +306,7 @@ export async function renderArtistId(res) {
         </div>
         `
 
-        const contentMiddle = renderContentArtistMiddleContainer()
+        const contentMiddle = renderContentArtistMiddleContainer(id)
         contentMiddle.classList.add('artist-middle-container')
 
         const albumsContainer = document.createElement('div')
@@ -357,7 +357,7 @@ export async function renderArtistId(res) {
 
 export function renderPlaylistId(res) {
     const mainContent = document.getElementById('mainContent')
-    const { playlist: { User: { userName: name }, Songs, imageURL, name: title } } = res
+    const { playlist: { User: { userName: name }, Songs, imageURL, name: title, id } } = res
     const contentHeader = `
     <div class="content-header" id="playlist-page-container">
     <div class="content-art">
@@ -370,7 +370,7 @@ export function renderPlaylistId(res) {
     </div>
     </div>`
 
-    const middleContainer = renderContentMiddleContainer()
+    const middleContainer = renderContentMiddleContainer('playlist', id)
     middleContainer.classList.add('content-middle')
 
     const songContainer = document.createElement('div')
@@ -388,8 +388,9 @@ export function renderPlaylistId(res) {
 
 export function renderAlbumId(res) {
     const mainContent = document.getElementById('mainContent')
+    console.log(res)
 
-    const { album: { Artist: { name }, Songs, imageURL, title } } = res
+    const { album: { Artist: { name }, Songs, imageURL, title, id } } = res
 
     const contentHeader = `
     <div class="content-header" id="album-page-container">
@@ -403,7 +404,7 @@ export function renderAlbumId(res) {
     </div>
     </div>`
 
-    const middleContainer = renderContentMiddleContainer()
+    const middleContainer = renderContentMiddleContainer('album', id)
     middleContainer.classList.add('content-middle')
 
     const songContainer = document.createElement('div')
@@ -420,25 +421,26 @@ export function renderAlbumId(res) {
 
 }
 
-export function renderContentMiddleContainer() {
+export function renderContentMiddleContainer(followableType, followableId) {
     const middleContentContainer = document.createElement('div')
 
     const middlePlayButton = document.createElement('div')
     middlePlayButton.classList.add('middle-play-button', 'fas', 'fa-play-circle')
     middlePlayButton.addEventListener('click', playContent, false)
 
-    const likeSongButton = document.createElement('div')
-    likeSongButton.classList.add('liked-song-button', 'fas', "fa-heart")
-    likeSongButton.addEventListener('click', followContent, false)
+    const likeContentButton = document.createElement('div')
+    likeContentButton.classList.add('liked-song-button', 'fas', "fa-heart")
+    likeContentButton.setAttribute('id', `${followableType}-${followableId}`)
+    likeContentButton.addEventListener('click', followContent, false)
 
 
     middleContentContainer.appendChild(middlePlayButton)
-    middleContentContainer.appendChild(likeSongButton)
+    middleContentContainer.appendChild(likeContentButton)
 
     return middleContentContainer
 }
 
-export function renderContentArtistMiddleContainer() {
+export function renderContentArtistMiddleContainer(followableId) {
     const middleContentContainer = document.createElement('div')
 
     const middlePlayButton = document.createElement('div')
@@ -448,6 +450,7 @@ export function renderContentArtistMiddleContainer() {
     const followArtistButton = document.createElement('button')
     followArtistButton.classList.add('follow-artist-button')
     followArtistButton.innerHTML = 'FOLLOW'
+    followArtistButton.setAttribute('id', `artist-${followableId}`)
     followArtistButton.addEventListener('click', followContent, false)
 
 
@@ -496,7 +499,7 @@ export function renderSongContainer(length, title, artist, songURL, id) {
     const followSong = document.createElement('li')
     followSong.setAttribute('id', `song-${id}`)
     followSong.classList.add('follow-song')
-    // followSong.addEventListener('click', followContent, false)
+    followSong.addEventListener('click', followContent, false)
     songUlMenu.appendChild(followSong)
     followSong.innerHTML = "Follow Song"
 
@@ -513,11 +516,11 @@ export function renderSongContainer(length, title, artist, songURL, id) {
 }
 
 async function followContent(res) {
-    const followSong = document.querySelector('follow-song');
-    const songId = this.id.split('-')[1]
+    console.log('followed!')
+    const [followableType, songId] = this.id.split('-')
     const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
     try {
-        const res = await fetch(`http://localhost:8080/follow/${userId}/song/${id}`, {
+        const res = await fetch(`http://localhost:8080/follow/${userId}/${followableType}/${songId}`, {
             method: 'post',
             headers: {
                 "Content-Type": "application/json",
@@ -538,6 +541,10 @@ async function openSongMenu() {
 }
 
 function playContent() {
+    console.log('play content!')
+}
 
 
+async function addPlaylistContent() {
+    console.log('added content to playlist')
 }
