@@ -41,8 +41,12 @@
   background-color: rgb(40,40,40);
   color: #bfbfbf;
   outline: 0;
+  display: none;
 }
 
+.footer__like-button--show {
+    display: block;
+}
 .footer__like-button-clicked {
   color: #1DB954
 }

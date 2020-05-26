@@ -5,11 +5,12 @@ html
         link(rel='shortcut icon' type='image/png' href='https://www.scdn.co/i/_global/favicon.ico')
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
         script(src="../js/index.js" type="module")
-        script(src="../js/create-playlist.js")
+        script(src="../js/create-playlist.js" type="module")
         script(src="../js/header.js")
         script(src="../js/home.js" type="module")
         script(src='../js/music-player.js')
         script(src='../js/renderLibrary.js' type= "module")
+        script(src='../js/playlistAddSong.js' type='module')
         style
             include ../public/global.css
             include ../public/header.css
@@ -71,6 +72,7 @@ html
                 .createPlaylist-buttons-container
                     button.createPlaylist-button-cancel CANCEL
                     button.createPlaylist-button-create CREATE
+            .playlistAddSong.playlistAddSong--hidden
             #mainContent
         #footer
             .footer__currently-playing-container

@@ -1,3 +1,5 @@
+import { renderContent } from './home.js'
+
 document.addEventListener('DOMContentLoaded', e => {
 
     const cancelPlaylist = document.querySelector('.createPlaylist-button-cancel')

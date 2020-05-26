@@ -59,14 +59,14 @@ router.get('/:id/follows', requireAuth, asyncHandler(async (req, res) => {
     //Format Json response
 
     let followedUserNames = []
-    user.followedUsers.forEach(obj => followedUserNames.push(obj.userName));
+    user.followedUsers.forEach(obj => followedUserNames.push(obj.id));
     const payload = {
         id: user.id,
         username: user.userName,
         followedArtists: user.followedArtists,
         followedPlaylists: user.followedPlaylists,
         followedAlbums: user.followedAlbums,
-        followedUsers: followedUserNames,
+        followedUsers: user.followedUsers,
         followedSongs: user.followedSongs
     };
     //Front end should take in values : const { id, username, followedPlaylists} = await res.json();

@@ -31,7 +31,7 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
     const playlistId = parseInt(req.params.id, 10);
     const playlist = await Playlist.findByPk(playlistId, {
         include: [{ model: Song, include: [{ model: Album, include: [{ model: Artist }] }] }, {
-            model: User, attributes: ["userName"]
+            model: User, attributes: ["userName", "id"]
         }]
 
     })
@@ -61,15 +61,18 @@ router.post('/', validatePlaylistName, asyncHandler(async (req, res, next) => {
     res.status(201).json({ playlist });
 }))
 
+//Add song to playlist
 router.post('/:playlistId/song/:songId', asyncHandler(async (req, res) => {
     const playlistId = parseInt(req.params.playlistId, 10);
     const songId = parseInt(req.params.songId, 10);
 
-    await PlaylistSong.findOrCreate({
-        where: { playlistId: playlistId, songId: songId }
+    await PlaylistSong.create({
+        playlistId: playlistId, songId: songId
 
     })
+    // await Playlist.create({
 
+    // })
     const playlistSongs = await PlaylistSong.findAll()
     res.status(201).json({ playlistSongs })
 }))
