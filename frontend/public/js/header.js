@@ -7,10 +7,10 @@ window.addEventListener("DOMContentLoaded", event => {
         logoutMenu.classList.toggle("pref--hidden");
     })
 
-    const searchButton = document.querySelector('.left-nav__search-button')
-    searchButton.addEventListener('click', e => {
-        const url = `/#/search`
-        window.history.pushState('search', 'Title', url)
-    })
+    // const searchButton = document.querySelector('.left-nav__search-button')
+    // searchButton.addEventListener('click', e => {
+    //     const url = `/#/search`
+    //     window.history.pushState('search', 'Title', url)
+    // })
 
 })

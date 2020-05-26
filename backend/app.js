@@ -10,6 +10,7 @@ const artistsRouter = require('./routes/artists');
 const playlistsRouter = require('./routes/playlists');
 const homeRouter = require('./routes/browse');
 const followsRouter = require('./routes/follows');
+const searchRouter = require('./routes/search')
 const db = require('./db/models')
 
 
@@ -27,6 +28,7 @@ app.use('/album', albumsRouter);
 app.use('/artist', artistsRouter);
 app.use('/playlist', playlistsRouter);
 app.use('/follow', followsRouter);
+app.use('/search', searchRouter);
 
 
 // Catch unhandled requests and forward to error handler.

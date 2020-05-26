@@ -1,3 +1,6 @@
+import { renderLibraryContent } from './renderLibrary.js'
+import { playlistAddSong, getAllPlaylists, addSong } from './playlistAddSong.js'
+
 export async function renderArtists() {
 
     try {
@@ -199,7 +202,7 @@ export function createTopBar(type) {
 }
 
 //Renders profile cards for albums,artists,playlist
-export function renderCard(contentType, imageURL, title, id, name) {
+export function renderCard(contentType, imageURL, title, id, name, addPlaylist) {
 
     const contentCard = document.createElement('div')
     contentCard.classList.add('music-card', `${contentType}-card`)
@@ -239,7 +242,12 @@ export function renderCard(contentType, imageURL, title, id, name) {
 
     contentCard.appendChild(playButton)
 
-    contentCard.addEventListener('click', renderContent, false)
+    if (!addPlaylist) {
+        contentCard.addEventListener('click', renderContent, false)
+    } else {
+        contentCard.classList.add(`songId-${addPlaylist}`)
+        contentCard.addEventListener('click', addSong, false)
+    }
     return contentCard
 }
 
@@ -346,9 +354,6 @@ export async function renderArtistId(res) {
 
             const albumInfo = document.createElement('div')
             albumInfo.classList.add('album-info')
-            albumInfo.innerHTML = title
-            albumContainerHeader.appendChild(albumInfo)
-
             const songContainer = document.createElement('div')
             songContainer.classList.add('album-song-container')
 
@@ -375,18 +380,9 @@ export async function renderArtistId(res) {
 
 export function renderPlaylistId(res) {
     const mainContent = document.getElementById('mainContent')
-    const { playlist: { User: { userName: name }, Songs, imageURL, name: title, id } } = res
-    const contentHeader = `
-    <div class="content-header" id="playlist-page-container">
-    <div class="content-art">
-    <img src=${imageURL}>
-    </div>
-    <div class="content-info">
-    <div class="content-type">PLAYLIST</div>
-    <div class="content-title">${title}</div>
-    <div class="content-creator">Created by ${name}</div>
-    </div>
-    </div>`
+    console.log(res)
+    const { playlist: { User: { userName: name, id: userId }, Songs, imageURL, name: title, id } } = res
+    const contentHeader = renderPlayListHeader(title, imageURL, userId, name)
 
     const middleContainer = renderContentMiddleContainer('playlist', id)
     middleContainer.classList.add('content-middle')
@@ -399,7 +395,8 @@ export function renderPlaylistId(res) {
         songContainer.appendChild(renderSongContainer(songLength, songTitle, name, songURL, id))
     })
 
-    mainContent.innerHTML = contentHeader
+    mainContent.innerHTML = ''
+    mainContent.appendChild(contentHeader)
     mainContent.appendChild(middleContainer)
     mainContent.appendChild(songContainer)
 
@@ -466,6 +463,51 @@ export function renderContentMiddleContainer(followableType, followableId) {
     return middleContentContainer
 }
 
+function renderPlayListHeader(title, imageUrl, userId, name) {
+
+    const contentHeader = document.createElement('div')
+    contentHeader.classList.add('content-header')
+    contentHeader.setAttribute('id', 'playlist-page-container')
+
+    const contentArt = document.createElement('div')
+    contentArt.classList.add('content-art')
+    const contentImage = document.createElement('img')
+    contentImage.setAttribute('src', imageUrl)
+    contentArt.appendChild(contentImage)
+
+    const contentInfo = document.createElement('div')
+    contentInfo.classList.add('content-info')
+
+    const contentType = document.createElement('div')
+    contentType.classList.add('content-type')
+    contentType.innerHTML = 'PLAYLIST'
+
+    const contentTitle = document.createElement('div')
+    contentTitle.classList.add('content-title')
+    contentTitle.innerHTML = title
+
+    const contentCreator = document.createElement('div')
+    contentCreator.classList.add('content-creator')
+    contentCreator.innerHTML = 'Created By'
+
+
+    const userButton = document.createElement('button')
+    userButton.classList.add('userPlaylist')
+    userButton.classList.add('user-card')
+    userButton.setAttribute('id', `user-${userId}`)
+    userButton.addEventListener('click', renderLibraryContent, false)
+    userButton.innerHTML = name
+
+    contentCreator.appendChild(userButton)
+    contentInfo.appendChild(contentType)
+    contentInfo.appendChild(contentTitle)
+    contentInfo.appendChild(contentCreator)
+    contentHeader.appendChild(contentArt)
+    contentHeader.appendChild(contentInfo)
+
+    return contentHeader
+}
+
 export function renderContentArtistMiddleContainer(followableId) {
     const middleContentContainer = document.createElement('div')
 
@@ -518,7 +560,8 @@ export function renderSongContainer(length, title, artist, songURL, id) {
 
     const addToPlaylist = document.createElement('li')
     addToPlaylist.classList.add('add-to-playlist')
-    addToPlaylist.addEventListener('click', addPlaylistContent, false)
+    addToPlaylist.setAttribute('id', `song-${id}`)
+    addToPlaylist.addEventListener('click', playlistAddSong, false)
     songUlMenu.appendChild(addToPlaylist)
     addToPlaylist.innerHTML = "Add to Playlist"
 
@@ -541,12 +584,14 @@ export function renderSongContainer(length, title, artist, songURL, id) {
     return songContainer
 }
 
-async function followContent(res) {
+export async function followContent(res) {
     console.log('followed!')
-    const [followableType, songId] = this.id.split('-')
+    const [followableType, followableId] = this.id.split('-')
     const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
+
+    console.log(`${userId} follows ${followableType} ${followableId}`)
     try {
-        const res = await fetch(`http://localhost:8080/follow/${userId}/${followableType}/${songId}`, {
+        const res = await fetch(`http://localhost:8080/follow/${userId}/${followableType}/${followableId}`, {
             method: 'post',
             headers: {
                 "Content-Type": "application/json",
@@ -564,13 +609,4 @@ async function followContent(res) {
 async function openSongMenu() {
     const ellipsisUl = this.firstChild
     ellipsisUl.classList.toggle('ellipsis--hidden');
-}
-
-function playContent() {
-    console.log('play content!')
-}
-
-
-async function addPlaylistContent() {
-    console.log('added content to playlist')
 }

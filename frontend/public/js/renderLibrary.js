@@ -1,3 +1,5 @@
+import { followContent } from './home.js'
+
 const userId = localStorage.getItem("SOUNDIFY_CURRENT_USER_ID")
 
 export async function renderLibraryArtists() {
@@ -14,7 +16,7 @@ export async function renderLibraryArtists() {
         if (!res.ok) throw res
 
         const { followedArtists } = await res.json()
-        const cardContainers = followedArtists.map(({ id, name, imageURL, artistId }) => {
+        const cardContainers = followedArtists.map(({ id, name, imageURL }) => {
             return renderLibraryCard('artist', imageURL, name, id)
         })
 
@@ -35,7 +37,12 @@ export async function renderLibraryArtists() {
         const mainContentGrid = document.createElement('div')
         mainContentGrid.classList.add('main-content__grid')
 
-        cardContainers.forEach(card => mainContentGrid.appendChild(card))
+        cardContainers.forEach(card => {
+            card.then(cards => {
+                mainContentGrid.appendChild(cards)
+            })
+
+        })
         mainContentContainer.appendChild(mainContentGrid)
 
         mainContent.innerHTML = ''
@@ -64,9 +71,13 @@ export async function renderLibraryAlbums() {
         if (!res.ok) throw res
 
         const { followedAlbums } = await res.json()
-        const cardContainers = followedAlbums.map(({ id, title, imageURL, }) => {
+        //console.log(followedAlbums[0].artistId);
+        // followedAlbums.forEach((album) => {
+        //    console.log(album.artistId)
+        // })
+        const cardContainers = followedAlbums.map(({ id, title, imageURL, artistId, createdBy }) => {
 
-            return renderLibraryCard('album', imageURL, title, id)
+            return renderLibraryCard('album', imageURL, title, id, artistId, createdBy)
         })
 
         const mainContent = document.getElementById('mainContent')
@@ -88,8 +99,10 @@ export async function renderLibraryAlbums() {
 
 
         cardContainers.forEach(card => {
-            console.log(card)
-            mainContentGrid.appendChild(card)
+            card.then(cards => {
+                mainContentGrid.appendChild(cards)
+            })
+
         })
         mainContentContainer.appendChild(mainContentGrid)
 
@@ -119,8 +132,8 @@ export async function renderLibraryPlaylists() {
         if (!res.ok) throw res
 
         const { followedPlaylists } = await res.json()
-        const cardContainers = followedPlaylists.map(({ id, name, imageURL }) => {
-            return renderLibraryCard('playlist', imageURL, name, id)
+        const cardContainers = followedPlaylists.map(({ id, name, imageURL, createdBy }) => {
+            return renderLibraryCard('playlist', imageURL, name, id, createdBy)
         })
 
         const mainContent = document.getElementById('mainContent')
@@ -140,7 +153,12 @@ export async function renderLibraryPlaylists() {
         const mainContentGrid = document.createElement('div')
         mainContentGrid.classList.add('main-content__grid')
 
-        cardContainers.forEach(card => mainContentGrid.appendChild(card))
+        cardContainers.forEach(card => {
+            card.then(cards => {
+                mainContentGrid.appendChild(cards)
+            })
+
+        })
         mainContentContainer.appendChild(mainContentGrid)
 
         mainContent.innerHTML = ''
@@ -155,6 +173,64 @@ export async function renderLibraryPlaylists() {
     }
 }
 
+
+export async function renderLibraryUsers() {
+    try {
+        // const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
+        const res = await fetch(`http://localhost:8080/user/${userId}/follows`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
+                }
+            })
+        if (!res.ok) throw res
+
+        const { followedUsers } = await res.json()
+
+        const cardContainers = followedUsers.map(({ id, userName }) => {
+            return renderLibraryCard('user', '../images/generic-artist.png', userName, id)
+        })
+
+        const mainContent = document.getElementById('mainContent')
+
+        const mainContentContainer = document.createElement('div')
+        mainContentContainer.classList.add('main-content__container')
+
+        const topBar = createLibraryTopBar('user')
+        mainContentContainer.appendChild(topBar)
+
+        const title = document.createElement('div')
+        title.classList.add('music-content__title')
+        title.innerHTML = 'User'
+
+        mainContentContainer.appendChild(title)
+
+        const mainContentGrid = document.createElement('div')
+        mainContentGrid.classList.add('main-content__grid')
+
+        cardContainers.forEach(card => {
+            card.then(cards => {
+                mainContentGrid.appendChild(cards)
+            })
+
+        })
+        mainContentContainer.appendChild(mainContentGrid)
+
+        mainContent.innerHTML = ''
+        mainContent.appendChild(mainContentContainer)
+
+        const url = `#/collection/users`
+        window.history.pushState('usersLibrary', 'Title', url)
+
+
+    } catch (e) {
+        console.error(e)
+    }
+}
+
+
+
 //Creates top bar where Albums, Artists, playlists button are
 export function createLibraryTopBar(type) {
 
@@ -165,7 +241,7 @@ export function createLibraryTopBar(type) {
     artistButton.classList.add('topbar-home-button', 'topbar__nav-link-artists')
 
     artistButton.addEventListener('click', renderLibraryArtists, false)
-    artistButton.innerHTML = 'Artist'
+    artistButton.innerHTML = 'Artists'
 
     const albumButton = document.createElement('button')
     albumButton.classList.add('topbar--hover', 'topbar-home-button', 'topbar__nav-link-albums')
@@ -178,24 +254,32 @@ export function createLibraryTopBar(type) {
     playlistButton.addEventListener('click', renderLibraryPlaylists, false)
     playlistButton.innerHTML = 'Playlists'
 
+    const userButton = document.createElement('button')
+    userButton.classList.add('topbar--hover', 'topbar-home-button', 'topbar__nav-link-playlists')
+    userButton.addEventListener('click', renderLibraryUsers, false)
+    userButton.innerHTML = 'Users'
 
     if (type === 'playlist') {
         playlistButton.classList.add('topbar-home-button--selected')
     } else if (type === 'artist') {
         artistButton.classList.add('topbar-home-button--selected')
-    } else {
+    } else if (type === 'album') {
         albumButton.classList.add('topbar-home-button--selected')
+    }
+    else {
+        userButton.classList.add('topbar-home-button--selected')
     }
 
     topBar.appendChild(albumButton)
     topBar.appendChild(artistButton)
     topBar.appendChild(playlistButton)
+    topBar.appendChild(userButton)
 
     return topBar
 }
 
 //Renders profile cards for albums,artists,playlist
-export function renderLibraryCard(contentType, imageURL, title, id, name) {
+export async function renderLibraryCard(contentType, imageURL, title, id, artistId) {
 
     const contentCard = document.createElement('div')
     contentCard.classList.add('music-card', `${contentType}-card`)
@@ -221,16 +305,59 @@ export function renderLibraryCard(contentType, imageURL, title, id, name) {
     const type = document.createElement('div')
     type.classList.add('music-card-type')
 
-    //const res = await fetch(`http://localhost:8080/${contentType}/${id}`);
+    if (contentType === 'album') {
+        const res = await fetch(`http://localhost:8080/artist/${artistId}`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
+                }
+            }
+        );
+        const { artist } = await res.json();
 
+        let artistName = artist.name;
+        type.innerHTML = artistName
 
-
-
-    if (name) {
-        type.innerHTML = name
-    } else {
-        type.innerHTML = 'test'
     }
+    if (contentType === 'artist') {
+        const res = await fetch(`http://localhost:8080/artist/${id}`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
+                }
+            }
+        );
+        const { artist } = await res.json();
+
+        let artistName = artist.name;
+        type.innerHTML = artistName
+
+    }
+    if (contentType === 'playlist') {
+        const res = await fetch(`http://localhost:8080/playlist/${artistId}`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
+                }
+            }
+        );
+        const { playlist } = await res.json();
+
+        let createdBy = playlist.User.userName;
+        console.log(createdBy);
+        type.innerHTML = createdBy
+
+    }
+    // if(contentType === 'user'){
+
+    // }
+    // if (contentType === 'album') {
+    // } else {
+    //     type.innerHTML = 'test'
+    // }
 
     contentTypeContainer.appendChild(type)
     contentCard.appendChild(contentTypeContainer)
@@ -244,6 +371,56 @@ export function renderLibraryCard(contentType, imageURL, title, id, name) {
     return contentCard
 }
 
+export async function renderUserLibraryCard(contentType, id, userName) {
+    const contentCard = document.createElement('div')
+    contentCard.classList.add('music-card', `${contentType}-card`)
+    contentCard.setAttribute('id', `${contentType}-${id}`)
+
+    const imageDiv = document.createElement('div')
+    imageDiv.classList.add('music-card__image')
+
+    //const contentImage = document.createElement('img')
+    //contentImage.setAttribute('src', imageURL)
+    //imageDiv.appendChild(contentImage)
+    //contentCard.appendChild(imageDiv)
+
+    const contentTypeContainer = document.createElement('div')
+    contentTypeContainer.classList.add('music-card-text-container')
+
+    //const contentTitle = document.createElement('div')
+    //contentTitle.classList.add(`music-card-title`)
+    //contentTitle.innerHTML = title
+
+    //contentTypeContainer.appendChild(contentTitle)
+
+    const type = document.createElement('div')
+    type.classList.add('music-card-type')
+
+    const res = await fetch(`http://localhost:8080/user/${id}/follows`,
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
+            }
+        }
+    );
+    const { followedPlaylist } = await res.json();
+
+
+
+
+
+    contentTypeContainer.appendChild(type)
+    contentCard.appendChild(contentTypeContainer)
+
+    const playButton = document.createElement('i')
+    playButton.classList.add('music-card__play-button', 'fas', 'fa-play-circle')
+
+    contentCard.appendChild(playButton)
+
+    contentCard.addEventListener('click', renderLibraryContent, false)
+    return contentCard
+}
 
 export async function renderLibraryContent() {
     let contentType
@@ -253,23 +430,50 @@ export async function renderLibraryContent() {
         contentType = this.classList[1].slice(0, this.classList[1].length - 5)
     }
     const contentId = this.id.split('-')[1]
-
-    const res = await getLibraryRes(contentType, contentId)
+    console.log(contentType);
+    let res
+    if (contentType !== 'user') {
+        res = await getLibraryRes(contentType, contentId)
+    } else {
+        res = await getUsersPlaylists(contentId)
+    }
 
     if (contentType === 'artist') {
+        console.log(res)
         renderLibraryArtistId(res)
     } else if (contentType === 'playlist') {
         renderLibraryPlaylistId(res)
-    } else {
+    } else if (contentType === 'album') {
         renderLibraryAlbumId(res)
+    } else {
+        renderLibraryUserId(res)
     }
 
     const url = `#/${contentType}/${contentId}`
-    window.history.pushState('albums', 'Title', url)
+    window.history.pushState('contentType', 'Title', url)
 
 }
 
 
+async function getUsersPlaylists(userId) {
+    try {
+        // const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
+        const res = await fetch(`http://localhost:8080/user/${userId}/playlist`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("SOUNDIFY_ACCESS_TOKEN")}`
+                }
+            })
+        if (!res.ok) throw res
+
+        return await res.json()
+
+
+    } catch (e) {
+        console.error(e)
+    }
+}
 
 
 export async function getLibraryRes(type, id) {
@@ -291,6 +495,37 @@ export async function getLibraryRes(type, id) {
         console.error(e)
     }
 
+}
+
+export async function renderLibraryUserId(res) {
+    console.log(res)
+    const { User: { userName }, createdBy: userId } = res.playlists[0]
+
+    const contentHeader = `
+    <div class="content-header" id="user-page-container">
+        <div class="content-info">
+            <div class="content-type">USER</div>
+            <div class="content-title">${userName}</div>
+        </div>
+    </div>`
+
+    const contentMiddle = renderLibraryContentUserMiddleContainer(userId)
+    contentMiddle.classList.add('content-middle')
+
+    const playlistContainer = document.createElement('div')
+    playlistContainer.classList.add('user-playlists-container')
+    playlistContainer.classList.add('main-content__grid')
+
+
+
+    res.playlists.forEach(({ id, name, imageURL, createdBy }) => {
+        renderLibraryCard('playlist', imageURL, name, id, createdBy)
+            .then(playListCard => playlistContainer.appendChild(playListCard))
+    })
+
+    mainContent.innerHTML = contentHeader
+    mainContent.appendChild(contentMiddle)
+    mainContent.appendChild(playlistContainer)
 }
 
 export async function renderLibraryArtistId(res) {
@@ -457,6 +692,20 @@ export function renderLibraryContentMiddleContainer() {
     return middleContentContainer
 }
 
+export function renderLibraryContentUserMiddleContainer(userId) {
+    const middleContentContainer = document.createElement('div')
+
+    const likeContentButton = document.createElement('div')
+    likeContentButton.classList.add('liked-song-button', 'fas', "fa-heart")
+    likeContentButton.setAttribute('id', `user-${userId}`)
+    likeContentButton.addEventListener('click', followContent, false)
+
+    middleContentContainer.appendChild(likeContentButton)
+
+    return middleContentContainer
+}
+
+
 export function renderLibraryContentArtistMiddleContainer() {
     const middleContentContainer = document.createElement('div')
 
@@ -526,11 +775,12 @@ export function renderLibrarySongContainer(length, title, artist, songURL, song)
 
 
 //Import from home.js?
-async function followContent() {
-    console.log('followed the content!')
-}
 
 async function openSongMenu() {
     const ellipsisUl = document.querySelector('.ellipsis-ul')
     ellipsisUl.classList.toggle('ellipsis--hidden');
+}
+
+async function addPlaylistContent() {
+    console.log('added content to playlist')
 }

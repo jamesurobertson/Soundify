@@ -250,3 +250,26 @@
     width: 16px;
     background-color: black;
 }
+
+
+.playlistAddSong {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: 0.5s;
+}
+
+.playlistAddSong--hidden {
+    display: none;
+}
+
+.all-users-playlists {
+    display: flex;
+}

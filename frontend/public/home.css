@@ -87,7 +87,8 @@ img{
     align-self: safe;
     font-size: 3em;
     height: 0px;
-    display: flex;
+    /* display: flex; */
+    display: none;
     align-self: flex-end;
     padding: 0px;
     margin-right: 15px;
@@ -96,9 +97,9 @@ img{
     z-index: -1
 }
 
-.music-card:hover .music-card__play-button{
-    z-index: 1;
-    display: block
+
+.music-card:hover {
+    opacity: 50%;
 }
 
 .topbar-home-button{
