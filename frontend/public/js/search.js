@@ -70,38 +70,8 @@ async function search() {
                 searchFound.appendChild(renderSongContainer(song.songLength, song.title, 'artist', song.songURL, song.id))
             }
         })
-        //const { albums } = await res.json();
-        // albums.forEach(album => {
-        //     const { title: albumTitle, imageurl: albumImage, id: albumId,
-        //         Artist: { name: artistName, imageURL: artistImage,
-        //             id: artistId }, Songs } = album;
-        //     Songs.forEach(song => {
-        //         const { title } = song;
-        //         // console.log(title);
-
-        //         if (searchInput.includes(title)) {
-        //             console.log('Searched')
-
-        //         }
-        //     })
-        //     if (searchInput.includes(albumTitle)) {
-        //         console.log('Searched')
-
-        //     }
-        // })
-        // const { title } = searchAll[0]
-        //|| searchInput.includes(title) || searchInput.includes(albumTitle)
-
 
     } catch (error) {
         console.error(error)
     }
 }
-// .search - container
-//     .search - box
-//         .search - box - input
-//             input#search - input(type = "text" placeholder = "Search for music content...")
-//     .search - content - empty
-//          .search - header
-//          .search - text
-//     .search - content - found

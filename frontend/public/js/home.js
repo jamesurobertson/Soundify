@@ -380,7 +380,6 @@ export async function renderArtistId(res) {
 
 export function renderPlaylistId(res) {
     const mainContent = document.getElementById('mainContent')
-    console.log(res)
     const { playlist: { User: { userName: name, id: userId }, Songs, imageURL, name: title, id } } = res
     const contentHeader = renderPlayListHeader(title, imageURL, userId, name)
 
@@ -407,7 +406,6 @@ export function renderPlaylistId(res) {
 
 export function renderAlbumId(res) {
     const mainContent = document.getElementById('mainContent')
-    console.log(res)
 
     const { album: { Artist: { name }, Songs, imageURL, title, id } } = res
 
@@ -585,11 +583,9 @@ export function renderSongContainer(length, title, artist, songURL, id) {
 }
 
 export async function followContent(res) {
-    console.log('followed!')
     const [followableType, followableId] = this.id.split('-')
     const userId = localStorage.getItem('SOUNDIFY_CURRENT_USER_ID')
 
-    console.log(`${userId} follows ${followableType} ${followableId}`)
     try {
         const res = await fetch(`http://localhost:8080/follow/${userId}/${followableType}/${followableId}`, {
             method: 'post',

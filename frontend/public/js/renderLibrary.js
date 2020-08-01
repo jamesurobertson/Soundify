@@ -71,10 +71,6 @@ export async function renderLibraryAlbums() {
         if (!res.ok) throw res
 
         const { followedAlbums } = await res.json()
-        //console.log(followedAlbums[0].artistId);
-        // followedAlbums.forEach((album) => {
-        //    console.log(album.artistId)
-        // })
         const cardContainers = followedAlbums.map(({ id, title, imageURL, artistId, createdBy }) => {
 
             return renderLibraryCard('album', imageURL, title, id, artistId, createdBy)
@@ -347,7 +343,6 @@ export async function renderLibraryCard(contentType, imageURL, title, id, artist
         const { playlist } = await res.json();
 
         let createdBy = playlist.User.userName;
-        console.log(createdBy);
         type.innerHTML = createdBy
 
     }
@@ -430,7 +425,6 @@ export async function renderLibraryContent() {
         contentType = this.classList[1].slice(0, this.classList[1].length - 5)
     }
     const contentId = this.id.split('-')[1]
-    console.log(contentType);
     let res
     if (contentType !== 'user') {
         res = await getLibraryRes(contentType, contentId)
@@ -439,7 +433,6 @@ export async function renderLibraryContent() {
     }
 
     if (contentType === 'artist') {
-        console.log(res)
         renderLibraryArtistId(res)
     } else if (contentType === 'playlist') {
         renderLibraryPlaylistId(res)
@@ -498,7 +491,6 @@ export async function getLibraryRes(type, id) {
 }
 
 export async function renderLibraryUserId(res) {
-    console.log(res)
     const { User: { userName }, createdBy: userId } = res.playlists[0]
 
     const contentHeader = `
@@ -782,5 +774,4 @@ async function openSongMenu() {
 }
 
 async function addPlaylistContent() {
-    console.log('added content to playlist')
 }

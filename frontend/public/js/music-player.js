@@ -11,10 +11,6 @@ window.addEventListener('DOMContentLoaded', e => {
 
 const player = document.createElement("audio")
 
-async function playContent() {
-    console.log('Played Content')
-}
-
 
 async function playSong() {
 
@@ -199,7 +195,6 @@ async function renderFooterInfo(songUrl) {
         if (!res.ok) throw res
         const { song } = await res.json()
 
-        console.log(song)
 
         const { title: songName, Album: { imageURL: albumImage,
             title: albumName }, Album: { Artist: { name: artistName } } } = song

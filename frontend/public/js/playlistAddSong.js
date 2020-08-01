@@ -6,7 +6,6 @@ export async function playlistAddSong() {
     const songId = this.id.split('-')[1]
 
     const usersPlaylists = await getAllPlaylists(userId)
-    console.log(usersPlaylists)
 
     const playlistContainer = document.createElement('div')
     playlistContainer.classList.add('all-users-playlists')
@@ -16,13 +15,11 @@ export async function playlistAddSong() {
         playlistContainer.appendChild(renderCard('playlist', imageURL, name, id, null, songId))
     })
 
-    console.log(playlistContainer)
     addSongModal.innerHTML = ''
     addSongModal.appendChild(playlistContainer)
     document.querySelector('.playlistAddSong')
         .classList.remove('playlistAddSong--hidden')
 
-    console.log(playlistContainer)
 }
 
 

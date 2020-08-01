@@ -146,7 +146,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                         }
                     })
                     if (!albumRes.ok) throw albumRes
-                    console.log(albumRes)
                     const { album } = await albumRes.json();
                     const { Artist: { name } } = album;
                     mainContent.innerHTML = contentHeader;
