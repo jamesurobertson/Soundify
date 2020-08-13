@@ -1,0 +1,23 @@
+#body {
+  background: url("../images/bubble.png");
+}
+
+#header {
+  border-bottom: 1px solid #d9dadc;
+  padding: 20px 51px 18px;
+  margin-bottom: 30px;
+  text-align: center;
+  display: flex;
+  color: whitesmoke;
+  background-color: #262626;
+  justify-content: space-between;
+}
+
+.user {
+  color: white;
+  padding: 5px;
+}
+
+#login-button {
+  padding-right: 54px;
+}
