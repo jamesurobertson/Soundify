@@ -21,3 +21,23 @@
 #login-button {
   padding-right: 54px;
 }
+
+#landing-header {
+  font-size: 120px;
+}
+
+#landing-para {
+  font-size: 16px;
+  justify-content: center;
+  color: whitesmoke;
+}
+
+.landing-content {
+  text-align: center;
+  justify-content: center;
+  color: #e0e0e0;
+}
+
+.button {
+  display: flex;
+}
