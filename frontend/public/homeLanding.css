@@ -1,5 +1,10 @@
 #body {
-  background: url("../images/bubble.png");
+  background: url("../images/pink.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
 
 #header {
@@ -24,20 +29,29 @@
 
 #landing-header {
   font-size: 120px;
+  color: peachpuff;
 }
 
-#landing-para {
-  font-size: 16px;
-  justify-content: center;
-  color: whitesmoke;
+.demo-text {
+  font-size: 20px;
+  color: peachpuff;
+  margin-top: 12px;
 }
 
 .landing-content {
   text-align: center;
   justify-content: center;
-  color: #e0e0e0;
+  color: peachpuff;
 }
 
-.button {
+/* .demo-text {
+  margin-top: 160px;
+} */
+
+.button-wrapper {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 170px;
+  align-content: center;
 }

@@ -6,7 +6,8 @@ html(lang="en")
         link(rel='stylesheet' type='text/css' href='../login.css')
         link(rel='stylesheet' type='text/css' href='../global.css')
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
-        script(src="../js/log-in.js")
+        script(src="../js/landing.js")
+
         //- include ../public/homeLanding.css
         title Document
     body#body
@@ -19,6 +20,9 @@ html(lang="en")
                 a(id='login-button' href="/log-in") Login
                 a(id='signup-button' href='/sign-up') Signup
         .landing-content
+            #landing-header Welcome to Soundify
             #landing-header Listening is Everything
-            #landing-para Try out our demo user below
-        button(id="demoButton" className="button" type="submit") Demo User
+
+        .button-wrapper
+            .demo-text Try Out Our Demo User!
+            button(id="demoButton" type="submit") Demo User

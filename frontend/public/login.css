@@ -50,6 +50,7 @@ body {
 }
 
 #login {
+  margin-top: 30px;
   font-size: 14px;
   line-height: 1;
   border-radius: 500px;
@@ -110,4 +111,10 @@ body {
   background-color: pink;
   margin-left: 15px;
   margin-top: 20px;
+}
+
+.demo-button {
+  margin-bottom: 24px;
+  margin-right: 35px;
+  margin-top: -32px;
 }
