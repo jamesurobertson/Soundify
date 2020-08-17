@@ -86,7 +86,7 @@
 
 .footer__music-control-buttons ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   color: #bfbfbf;
   align-items: center;
 }
@@ -102,7 +102,7 @@
 }
 
 .footer__copyright {
-  font-size: 9px;
+  font-size: px;
 }
 
 .footer__sound-control-container {

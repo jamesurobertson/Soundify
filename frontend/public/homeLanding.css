@@ -55,3 +55,23 @@
   margin-top: 170px;
   align-content: center;
 }
+
+#landing-para {
+  font-size: 45px;
+}
+
+.left-nav__logo-text {
+  margin-top: 6px;
+}
+
+.left-nav__logo-text:hover {
+  color: pink;
+}
+
+#login-button:hover {
+  color: pink;
+}
+
+#signup-button:hover {
+  color: pink;
+}
