@@ -69,5 +69,5 @@ We implemented a relational database schema to associate our data. One of larger
 A few our main troubleshooting issues were:
 
 - Setting up the polymorphic association on the follower table in the backend
-- Realizing that we needed to use CSS Grid for our main template of the web app.
+- Realizing that we needed to use CSS Grid for our main template of the web application.
 - Learning about HTML5 Audio tag and using it for our audio player
