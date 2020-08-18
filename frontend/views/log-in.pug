@@ -7,7 +7,7 @@ html(lang="en")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         script(src="../js/log-in.js")
         title Document
-    body
+    body#body
         .header
             .head
                 .logo
@@ -21,12 +21,14 @@ html(lang="en")
                 form#log-in-form
                     //- input(type="hidden" name="_csrf" value=token)
                     .email-form
-                        label
+                        label(demo)
                         input#email(type="text" name="email" placeholder="email" required)
                     .password-form
                         label
                         input#password(type="password" name="password" placeholder="password" required)
                     div
                         button(id="login" type="submit") Login
+                    div
+                        button(id="demoButton" type="submit") Demo User
             span#login-text Don't Have An Account?
                 button(id="signup" onclick="window.location.href = '/sign-up'") Sign Up

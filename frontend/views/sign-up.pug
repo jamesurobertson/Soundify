@@ -29,7 +29,9 @@ html(lang="en")
                         input#email(type="text" name="email" placeholder="email" required)
                     .password-form
                         input#password(type="password" name="password" placeholder="password" required )
-                    div
-                    button(id="signup" type= "submit") Sign Up
+                    .signup-button
+                        button(id="signup" type= "submit") Sign Up
+                    .demo-button
+                        button(id="demoButton" type="submit") Demo User
             span#login-text Already Have An Account?
                 button(id="login" onclick = "window.location.href = '/log-in'") Log In

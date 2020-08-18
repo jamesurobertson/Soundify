@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        link(rel='stylesheet' type='text/css' href='../homeLanding.css')
+        link(rel='stylesheet' type='text/css' href='../login.css')
+        link(rel='stylesheet' type='text/css' href='../global.css')
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        script(src="../js/landing.js")
+
+        //- include ../public/homeLanding.css
+        title Document
+    body#body
+        #header
+            .logo
+                a(class="soundify-logo" href="http://localhost:4001/")
+                    i.left-nav__logo-icon.fab.fa-spotify
+                    .left-nav__logo-text Soundify
+            .user
+                a(id='login-button' href="/log-in") Login
+                a(id='signup-button' href='/sign-up') Signup
+        .landing-content
+            #landing-header Welcome to Soundify
+            #landing-para Where Listening is Everything
+
+        .button-wrapper
+            .demo-text Try Out Our Demo User!
+            button(id="demoButton" type="submit") Demo User

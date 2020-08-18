@@ -1,5 +1,4 @@
-
-.header{
+.header {
   grid-area: main-view;
   display: flex;
   justify-content: flex-end;
@@ -9,74 +8,76 @@
   right: 0;
   height: 60px;
   z-index: 1;
-  background-color:rgb(18,18,18);
+  background-color: rgb(18, 18, 18);
   padding: 16px 48px;
-  text-align:center;
+  text-align: center;
   align-items: center;
-
 }
 
-
-#drop-button{
-    border: none;
-    padding-bottom: 10px;
-    background-color: #282828;
-    border-radius: 18px;
-    width: 36px;
-    color: #b3b3b3;
-    height: 38px;
-    box-shadow: 76px;
-    box-shadow: 0px 0px 3px black;
-    padding: 0.3em 1em !important;
-    outline: none;
+#drop-button {
+  border: none;
+  padding-bottom: 10px;
+  background-color: #282828;
+  border-radius: 18px;
+  width: 36px;
+  color: #b3b3b3;
+  height: 38px;
+  box-shadow: 76px;
+  box-shadow: 0px 0px 3px black;
+  padding: 0.3em 1em !important;
+  outline: none;
 }
 
 .hidden {
   display: none;
 }
 
-.header-ul{
-    width: 96px;
-    margin-top: 5px;
-    margin-left: -30px;
-    background-color: #282828;
-    border-radius: 6px;
-    border: 1px solid rgba(0,0,0,.1);
-    -webkit-box-shadow: 0 4px 4px rgba(0,0,0,.7);
-    box-shadow: 0 4px 4px rgba(0,0,0,.7);
-    pointer-events: auto;
-    position: absolute;
-    top: 79%;
-    color: #b3b3b3;
-    line-height: 2;
+.header-ul {
+  width: 96px;
+  margin-top: 5px;
+  margin-left: -30px;
+  background-color: #282828;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.7);
+  pointer-events: auto;
+  position: absolute;
+  top: 79%;
+  color: #b3b3b3;
+  line-height: 2;
 }
 
-.pref--hidden{
+.pref--hidden {
   display: none;
 }
 
-#header-logout-button{
-    padding-top: 10px;
-    width:96px;
-    margin: 10px;
+#header-logout-button {
+  padding-top: 10px;
+  width: 96px;
+  margin: 10px;
 }
 
-#header-profile-button{
-    padding-top: 10px;
-    width:96px;
-    margin: 10px;
+#header-profile-button {
+  padding-top: 10px;
+  width: 96px;
+  margin: 10px;
 }
 
-#header-logout-button:hover{
-    color: white;
-    width:96px;
+#header-logout-button:hover {
+  color: white;
+  width: 96px;
 }
 
-#header-profile-button:hover{
-    color: white;
-    width:96px;
+#header-profile-button:hover {
+  color: white;
+  width: 96px;
 }
 
-.header__user-buttons:hover{
+.header__user-buttons:hover {
   transform: scale(1.1);
+}
+
+#astronaut-id {
+  margin-left: -2px;
 }

@@ -80,17 +80,17 @@ html
                     .footer__song-artist-album
                 .footer__likeSong
                     button(type='button' title='Save to your Liked Songs').footer__like-button
-                        i.fas.fa-heart
+
 
             .footer__player-controls-container
                 .footer__music-control-buttons
                     ul
-                        li.fas.fa-random.footer_control-button#shuffle
+                        //- li.fas.fa-random.footer_control-button#shuffle
                         li.fas.fas.fa-step-backward.footer_control-button#backward
                         li.fas.fa-play-circle.footer_control-button#footer__play-song
                         li.far.fa-pause-circle.footer_control-button.footer__pause-song--hidden#footer__pause-song
                         li.fas.fa-step-forward.footer_control-button#forward
-                        li.fas.fa-redo.footer_control-button#redo
+                        //- li.fas.fa-redo.footer_control-button#redo
                 .footer__playback-bar
                     // TODO: dynamic time controls
                     .footer__progress-time#song_start 00:00
@@ -98,9 +98,11 @@ html
                         .footer__progress-bar
                             .footer__progress-bar-playhead
                     .footer__progress-time#footer__song-length 00:00
+                .footer__copyright Copyright JCA Records
             .footer__sound-control-container
                 i.fas.fa-volume-up.footer__volume-icon
                 .footer_volume-bar-container
                     input(type='range' max='100' min = '0' step='1' value='5').footer__volume-control
+
             script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js')
             script(src='../js/ajax.js')

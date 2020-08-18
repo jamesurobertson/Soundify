@@ -1,0 +1,77 @@
+#body {
+  background: url("../images/pink.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+#header {
+  border-bottom: 1px solid #d9dadc;
+  padding: 20px 51px 18px;
+  margin-bottom: 30px;
+  text-align: center;
+  display: flex;
+  color: whitesmoke;
+  background-color: #262626;
+  justify-content: space-between;
+}
+
+.user {
+  color: white;
+  padding: 5px;
+}
+
+#login-button {
+  padding-right: 54px;
+}
+
+#landing-header {
+  font-size: 120px;
+  color: peachpuff;
+}
+
+.demo-text {
+  font-size: 20px;
+  color: peachpuff;
+  margin-top: 12px;
+}
+
+.landing-content {
+  text-align: center;
+  justify-content: center;
+  color: peachpuff;
+}
+
+/* .demo-text {
+  margin-top: 160px;
+} */
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 170px;
+  align-content: center;
+}
+
+#landing-para {
+  font-size: 45px;
+}
+
+.left-nav__logo-text {
+  margin-top: 6px;
+}
+
+.left-nav__logo-text:hover {
+  color: pink;
+}
+
+#login-button:hover {
+  color: pink;
+}
+
+#signup-button:hover {
+  color: pink;
+}
